@@ -60,6 +60,11 @@ set t_Co=256
 colorscheme wombat256mod
 let g:airline_theme='wombat'
 
+set tabstop=4
+set softtabstop=4
+set expandtab
+set shiftwidth=4
+
 " Start up nerdtree on boot
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
