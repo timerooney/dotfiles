@@ -1,4 +1,5 @@
 [alias]
+    # Use aliases from the guide at https://developer.atlassian.com/blog/2015/05/the-power-of-git-subtree/
     # subtree add
     sba = "!f() { git subtree add --prefix $2 $1 master --squash; }; f"
     # subtree update
