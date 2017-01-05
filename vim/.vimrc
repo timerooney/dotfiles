@@ -26,10 +26,11 @@ Plugin 'VundleVim/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-sensible'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'bling/vim-bufferline'
 
 if vundleAvailable  == 0
     echo "Installing Vundles, please ignore key map error messages"
@@ -52,18 +53,27 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-set number
-
 " 256 colors
 set t_Co=256
 " Colorscheme
 colorscheme wombat256mod
 let g:airline_theme='wombat'
+syntax on
 
 set tabstop=4
 set softtabstop=4
 set expandtab
 set shiftwidth=4
+set autoindent
+set smartindent
+
+set number
+set showcmd     " Show last command
+set wildmenu    " Show menu suggestions
+set lazyredraw  " Only redraw when needed
+set showmatch   " Show matching brackets
+
+set incsearch   " Search as typing
 
 " Start up nerdtree on boot
 autocmd VimEnter * NERDTree
