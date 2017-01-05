@@ -27,10 +27,13 @@ Plugin 'VundleVim/Vundle.vim'
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'tpope/vim-surround'
 Plugin 'bling/vim-bufferline'
+Plugin 'majutsushi/tagbar'
 
 if vundleAvailable  == 0
     echo "Installing Vundles, please ignore key map error messages"
@@ -84,3 +87,5 @@ autocmd VimEnter * wincmd p
 
 " Remap control-c to close current buffer without closing the window
 nnoremap <C-c> :bp\|bd#<CR>
+" Remap F8 to opening the tagbar
+nmap <F8> :TagbarToggle<CR>
