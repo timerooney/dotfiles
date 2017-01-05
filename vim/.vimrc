@@ -81,3 +81,9 @@ autocmd VimEnter * wincmd p
 
 " Show buffers in airline
 let g:airline#extensions#tabline#enabled = 1
+
+
+" Remappings "
+
+" Remap control-c to close current buffer without closing the window
+nnoremap <C-c> :bp\|bd#<CR>
