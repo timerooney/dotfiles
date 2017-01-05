@@ -79,9 +79,6 @@ set incsearch   " Search as typing
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 
-" Show buffers in airline
-let g:airline#extensions#tabline#enabled = 1
-
 
 " Remappings "
 
