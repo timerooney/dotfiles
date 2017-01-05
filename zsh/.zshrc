@@ -84,3 +84,5 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias lisa="ls -lisa"
+alias clera="clear"
+alias sl="ls"
