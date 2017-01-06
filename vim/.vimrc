@@ -85,7 +85,11 @@ autocmd VimEnter * wincmd p
 
 " Remappings "
 
+" Remap the leader
+let mapleader = ","
 " Remap control-c to close current buffer without closing the window
 nnoremap <C-c> :bp\|bd#<CR>
 " Remap F8 to opening the tagbar
 nmap <F8> :TagbarToggle<CR>
+" Remap <leader>. to search tags
+nnoremap <leader>. :CtrlPTag<CR>
