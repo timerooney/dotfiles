@@ -34,6 +34,7 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-surround'
 Plugin 'bling/vim-bufferline'
 Plugin 'majutsushi/tagbar'
+Plugin 'craigemery/vim-autotag'
 
 if vundleAvailable  == 0
     echo "Installing Vundles, please ignore key map error messages"
