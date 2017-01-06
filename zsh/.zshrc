@@ -86,3 +86,6 @@ source $ZSH/oh-my-zsh.sh
 alias lisa="ls -lisa"
 alias clera="clear"
 alias sl="ls"
+
+# Additional exports
+export EDITOR="vim"
