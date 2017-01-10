@@ -4,3 +4,6 @@
     sba = "!f() { git subtree add --prefix $2 $1 master --squash; }; f"
     # subtree update
     sbu = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
+[core]
+    editor = vim
+    excludesfile = ~/.global_gitignore

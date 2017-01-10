@@ -95,5 +95,7 @@ nnoremap <C-c> :bp\|bd#<CR>
 nmap <F8> :TagbarToggle<CR>
 " Remap <leader>. to search tags
 nnoremap <leader>. :CtrlPTag<CR>
+" Remap <leader>t to toggle nerdtree
+nnoremap <leader>t :NERDTreeToggle<CR>
 " Create a command to generate tag files in the current directory
 command GenerateTags execute ':silent !ctags -R -f tags .' | execute ':redraw!'
