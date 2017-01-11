@@ -29,6 +29,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'davidhalter/jedi-vim.git'
+Plugin 'python-mode/python-mode'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -98,6 +99,12 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " Set supertab to use jedi-vim whenever available
 let g:SuperTabDefaultCompletionType = "context"
+
+
+" Disable python-mode rope to avoid interfering with jedi-vim
+let g:pymode_rope_lookup_project = 0
+let g:pymode_rope_complete_on_dot = 0
+let g:pymode_rope = 0
 
 
 " Remappings "
