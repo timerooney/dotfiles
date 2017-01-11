@@ -93,6 +93,13 @@ autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 
 
+" Set supertab to scroll down
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
+" Set supertab to use jedi-vim whenever available
+let g:SuperTabDefaultCompletionType = "context"
+
+
 " Remappings "
 
 " Remap the leader
