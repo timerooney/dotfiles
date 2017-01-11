@@ -10,6 +10,7 @@ if !filereadable(vundle_readme)
 endif
 
 
+" Setup of Vundle
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -60,11 +61,15 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+
 " 256 colors
 set t_Co=256
 " Colorscheme
 colorscheme wombat256mod
 let g:airline_theme='wombat'
+
+"
+" General configuration
 syntax on
 
 set tabstop=4
@@ -81,6 +86,7 @@ set lazyredraw  " Only redraw when needed
 set showmatch   " Show matching brackets
 
 set incsearch   " Search as typing
+
 
 " Start up nerdtree on boot
 autocmd VimEnter * NERDTree
