@@ -37,6 +37,7 @@ Plugin 'bling/vim-bufferline'
 Plugin 'majutsushi/tagbar'
 Plugin 'craigemery/vim-autotag'
 Plugin 'ajh17/VimCompletesMe'
+Plugin 'ervandew/supertab'
 
 if vundleAvailable  == 0
     echo "Installing Vundles, please ignore key map error messages"
