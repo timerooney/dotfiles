@@ -10,6 +10,7 @@ if !filereadable(vundle_readme)
 endif
 
 
+" Setup of Vundle
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -29,6 +30,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'junegunn/gv.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'davidhalter/jedi-vim.git'
+Plugin 'python-mode/python-mode'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -38,6 +40,7 @@ Plugin 'bling/vim-bufferline'
 Plugin 'majutsushi/tagbar'
 Plugin 'craigemery/vim-autotag'
 Plugin 'ajh17/VimCompletesMe'
+Plugin 'ervandew/supertab'
 
 if vundleAvailable  == 0
     echo "Installing Vundles, please ignore key map error messages"
@@ -60,11 +63,15 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+
 " 256 colors
 set t_Co=256
 " Colorscheme
 colorscheme wombat256mod
 let g:airline_theme='wombat'
+
+"
+" General configuration
 syntax on
 
 set tabstop=4
@@ -82,9 +89,23 @@ set showmatch   " Show matching brackets
 
 set incsearch   " Search as typing
 
+
 " Start up nerdtree on boot
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
+
+
+" Set supertab to scroll down
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
+" Set supertab to use jedi-vim whenever available
+let g:SuperTabDefaultCompletionType = "context"
+
+
+" Disable python-mode rope to avoid interfering with jedi-vim
+let g:pymode_rope_lookup_project = 0
+let g:pymode_rope_complete_on_dot = 0
+let g:pymode_rope = 0
 
 
 " Remappings "
