@@ -29,6 +29,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'junegunn/gv.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'easymotion/vim-easymotion'
 Plugin 'davidhalter/jedi-vim.git'
 Plugin 'python-mode/python-mode'
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -122,3 +123,5 @@ nnoremap <leader>. :CtrlPTag<CR>
 nnoremap <leader>t :NERDTreeToggle<CR>
 " Create a command to generate tag files in the current directory
 command GenerateTags execute ':silent !ctags -R -f tags .' | execute ':redraw!'
+" Set easymotion to use space
+map <Space> <Plug>(easymotion-prefix)
