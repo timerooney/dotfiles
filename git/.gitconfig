@@ -7,3 +7,5 @@
 [core]
     editor = vim
     excludesfile = ~/.global_gitignore
+[user]
+	name = Tim Rooney
