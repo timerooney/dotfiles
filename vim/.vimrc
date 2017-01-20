@@ -100,7 +100,7 @@ autocmd VimEnter * wincmd p
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " Set supertab to use jedi-vim whenever available
-let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
 
 " Disable python-mode rope to avoid interfering with jedi-vim

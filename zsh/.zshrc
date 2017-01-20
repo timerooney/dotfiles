@@ -93,7 +93,9 @@ alias clera="clear"
 alias sl="ls"
 
 # Custom imports for system outside of dotfiles
-source $HOME/.zshrc_custom
+if [ -r $HOME/.zshrc_custom ]; then
+    source $HOME/.zshrc_custom
+fi
 
 # Additional exports
 export EDITOR="vim"
