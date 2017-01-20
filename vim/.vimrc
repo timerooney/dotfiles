@@ -31,7 +31,7 @@ Plugin 'junegunn/gv.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'davidhalter/jedi-vim.git'
-Plugin 'python-mode/python-mode'
+" Plugin 'python-mode/python-mode'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -100,7 +100,7 @@ autocmd VimEnter * wincmd p
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " Set supertab to use jedi-vim whenever available
-let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
 
 " Disable python-mode rope to avoid interfering with jedi-vim
