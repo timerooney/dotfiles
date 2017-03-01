@@ -42,6 +42,8 @@ Plugin 'majutsushi/tagbar'
 Plugin 'craigemery/vim-autotag'
 Plugin 'ajh17/VimCompletesMe'
 Plugin 'ervandew/supertab'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
 if vundleAvailable  == 0
     echo "Installing Vundles, please ignore key map error messages"
@@ -125,3 +127,5 @@ nnoremap <leader>t :NERDTreeToggle<CR>
 command GenerateTags execute ':silent !ctags -R -f tags .' | execute ':redraw!'
 " Set easymotion to use space
 map <Space> <Plug>(easymotion-prefix)
+" Create a command to remove whitespace from a document
+command RemoveWhitespace execute ':%s/\s\+$//e'
