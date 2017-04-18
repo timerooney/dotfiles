@@ -39,10 +39,8 @@ Plugin 'bling/vim-bufferline'
 Plugin 'majutsushi/tagbar'
 Plugin 'craigemery/vim-autotag'
 Plugin 'ervandew/supertab'
+Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
-Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
-
 
 if vundleAvailable  == 0
     echo "Installing Vundles, please ignore key map error messages"
@@ -75,6 +73,7 @@ let g:airline_theme='lucius'
 "
 " General configuration
 syntax on
+hi! link Conceal Special
 
 set tabstop=2
 set softtabstop=2
