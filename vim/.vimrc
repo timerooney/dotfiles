@@ -29,6 +29,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'junegunn/gv.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
@@ -41,6 +42,7 @@ Plugin 'craigemery/vim-autotag'
 Plugin 'ervandew/supertab'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'reedes/vim-pencil'
 
 if vundleAvailable  == 0
     echo "Installing Vundles, please ignore key map error messages"
@@ -73,7 +75,6 @@ let g:airline_theme='lucius'
 "
 " General configuration
 syntax on
-hi! link Conceal Special
 
 set tabstop=2
 set softtabstop=2
@@ -90,10 +91,26 @@ set showmatch   " Show matching brackets
 
 set incsearch   " Search as typing
 
+" Make backspace work like normal editors
+set backspace=indent,eol,start
+
+" Set splits to below and right
+set splitbelow
+set splitright
 
 " Start up nerdtree on boot
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
+
+
+" Use pencil for markdown  and text files
+" let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
+
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType text         call pencil#init()
+augroup END
 
 
 " Disable python-mode rope to avoid interfering with jedi-vim
@@ -113,7 +130,7 @@ nmap <F8> :TagbarToggle<CR>
 " Remap <leader>. to search tags
 nnoremap <leader>. :CtrlPTag<CR>
 " Remap <leader>t to toggle nerdtree
-nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>t :NERDTreeTabsToggle<CR>
 " Create a command to generate tag files in the current directory
 command GenerateTags execute ':silent !ctags -R -f tags .' | execute ':redraw!'
 " Set easymotion to use space
