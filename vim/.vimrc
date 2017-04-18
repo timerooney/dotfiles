@@ -43,6 +43,7 @@ Plugin 'ervandew/supertab'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'reedes/vim-pencil'
+Plugin 'godlygeek/csapprox'
 
 if vundleAvailable  == 0
     echo "Installing Vundles, please ignore key map error messages"
@@ -70,7 +71,7 @@ filetype plugin indent on    " required
 set t_Co=256
 " Colorscheme
 colorscheme deep-space256
-let g:airline_theme='lucius'
+let g:airline_theme='deep_space'
 
 "
 " General configuration

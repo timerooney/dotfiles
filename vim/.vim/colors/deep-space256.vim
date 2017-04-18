@@ -1,187 +1,1349 @@
-" Deep Space - An intergalactically friendly color scheme for Vim
-" Author: Brandon Siders
-" License: MIT
+" This scheme was created by CSApproxSnapshot
+" on Tue, 18 Apr 2017
 
-highlight clear
-
-if exists('syntax_on')
+hi clear
+if exists("syntax_on")
     syntax reset
 endif
 
-set background=dark
-let g:colors_name = 'deep-space'
+if v:version < 700
+    let g:colors_name = expand("<sfile>:t:r")
+    command! -nargs=+ CSAHi exe "hi" substitute(substitute(<q-args>, "undercurl", "underline", "g"), "guisp\\S\\+", "", "g")
+else
+    let g:colors_name = expand("<sfile>:t:r")
+    command! -nargs=+ CSAHi exe "hi" <q-args>
+endif
 
-let g:deepspace_italics = get(g:, 'deepspace_italics', 0)
+function! s:old_kde()
+  " Konsole only used its own palette up til KDE 4.2.0
+  if executable('kde4-config') && system('kde4-config --kde-version') =~ '^4.[10].'
+    return 1
+  elseif executable('kde-config') && system('kde-config --version') =~# 'KDE: 3.'
+    return 1
+  else
+    return 0
+  endif
+endfunction
 
-" Color Palette
-let s:gray1     = 235
-let s:gray2     = 236
-let s:gray3     = 237
-let s:gray4     = 60
-let s:gray5     = 109
-let s:red       = 132
-let s:green     = 71
-let s:yellow    = 143
-let s:blue      = 68
-let s:purple    = 97
-let s:cyan      = 73
-let s:orange    = 137
-let s:pink      = 175
+if 0
+elseif has("gui_running") || (&t_Co == 256 && (&term ==# "xterm" || &term =~# "^screen") && exists("g:CSApprox_konsole") && g:CSApprox_konsole) || (&term =~? "^konsole" && s:old_kde())
+    CSAHi Normal term=NONE cterm=NONE ctermbg=59 ctermfg=146 gui=NONE guibg=#1b202a guifg=#9aa7bd
+    CSAHi gitcommitDiscardedType term=NONE cterm=NONE ctermbg=bg ctermfg=138 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi vimAuSyntax term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi htmlArg term=NONE cterm=NONE ctermbg=bg ctermfg=180 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi htmlEndTag term=NONE cterm=NONE ctermbg=bg ctermfg=140 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi sassClassChar term=NONE cterm=NONE ctermbg=bg ctermfg=174 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi vimHiKeyList term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimHiBang term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimHiCtermColor term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimHiFontname term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimHiGuiFontname term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi SpecialKey term=bold cterm=NONE ctermbg=bg ctermfg=102 gui=NONE guibg=bg guifg=#51617d
+    CSAHi NonText term=bold cterm=bold ctermbg=bg ctermfg=102 gui=bold guibg=bg guifg=#51617d
+    CSAHi Directory term=bold cterm=NONE ctermbg=bg ctermfg=110 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi ErrorMsg term=NONE cterm=bold ctermbg=59 ctermfg=138 gui=bold guibg=#1b202a guifg=#b15e7c
+    CSAHi IncSearch term=reverse cterm=reverse ctermbg=bg ctermfg=fg gui=reverse guibg=bg guifg=fg
+    CSAHi Search term=reverse cterm=NONE ctermbg=180 ctermfg=59 gui=NONE guibg=#b5a262 guifg=#1b202a
+    CSAHi MoreMsg term=bold cterm=bold ctermbg=bg ctermfg=108 gui=bold guibg=bg guifg=#709d6c
+    CSAHi ModeMsg term=bold cterm=bold ctermbg=bg ctermfg=108 gui=bold guibg=bg guifg=#709d6c
+    CSAHi LineNr term=underline cterm=NONE ctermbg=bg ctermfg=60 gui=NONE guibg=bg guifg=#323c4d
+    CSAHi rubyRegexpBrackets term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimPatRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyLocalVariableOrMethod term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSubstRep term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSubstRange term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi SpellRare term=reverse cterm=undercurl ctermbg=bg ctermfg=201 gui=undercurl guibg=bg guifg=fg guisp=Magenta
+    CSAHi SpellLocal term=underline cterm=undercurl ctermbg=bg ctermfg=51 gui=undercurl guibg=bg guifg=fg guisp=Cyan
+    CSAHi Pmenu term=NONE cterm=NONE ctermbg=60 ctermfg=146 gui=NONE guibg=#323c4d guifg=#9aa7bd
+    CSAHi PmenuSel term=NONE cterm=NONE ctermbg=110 ctermfg=59 gui=NONE guibg=#608cc3 guifg=#232936
+    CSAHi PmenuSbar term=NONE cterm=NONE ctermbg=102 ctermfg=60 gui=NONE guibg=#51617d guifg=#323c4d
+    CSAHi PmenuThumb term=NONE cterm=NONE ctermbg=146 ctermfg=102 gui=NONE guibg=#9aa7bd guifg=#51617d
+    CSAHi TabLine term=underline cterm=NONE ctermbg=59 ctermfg=60 gui=NONE guibg=#1b202a guifg=#323c4d
+    CSAHi TabLineSel term=bold cterm=bold ctermbg=102 ctermfg=59 gui=bold guibg=#51617d guifg=#232936
+    CSAHi TabLineFill term=reverse cterm=NONE ctermbg=59 ctermfg=102 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi CursorColumn term=reverse cterm=NONE ctermbg=59 ctermfg=fg gui=NONE guibg=#232936 guifg=fg
+    CSAHi Identifier term=underline cterm=NONE ctermbg=bg ctermfg=140 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi perlStatementIndirObjWrap term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlVarMember term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi htmlTag term=NONE cterm=NONE ctermbg=bg ctermfg=140 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi htmlTagName term=NONE cterm=NONE ctermbg=bg ctermfg=110 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi htmlTitle term=NONE cterm=NONE ctermbg=bg ctermfg=146 gui=NONE guibg=bg guifg=#9aa7bd
+    CSAHi javaScriptBraces term=NONE cterm=NONE ctermbg=bg ctermfg=146 gui=NONE guibg=bg guifg=#9aa7bd
+    CSAHi javaScriptIdentifier term=NONE cterm=NONE ctermbg=bg ctermfg=110 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi javaScriptFunction term=NONE cterm=NONE ctermbg=bg ctermfg=110 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi javaScriptNumber term=NONE cterm=NONE ctermbg=bg ctermfg=138 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi javaScriptReserved term=NONE cterm=NONE ctermbg=bg ctermfg=110 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi javaScriptRequire term=NONE cterm=NONE ctermbg=bg ctermfg=110 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi javaScriptNull term=NONE cterm=NONE ctermbg=bg ctermfg=138 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi airline_x_inactive term=NONE cterm=NONE ctermbg=59 ctermfg=102 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi airline_x_inactive_bold term=bold cterm=bold ctermbg=59 ctermfg=102 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi airline_x_inactive_red term=NONE cterm=NONE ctermbg=59 ctermfg=138 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi airline_y_inactive term=NONE cterm=NONE ctermbg=59 ctermfg=102 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi airline_y_inactive_bold term=bold cterm=bold ctermbg=59 ctermfg=102 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi airline_y_inactive_red term=NONE cterm=NONE ctermbg=59 ctermfg=138 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi airline_z_inactive term=NONE cterm=NONE ctermbg=59 ctermfg=102 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi vimHiTermcap term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyBlockArgument term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyHeredocStart term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi CursorLine term=underline cterm=NONE ctermbg=59 ctermfg=fg gui=NONE guibg=#232936 guifg=fg
+    CSAHi ColorColumn term=reverse cterm=NONE ctermbg=102 ctermfg=fg gui=NONE guibg=#51617d guifg=fg
+    CSAHi MatchParen term=reverse cterm=bold ctermbg=176 ctermfg=59 gui=bold guibg=#c47ebd guifg=#232936
+    CSAHi Comment term=bold cterm=NONE ctermbg=bg ctermfg=102 gui=NONE guibg=bg guifg=#51617d
+    CSAHi Constant term=underline cterm=NONE ctermbg=bg ctermfg=138 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi Special term=bold cterm=NONE ctermbg=bg ctermfg=110 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi vimCollection term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Statement term=bold cterm=NONE ctermbg=bg ctermfg=110 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi PreProc term=underline cterm=NONE ctermbg=bg ctermfg=110 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi Type term=underline cterm=NONE ctermbg=bg ctermfg=174 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi perlVarBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlVarBlock2 term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyBlockParameterList term=NONE cterm=NONE ctermbg=bg ctermfg=140 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi rubyInterpolationDelimiter term=NONE cterm=NONE ctermbg=bg ctermfg=140 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi rubyStringDelimiter term=NONE cterm=NONE ctermbg=bg ctermfg=108 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi rubyRegexpSpecial term=NONE cterm=NONE ctermbg=bg ctermfg=110 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi diffAdded term=NONE cterm=NONE ctermbg=bg ctermfg=108 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi diffRemoved term=NONE cterm=NONE ctermbg=bg ctermfg=138 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi SignifySignAdd term=NONE cterm=NONE ctermbg=bg ctermfg=108 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi airline_z_inactive_red term=NONE cterm=NONE ctermbg=59 ctermfg=138 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi SignifySignChange term=NONE cterm=NONE ctermbg=bg ctermfg=180 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi airline_error_inactive_bold term=bold cterm=bold ctermbg=124 ctermfg=16 gui=bold guibg=#990000 guifg=#000000
+    CSAHi airline_error_inactive_red term=NONE cterm=NONE ctermbg=124 ctermfg=138 gui=NONE guibg=#990000 guifg=#b15e7c
+    CSAHi airline_a_inactive term=NONE cterm=NONE ctermbg=59 ctermfg=102 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi airline_a_inactive_bold term=bold cterm=bold ctermbg=59 ctermfg=102 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi airline_a_inactive_red term=NONE cterm=NONE ctermbg=59 ctermfg=138 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi airline_b_inactive term=NONE cterm=NONE ctermbg=59 ctermfg=102 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi airline_b_inactive_bold term=bold cterm=bold ctermbg=59 ctermfg=102 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi vimCommentTitleLeader term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi luaInnerComment term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyAliasDeclaration2 term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimAutoEventList term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyMethodDeclaration term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyClassDeclaration term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyModuleDeclaration term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSubstPat term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Underlined term=underline cterm=NONE ctermbg=bg ctermfg=110 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi Ignore term=NONE cterm=NONE ctermbg=bg ctermfg=59 gui=NONE guibg=bg guifg=bg
+    CSAHi Error term=reverse cterm=bold ctermbg=59 ctermfg=138 gui=bold guibg=#1b202a guifg=#b15e7c
+    CSAHi Todo term=NONE cterm=bold ctermbg=59 ctermfg=176 gui=bold guibg=#1b202a guifg=#c47ebd
+    CSAHi String term=NONE cterm=NONE ctermbg=bg ctermfg=108 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi Character term=NONE cterm=NONE ctermbg=bg ctermfg=108 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi Function term=NONE cterm=NONE ctermbg=bg ctermfg=180 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi perlPackageConst term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi StatusLineNC term=reverse cterm=reverse ctermbg=59 ctermfg=102 gui=reverse guibg=#51617d guifg=#232936
+    CSAHi NONE term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_z_inactive_bold term=bold cterm=bold ctermbg=59 ctermfg=102 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi vimIf term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi SignifySignDelete term=NONE cterm=NONE ctermbg=bg ctermfg=138 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi GitGutterChangeDelete term=NONE cterm=NONE ctermbg=bg ctermfg=174 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi vimStdPlugin term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi NERDTreeLink term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_b_inactive_red term=NONE cterm=NONE ctermbg=59 ctermfg=138 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi airline_c_inactive_bold term=bold cterm=bold ctermbg=59 ctermfg=102 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi airline_c_inactive_red term=NONE cterm=NONE ctermbg=59 ctermfg=138 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi airline_error_inactive term=NONE cterm=NONE ctermbg=124 ctermfg=16 gui=NONE guibg=#990000 guifg=#000000
+    CSAHi airline_warning_inactive_bold term=bold cterm=bold ctermbg=172 ctermfg=16 gui=bold guibg=#df5f00 guifg=#000000
+    CSAHi airline_warning_inactive_red term=NONE cterm=NONE ctermbg=172 ctermfg=138 gui=NONE guibg=#df5f00 guifg=#b15e7c
+    CSAHi airline_x term=NONE cterm=NONE ctermbg=59 ctermfg=102 gui=NONE guibg=#232a36 guifg=#51617d
+    CSAHi airline_x_bold term=bold cterm=bold ctermbg=59 ctermfg=102 gui=bold guibg=#232a36 guifg=#51617d
+    CSAHi airline_x_red term=NONE cterm=NONE ctermbg=59 ctermfg=138 gui=NONE guibg=#232a36 guifg=#b15e7c
+    CSAHi airline_y term=NONE cterm=NONE ctermbg=60 ctermfg=146 gui=NONE guibg=#323c4d guifg=#9aa7bd
+    CSAHi luaIfThen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi luaElseifThen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi luaThenEnd term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi luaBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi luaLoopBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi luaParen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyMethodBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi CtrlPwhite term=bold cterm=bold ctermbg=174 ctermfg=59 gui=bold guibg=#b3785d guifg=#232936
+    CSAHi rubyDoBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimMapLhs term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimAutoCmdSpace term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Operator term=NONE cterm=NONE ctermbg=bg ctermfg=110 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi vimAutoCmdSfxList term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Define term=NONE cterm=NONE ctermbg=bg ctermfg=110 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi Macro term=NONE cterm=NONE ctermbg=bg ctermfg=110 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi vimGlobal term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimIsCommand term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimExtCmd term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimFilter term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_z_bold term=bold cterm=bold ctermbg=108 ctermfg=59 gui=bold guibg=#709d6c guifg=#232936
+    CSAHi airline_z_red term=NONE cterm=NONE ctermbg=108 ctermfg=138 gui=NONE guibg=#709d6c guifg=#b15e7c
+    CSAHi airline_error term=NONE cterm=NONE ctermbg=124 ctermfg=16 gui=NONE guibg=#990000 guifg=#000000
+    CSAHi airline_error_bold term=bold cterm=bold ctermbg=124 ctermfg=16 gui=bold guibg=#990000 guifg=#000000
+    CSAHi airline_error_red term=NONE cterm=NONE ctermbg=124 ctermfg=138 gui=NONE guibg=#990000 guifg=#b15e7c
+    CSAHi airline_a term=NONE cterm=NONE ctermbg=108 ctermfg=59 gui=NONE guibg=#709d6c guifg=#232936
+    CSAHi airline_a_bold term=bold cterm=bold ctermbg=108 ctermfg=59 gui=bold guibg=#709d6c guifg=#232936
+    CSAHi luaTableBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimNormCmds term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi cssClassNameDot term=NONE cterm=NONE ctermbg=bg ctermfg=174 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi rubyCurlyBlockDelimiter term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyCurlyBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyArrayDelimiter term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyArrayLiteral term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyBlockExpression term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyCaseExpression term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyConditionalExpression term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyOptionalDoLine term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimMapRhs term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimMapRhsExtend term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimMenuBang term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimMenuPriority term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimMenuMap term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Cursor term=NONE cterm=NONE ctermbg=146 ctermfg=59 gui=NONE guibg=#9aa7bd guifg=#232936
+    CSAHi airline_a_to_airline_b_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_y_bold term=bold cterm=bold ctermbg=60 ctermfg=146 gui=bold guibg=#323c4d guifg=#9aa7bd
+    CSAHi airline_b_to_airline_c2_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_y_red term=NONE cterm=NONE ctermbg=60 ctermfg=138 gui=NONE guibg=#323c4d guifg=#b15e7c
+    CSAHi airline_y_to_airline_z_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlAutoload term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_z term=NONE cterm=NONE ctermbg=108 ctermfg=59 gui=NONE guibg=#709d6c guifg=#232936
+    CSAHi airline_b_to_airline_c_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSet term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimUserCmd term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimCmdSep term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_a_red term=NONE cterm=NONE ctermbg=108 ctermfg=138 gui=NONE guibg=#709d6c guifg=#b15e7c
+    CSAHi airline_b term=NONE cterm=NONE ctermbg=60 ctermfg=146 gui=NONE guibg=#323c4d guifg=#9aa7bd
+    CSAHi airline_b_bold term=bold cterm=bold ctermbg=60 ctermfg=146 gui=bold guibg=#323c4d guifg=#9aa7bd
+    CSAHi airline_b_red term=NONE cterm=NONE ctermbg=60 ctermfg=138 gui=NONE guibg=#323c4d guifg=#b15e7c
+    CSAHi airline_c term=NONE cterm=NONE ctermbg=59 ctermfg=102 gui=NONE guibg=#232a36 guifg=#51617d
+    CSAHi airline_c_bold term=bold cterm=bold ctermbg=59 ctermfg=102 gui=bold guibg=#232a36 guifg=#51617d
+    CSAHi airline_c_red term=NONE cterm=NONE ctermbg=59 ctermfg=138 gui=NONE guibg=#232a36 guifg=#b15e7c
+    CSAHi airline_warning term=NONE cterm=NONE ctermbg=172 ctermfg=16 gui=NONE guibg=#df5f00 guifg=#000000
+    CSAHi airline_warning_bold term=bold cterm=bold ctermbg=172 ctermfg=16 gui=bold guibg=#df5f00 guifg=#000000
+    CSAHi airline_warning_red term=NONE cterm=NONE ctermbg=172 ctermfg=138 gui=NONE guibg=#df5f00 guifg=#b15e7c
+    CSAHi vimLuaRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi pythonSync term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyAliasDeclaration term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimPythonRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyRepeatExpression term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyMultilineComment term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_warning_inactive term=NONE cterm=NONE ctermbg=172 ctermfg=16 gui=NONE guibg=#df5f00 guifg=#000000
+    CSAHi vimMenuRhs term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi cssAttrComma term=NONE cterm=NONE ctermbg=bg ctermfg=108 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi cssAttributeSelector term=NONE cterm=NONE ctermbg=bg ctermfg=108 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi cssBraces term=NONE cterm=NONE ctermbg=bg ctermfg=146 gui=NONE guibg=bg guifg=#9aa7bd
+    CSAHi cssClassName term=NONE cterm=NONE ctermbg=bg ctermfg=174 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi vimGroupList term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi cssIdentifier term=NONE cterm=NONE ctermbg=bg ctermfg=180 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi cssImportant term=NONE cterm=NONE ctermbg=bg ctermfg=140 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi cssMediaType term=NONE cterm=NONE ctermbg=bg ctermfg=140 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi cssProp term=NONE cterm=NONE ctermbg=bg ctermfg=146 gui=NONE guibg=bg guifg=#9aa7bd
+    CSAHi cssSelectorOp term=NONE cterm=NONE ctermbg=bg ctermfg=110 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi luaFunctionBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c_inactive term=NONE cterm=NONE ctermbg=59 ctermfg=102 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi vimFiletype term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimAugroup term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimExecute term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi CtrlPdark term=NONE cterm=NONE ctermbg=60 ctermfg=146 gui=NONE guibg=#323c4d guifg=#9aa7bd
+    CSAHi CtrlParrow1 term=NONE cterm=NONE ctermbg=174 ctermfg=59 gui=NONE guibg=#b3785d guifg=#232936
+    CSAHi CtrlParrow2 term=NONE cterm=NONE ctermbg=59 ctermfg=174 gui=NONE guibg=#232936 guifg=#b3785d
+    CSAHi CtrlParrow3 term=NONE cterm=NONE ctermbg=60 ctermfg=59 gui=NONE guibg=#323c4d guifg=#232936
+    CSAHi airline_a_to_airline_b term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_b_to_airline_c term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c_to_airline_x term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_x_to_airline_y term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podBoldItalic term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podBoldOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podBoldAlternativeDelimOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podItalicBold term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSubstRep4 term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyKeywordAsMethod term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimRubyRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimCollClass term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi cssSelectorOp2 term=NONE cterm=NONE ctermbg=bg ctermfg=110 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi sassAmpersand term=NONE cterm=NONE ctermbg=bg ctermfg=110 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi sassClass term=NONE cterm=NONE ctermbg=bg ctermfg=174 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi vimClusterName term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi lessAmpersand term=NONE cterm=NONE ctermbg=bg ctermfg=110 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi lessClass term=NONE cterm=NONE ctermbg=bg ctermfg=174 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi lessClassChar term=NONE cterm=NONE ctermbg=bg ctermfg=174 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi lessFunction term=NONE cterm=NONE ctermbg=bg ctermfg=180 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi lessCssAttribute term=NONE cterm=NONE ctermbg=bg ctermfg=146 gui=NONE guibg=bg guifg=#9aa7bd
+    CSAHi gitcommitComment term=NONE cterm=NONE ctermbg=bg ctermfg=102 gui=NONE guibg=bg guifg=#51617d
+    CSAHi CtrlPlight term=NONE cterm=NONE ctermbg=59 ctermfg=174 gui=NONE guibg=#232936 guifg=#b3785d
+    CSAHi airline_y_to_airline_z term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_z_to_airline_warning term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c1_inactive term=NONE cterm=NONE ctermbg=59 ctermfg=102 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi perlFormat term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimFunction term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimOperParen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi bufferline_selected term=bold cterm=bold ctermbg=bg ctermfg=fg gui=bold guibg=bg guifg=fg
+    CSAHi podItalicOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podItalicAlternativeDelimOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podNoSpaceOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podNoSpaceAlternativeDelimOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podIndexOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podIndexAlternativeDelimOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podBold term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podBoldAlternativeDelim term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podItalic term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podItalicAlternativeDelim term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimIskList term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSynKeyRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlSync term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlSyncPOD term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimPerlRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSynMatchRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSynMtchCchar term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSynMtchGroup term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c1_to_airline_x term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSynLine term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlFakeGroup term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlBraces term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi pythonSpaceError term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi pythonAttribute term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Structure term=NONE cterm=NONE ctermbg=bg ctermfg=110 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi vimSynRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSynPatMod term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSyncLines term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSyncMatch term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyInterpolation term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimFuncBody term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c2_inactive_bold term=bold cterm=bold ctermbg=59 ctermfg=102 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi vimFuncBlank term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi CursorLineNr term=bold cterm=NONE ctermbg=59 ctermfg=146 gui=NONE guibg=#232936 guifg=#9aa7bd
+    CSAHi Question term=NONE cterm=bold ctermbg=bg ctermfg=108 gui=bold guibg=bg guifg=#709d6c
+    CSAHi StatusLine term=bold,reverse cterm=NONE ctermbg=60 ctermfg=146 gui=NONE guibg=#323c4d guifg=#9aa7bd
+    CSAHi vimEcho term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi VertSplit term=reverse cterm=NONE ctermbg=59 ctermfg=102 gui=NONE guibg=#1b202a guifg=#51617d
+    CSAHi Title term=bold cterm=NONE ctermbg=bg ctermfg=180 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi Visual term=reverse cterm=NONE ctermbg=60 ctermfg=146 gui=NONE guibg=#323c4d guifg=#9aa7bd
+    CSAHi VisualNOS term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi WarningMsg term=NONE cterm=NONE ctermbg=bg ctermfg=138 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi WildMenu term=NONE cterm=NONE ctermbg=110 ctermfg=59 gui=NONE guibg=#608cc3 guifg=#232936
+    CSAHi vimEscapeBrace term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSetEqual term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlFiledescStatementNocomma term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_b_to_airline_c2 term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlFiledescStatementComma term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c2_inactive term=NONE cterm=NONE ctermbg=59 ctermfg=102 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi gitcommitOnBranch term=NONE cterm=NONE ctermbg=bg ctermfg=102 gui=NONE guibg=bg guifg=#51617d
+    CSAHi gitcommitFile term=NONE cterm=NONE ctermbg=bg ctermfg=110 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi gitcommitHeader term=NONE cterm=NONE ctermbg=bg ctermfg=140 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi gitcommitBranch term=NONE cterm=NONE ctermbg=bg ctermfg=174 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi gitcommitUnmerged term=NONE cterm=NONE ctermbg=bg ctermfg=108 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi gitcommitUntrackedFile term=NONE cterm=NONE ctermbg=bg ctermfg=110 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi gitcommitSelectedFile term=NONE cterm=NONE ctermbg=bg ctermfg=108 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi gitcommitDiscardedFile term=NONE cterm=NONE ctermbg=bg ctermfg=138 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi gitcommitUnmergedFile term=NONE cterm=NONE ctermbg=bg ctermfg=180 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi gitcommitSelectedType term=NONE cterm=NONE ctermbg=bg ctermfg=108 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi airline_c2_inactive_red term=NONE cterm=NONE ctermbg=59 ctermfg=138 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi vimAugroupSyncA term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSyncLinebreak term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSyncLinecont term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSyncRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimHiLink term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyDelimEscape term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyNestedParentheses term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyNestedCurlyBraces term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyNestedAngleBrackets term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyNestedSquareBrackets term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyRegexpParens term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Folded term=NONE cterm=NONE ctermbg=59 ctermfg=60 gui=NONE guibg=#1b202a guifg=#323c4d
+    CSAHi FoldColumn term=NONE cterm=NONE ctermbg=59 ctermfg=110 gui=NONE guibg=#1b202a guifg=#56adb7
+    CSAHi DiffAdd term=bold cterm=NONE ctermbg=108 ctermfg=60 gui=NONE guibg=#709d6c guifg=#323c4d
+    CSAHi DiffChange term=bold cterm=NONE ctermbg=180 ctermfg=60 gui=NONE guibg=#b5a262 guifg=#323c4d
+    CSAHi DiffDelete term=bold cterm=NONE ctermbg=138 ctermfg=60 gui=NONE guibg=#b15e7c guifg=#323c4d
+    CSAHi DiffText term=reverse cterm=NONE ctermbg=110 ctermfg=60 gui=NONE guibg=#608cc3 guifg=#323c4d
+    CSAHi SignColumn term=NONE cterm=NONE ctermbg=59 ctermfg=59 gui=NONE guibg=#1b202a guifg=#232936
+    CSAHi Conceal term=NONE cterm=NONE ctermbg=248 ctermfg=252 gui=NONE guibg=DarkGrey guifg=LightGrey
+    CSAHi SpellBad term=reverse cterm=undercurl ctermbg=bg ctermfg=196 gui=undercurl guibg=bg guifg=#b15e7c guisp=Red
+    CSAHi SpellCap term=reverse cterm=undercurl ctermbg=bg ctermfg=21 gui=undercurl guibg=bg guifg=#608cc3 guisp=Blue
+    CSAHi airline_x_to_airline_y_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_z_to_airline_warning_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c1_to_airline_x_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c_to_airline_x_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+elseif has("gui_running") || (&t_Co == 256 && (&term ==# "xterm" || &term =~# "^screen") && exists("g:CSApprox_eterm") && g:CSApprox_eterm) || &term =~? "^eterm"
+    CSAHi Normal term=NONE cterm=NONE ctermbg=59 ctermfg=188 gui=NONE guibg=#1b202a guifg=#9aa7bd
+    CSAHi gitcommitDiscardedType term=NONE cterm=NONE ctermbg=bg ctermfg=175 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi vimAuSyntax term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi htmlArg term=NONE cterm=NONE ctermbg=bg ctermfg=186 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi htmlEndTag term=NONE cterm=NONE ctermbg=bg ctermfg=146 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi sassClassChar term=NONE cterm=NONE ctermbg=bg ctermfg=180 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi vimHiKeyList term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimHiBang term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimHiCtermColor term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimHiFontname term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimHiGuiFontname term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi SpecialKey term=bold cterm=NONE ctermbg=bg ctermfg=103 gui=NONE guibg=bg guifg=#51617d
+    CSAHi NonText term=bold cterm=bold ctermbg=bg ctermfg=103 gui=bold guibg=bg guifg=#51617d
+    CSAHi Directory term=bold cterm=NONE ctermbg=bg ctermfg=111 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi ErrorMsg term=NONE cterm=bold ctermbg=59 ctermfg=175 gui=bold guibg=#1b202a guifg=#b15e7c
+    CSAHi IncSearch term=reverse cterm=reverse ctermbg=bg ctermfg=fg gui=reverse guibg=bg guifg=fg
+    CSAHi Search term=reverse cterm=NONE ctermbg=186 ctermfg=59 gui=NONE guibg=#b5a262 guifg=#1b202a
+    CSAHi MoreMsg term=bold cterm=bold ctermbg=bg ctermfg=151 gui=bold guibg=bg guifg=#709d6c
+    CSAHi ModeMsg term=bold cterm=bold ctermbg=bg ctermfg=151 gui=bold guibg=bg guifg=#709d6c
+    CSAHi LineNr term=underline cterm=NONE ctermbg=bg ctermfg=60 gui=NONE guibg=bg guifg=#323c4d
+    CSAHi rubyRegexpBrackets term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimPatRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyLocalVariableOrMethod term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSubstRep term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSubstRange term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi SpellRare term=reverse cterm=undercurl ctermbg=bg ctermfg=201 gui=undercurl guibg=bg guifg=fg guisp=Magenta
+    CSAHi SpellLocal term=underline cterm=undercurl ctermbg=bg ctermfg=51 gui=undercurl guibg=bg guifg=fg guisp=Cyan
+    CSAHi Pmenu term=NONE cterm=NONE ctermbg=60 ctermfg=188 gui=NONE guibg=#323c4d guifg=#9aa7bd
+    CSAHi PmenuSel term=NONE cterm=NONE ctermbg=111 ctermfg=59 gui=NONE guibg=#608cc3 guifg=#232936
+    CSAHi PmenuSbar term=NONE cterm=NONE ctermbg=103 ctermfg=60 gui=NONE guibg=#51617d guifg=#323c4d
+    CSAHi PmenuThumb term=NONE cterm=NONE ctermbg=188 ctermfg=103 gui=NONE guibg=#9aa7bd guifg=#51617d
+    CSAHi TabLine term=underline cterm=NONE ctermbg=59 ctermfg=60 gui=NONE guibg=#1b202a guifg=#323c4d
+    CSAHi TabLineSel term=bold cterm=bold ctermbg=103 ctermfg=59 gui=bold guibg=#51617d guifg=#232936
+    CSAHi TabLineFill term=reverse cterm=NONE ctermbg=59 ctermfg=103 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi CursorColumn term=reverse cterm=NONE ctermbg=59 ctermfg=fg gui=NONE guibg=#232936 guifg=fg
+    CSAHi Identifier term=underline cterm=NONE ctermbg=bg ctermfg=146 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi perlStatementIndirObjWrap term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlVarMember term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi htmlTag term=NONE cterm=NONE ctermbg=bg ctermfg=146 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi htmlTagName term=NONE cterm=NONE ctermbg=bg ctermfg=111 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi htmlTitle term=NONE cterm=NONE ctermbg=bg ctermfg=188 gui=NONE guibg=bg guifg=#9aa7bd
+    CSAHi javaScriptBraces term=NONE cterm=NONE ctermbg=bg ctermfg=188 gui=NONE guibg=bg guifg=#9aa7bd
+    CSAHi javaScriptIdentifier term=NONE cterm=NONE ctermbg=bg ctermfg=111 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi javaScriptFunction term=NONE cterm=NONE ctermbg=bg ctermfg=111 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi javaScriptNumber term=NONE cterm=NONE ctermbg=bg ctermfg=175 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi javaScriptReserved term=NONE cterm=NONE ctermbg=bg ctermfg=111 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi javaScriptRequire term=NONE cterm=NONE ctermbg=bg ctermfg=116 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi javaScriptNull term=NONE cterm=NONE ctermbg=bg ctermfg=175 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi airline_x_inactive term=NONE cterm=NONE ctermbg=59 ctermfg=103 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi airline_x_inactive_bold term=bold cterm=bold ctermbg=59 ctermfg=103 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi airline_x_inactive_red term=NONE cterm=NONE ctermbg=59 ctermfg=175 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi airline_y_inactive term=NONE cterm=NONE ctermbg=59 ctermfg=103 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi airline_y_inactive_bold term=bold cterm=bold ctermbg=59 ctermfg=103 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi airline_y_inactive_red term=NONE cterm=NONE ctermbg=59 ctermfg=175 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi airline_z_inactive term=NONE cterm=NONE ctermbg=59 ctermfg=103 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi vimHiTermcap term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyBlockArgument term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyHeredocStart term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi CursorLine term=underline cterm=NONE ctermbg=59 ctermfg=fg gui=NONE guibg=#232936 guifg=fg
+    CSAHi ColorColumn term=reverse cterm=NONE ctermbg=103 ctermfg=fg gui=NONE guibg=#51617d guifg=fg
+    CSAHi MatchParen term=reverse cterm=bold ctermbg=218 ctermfg=59 gui=bold guibg=#c47ebd guifg=#232936
+    CSAHi Comment term=bold cterm=NONE ctermbg=bg ctermfg=103 gui=NONE guibg=bg guifg=#51617d
+    CSAHi Constant term=underline cterm=NONE ctermbg=bg ctermfg=175 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi Special term=bold cterm=NONE ctermbg=bg ctermfg=116 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi vimCollection term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Statement term=bold cterm=NONE ctermbg=bg ctermfg=111 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi PreProc term=underline cterm=NONE ctermbg=bg ctermfg=116 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi Type term=underline cterm=NONE ctermbg=bg ctermfg=180 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi perlVarBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlVarBlock2 term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyBlockParameterList term=NONE cterm=NONE ctermbg=bg ctermfg=146 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi rubyInterpolationDelimiter term=NONE cterm=NONE ctermbg=bg ctermfg=146 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi rubyStringDelimiter term=NONE cterm=NONE ctermbg=bg ctermfg=151 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi rubyRegexpSpecial term=NONE cterm=NONE ctermbg=bg ctermfg=116 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi diffAdded term=NONE cterm=NONE ctermbg=bg ctermfg=151 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi diffRemoved term=NONE cterm=NONE ctermbg=bg ctermfg=175 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi SignifySignAdd term=NONE cterm=NONE ctermbg=bg ctermfg=151 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi airline_z_inactive_red term=NONE cterm=NONE ctermbg=59 ctermfg=175 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi SignifySignChange term=NONE cterm=NONE ctermbg=bg ctermfg=186 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi airline_error_inactive_bold term=bold cterm=bold ctermbg=160 ctermfg=16 gui=bold guibg=#990000 guifg=#000000
+    CSAHi airline_error_inactive_red term=NONE cterm=NONE ctermbg=160 ctermfg=175 gui=NONE guibg=#990000 guifg=#b15e7c
+    CSAHi airline_a_inactive term=NONE cterm=NONE ctermbg=59 ctermfg=103 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi airline_a_inactive_bold term=bold cterm=bold ctermbg=59 ctermfg=103 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi airline_a_inactive_red term=NONE cterm=NONE ctermbg=59 ctermfg=175 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi airline_b_inactive term=NONE cterm=NONE ctermbg=59 ctermfg=103 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi airline_b_inactive_bold term=bold cterm=bold ctermbg=59 ctermfg=103 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi vimCommentTitleLeader term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi luaInnerComment term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyAliasDeclaration2 term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimAutoEventList term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyMethodDeclaration term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyClassDeclaration term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyModuleDeclaration term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSubstPat term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Underlined term=underline cterm=NONE ctermbg=bg ctermfg=111 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi Ignore term=NONE cterm=NONE ctermbg=bg ctermfg=59 gui=NONE guibg=bg guifg=bg
+    CSAHi Error term=reverse cterm=bold ctermbg=59 ctermfg=175 gui=bold guibg=#1b202a guifg=#b15e7c
+    CSAHi Todo term=NONE cterm=bold ctermbg=59 ctermfg=218 gui=bold guibg=#1b202a guifg=#c47ebd
+    CSAHi String term=NONE cterm=NONE ctermbg=bg ctermfg=151 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi Character term=NONE cterm=NONE ctermbg=bg ctermfg=151 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi Function term=NONE cterm=NONE ctermbg=bg ctermfg=186 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi perlPackageConst term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi StatusLineNC term=reverse cterm=reverse ctermbg=59 ctermfg=103 gui=reverse guibg=#51617d guifg=#232936
+    CSAHi NONE term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_z_inactive_bold term=bold cterm=bold ctermbg=59 ctermfg=103 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi vimIf term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi SignifySignDelete term=NONE cterm=NONE ctermbg=bg ctermfg=175 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi GitGutterChangeDelete term=NONE cterm=NONE ctermbg=bg ctermfg=180 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi vimStdPlugin term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi NERDTreeLink term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_b_inactive_red term=NONE cterm=NONE ctermbg=59 ctermfg=175 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi airline_c_inactive_bold term=bold cterm=bold ctermbg=59 ctermfg=103 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi airline_c_inactive_red term=NONE cterm=NONE ctermbg=59 ctermfg=175 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi airline_error_inactive term=NONE cterm=NONE ctermbg=160 ctermfg=16 gui=NONE guibg=#990000 guifg=#000000
+    CSAHi airline_warning_inactive_bold term=bold cterm=bold ctermbg=208 ctermfg=16 gui=bold guibg=#df5f00 guifg=#000000
+    CSAHi airline_warning_inactive_red term=NONE cterm=NONE ctermbg=208 ctermfg=175 gui=NONE guibg=#df5f00 guifg=#b15e7c
+    CSAHi airline_x term=NONE cterm=NONE ctermbg=59 ctermfg=103 gui=NONE guibg=#232a36 guifg=#51617d
+    CSAHi airline_x_bold term=bold cterm=bold ctermbg=59 ctermfg=103 gui=bold guibg=#232a36 guifg=#51617d
+    CSAHi airline_x_red term=NONE cterm=NONE ctermbg=59 ctermfg=175 gui=NONE guibg=#232a36 guifg=#b15e7c
+    CSAHi airline_y term=NONE cterm=NONE ctermbg=60 ctermfg=188 gui=NONE guibg=#323c4d guifg=#9aa7bd
+    CSAHi luaIfThen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi luaElseifThen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi luaThenEnd term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi luaBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi luaLoopBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi luaParen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyMethodBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi CtrlPwhite term=bold cterm=bold ctermbg=180 ctermfg=59 gui=bold guibg=#b3785d guifg=#232936
+    CSAHi rubyDoBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimMapLhs term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimAutoCmdSpace term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Operator term=NONE cterm=NONE ctermbg=bg ctermfg=116 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi vimAutoCmdSfxList term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Define term=NONE cterm=NONE ctermbg=bg ctermfg=111 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi Macro term=NONE cterm=NONE ctermbg=bg ctermfg=111 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi vimGlobal term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimIsCommand term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimExtCmd term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimFilter term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_z_bold term=bold cterm=bold ctermbg=151 ctermfg=59 gui=bold guibg=#709d6c guifg=#232936
+    CSAHi airline_z_red term=NONE cterm=NONE ctermbg=151 ctermfg=175 gui=NONE guibg=#709d6c guifg=#b15e7c
+    CSAHi airline_error term=NONE cterm=NONE ctermbg=160 ctermfg=16 gui=NONE guibg=#990000 guifg=#000000
+    CSAHi airline_error_bold term=bold cterm=bold ctermbg=160 ctermfg=16 gui=bold guibg=#990000 guifg=#000000
+    CSAHi airline_error_red term=NONE cterm=NONE ctermbg=160 ctermfg=175 gui=NONE guibg=#990000 guifg=#b15e7c
+    CSAHi airline_a term=NONE cterm=NONE ctermbg=151 ctermfg=59 gui=NONE guibg=#709d6c guifg=#232936
+    CSAHi airline_a_bold term=bold cterm=bold ctermbg=151 ctermfg=59 gui=bold guibg=#709d6c guifg=#232936
+    CSAHi luaTableBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimNormCmds term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi cssClassNameDot term=NONE cterm=NONE ctermbg=bg ctermfg=180 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi rubyCurlyBlockDelimiter term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyCurlyBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyArrayDelimiter term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyArrayLiteral term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyBlockExpression term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyCaseExpression term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyConditionalExpression term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyOptionalDoLine term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimMapRhs term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimMapRhsExtend term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimMenuBang term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimMenuPriority term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimMenuMap term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Cursor term=NONE cterm=NONE ctermbg=188 ctermfg=59 gui=NONE guibg=#9aa7bd guifg=#232936
+    CSAHi airline_a_to_airline_b_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_y_bold term=bold cterm=bold ctermbg=60 ctermfg=188 gui=bold guibg=#323c4d guifg=#9aa7bd
+    CSAHi airline_b_to_airline_c2_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_y_red term=NONE cterm=NONE ctermbg=60 ctermfg=175 gui=NONE guibg=#323c4d guifg=#b15e7c
+    CSAHi airline_y_to_airline_z_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlAutoload term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_z term=NONE cterm=NONE ctermbg=151 ctermfg=59 gui=NONE guibg=#709d6c guifg=#232936
+    CSAHi airline_b_to_airline_c_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSet term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimUserCmd term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimCmdSep term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_a_red term=NONE cterm=NONE ctermbg=151 ctermfg=175 gui=NONE guibg=#709d6c guifg=#b15e7c
+    CSAHi airline_b term=NONE cterm=NONE ctermbg=60 ctermfg=188 gui=NONE guibg=#323c4d guifg=#9aa7bd
+    CSAHi airline_b_bold term=bold cterm=bold ctermbg=60 ctermfg=188 gui=bold guibg=#323c4d guifg=#9aa7bd
+    CSAHi airline_b_red term=NONE cterm=NONE ctermbg=60 ctermfg=175 gui=NONE guibg=#323c4d guifg=#b15e7c
+    CSAHi airline_c term=NONE cterm=NONE ctermbg=59 ctermfg=103 gui=NONE guibg=#232a36 guifg=#51617d
+    CSAHi airline_c_bold term=bold cterm=bold ctermbg=59 ctermfg=103 gui=bold guibg=#232a36 guifg=#51617d
+    CSAHi airline_c_red term=NONE cterm=NONE ctermbg=59 ctermfg=175 gui=NONE guibg=#232a36 guifg=#b15e7c
+    CSAHi airline_warning term=NONE cterm=NONE ctermbg=208 ctermfg=16 gui=NONE guibg=#df5f00 guifg=#000000
+    CSAHi airline_warning_bold term=bold cterm=bold ctermbg=208 ctermfg=16 gui=bold guibg=#df5f00 guifg=#000000
+    CSAHi airline_warning_red term=NONE cterm=NONE ctermbg=208 ctermfg=175 gui=NONE guibg=#df5f00 guifg=#b15e7c
+    CSAHi vimLuaRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi pythonSync term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyAliasDeclaration term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimPythonRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyRepeatExpression term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyMultilineComment term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_warning_inactive term=NONE cterm=NONE ctermbg=208 ctermfg=16 gui=NONE guibg=#df5f00 guifg=#000000
+    CSAHi vimMenuRhs term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi cssAttrComma term=NONE cterm=NONE ctermbg=bg ctermfg=151 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi cssAttributeSelector term=NONE cterm=NONE ctermbg=bg ctermfg=151 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi cssBraces term=NONE cterm=NONE ctermbg=bg ctermfg=188 gui=NONE guibg=bg guifg=#9aa7bd
+    CSAHi cssClassName term=NONE cterm=NONE ctermbg=bg ctermfg=180 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi vimGroupList term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi cssIdentifier term=NONE cterm=NONE ctermbg=bg ctermfg=186 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi cssImportant term=NONE cterm=NONE ctermbg=bg ctermfg=146 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi cssMediaType term=NONE cterm=NONE ctermbg=bg ctermfg=146 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi cssProp term=NONE cterm=NONE ctermbg=bg ctermfg=188 gui=NONE guibg=bg guifg=#9aa7bd
+    CSAHi cssSelectorOp term=NONE cterm=NONE ctermbg=bg ctermfg=111 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi luaFunctionBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c_inactive term=NONE cterm=NONE ctermbg=59 ctermfg=103 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi vimFiletype term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimAugroup term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimExecute term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi CtrlPdark term=NONE cterm=NONE ctermbg=60 ctermfg=188 gui=NONE guibg=#323c4d guifg=#9aa7bd
+    CSAHi CtrlParrow1 term=NONE cterm=NONE ctermbg=180 ctermfg=59 gui=NONE guibg=#b3785d guifg=#232936
+    CSAHi CtrlParrow2 term=NONE cterm=NONE ctermbg=59 ctermfg=180 gui=NONE guibg=#232936 guifg=#b3785d
+    CSAHi CtrlParrow3 term=NONE cterm=NONE ctermbg=60 ctermfg=59 gui=NONE guibg=#323c4d guifg=#232936
+    CSAHi airline_a_to_airline_b term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_b_to_airline_c term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c_to_airline_x term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_x_to_airline_y term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podBoldItalic term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podBoldOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podBoldAlternativeDelimOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podItalicBold term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSubstRep4 term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyKeywordAsMethod term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimRubyRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimCollClass term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi cssSelectorOp2 term=NONE cterm=NONE ctermbg=bg ctermfg=111 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi sassAmpersand term=NONE cterm=NONE ctermbg=bg ctermfg=111 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi sassClass term=NONE cterm=NONE ctermbg=bg ctermfg=180 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi vimClusterName term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi lessAmpersand term=NONE cterm=NONE ctermbg=bg ctermfg=111 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi lessClass term=NONE cterm=NONE ctermbg=bg ctermfg=180 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi lessClassChar term=NONE cterm=NONE ctermbg=bg ctermfg=180 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi lessFunction term=NONE cterm=NONE ctermbg=bg ctermfg=186 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi lessCssAttribute term=NONE cterm=NONE ctermbg=bg ctermfg=188 gui=NONE guibg=bg guifg=#9aa7bd
+    CSAHi gitcommitComment term=NONE cterm=NONE ctermbg=bg ctermfg=103 gui=NONE guibg=bg guifg=#51617d
+    CSAHi CtrlPlight term=NONE cterm=NONE ctermbg=59 ctermfg=180 gui=NONE guibg=#232936 guifg=#b3785d
+    CSAHi airline_y_to_airline_z term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_z_to_airline_warning term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c1_inactive term=NONE cterm=NONE ctermbg=59 ctermfg=103 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi perlFormat term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimFunction term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimOperParen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi bufferline_selected term=bold cterm=bold ctermbg=bg ctermfg=fg gui=bold guibg=bg guifg=fg
+    CSAHi podItalicOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podItalicAlternativeDelimOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podNoSpaceOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podNoSpaceAlternativeDelimOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podIndexOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podIndexAlternativeDelimOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podBold term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podBoldAlternativeDelim term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podItalic term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podItalicAlternativeDelim term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimIskList term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSynKeyRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlSync term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlSyncPOD term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimPerlRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSynMatchRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSynMtchCchar term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSynMtchGroup term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c1_to_airline_x term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSynLine term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlFakeGroup term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlBraces term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi pythonSpaceError term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi pythonAttribute term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Structure term=NONE cterm=NONE ctermbg=bg ctermfg=111 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi vimSynRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSynPatMod term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSyncLines term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSyncMatch term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyInterpolation term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimFuncBody term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c2_inactive_bold term=bold cterm=bold ctermbg=59 ctermfg=103 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi vimFuncBlank term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi CursorLineNr term=bold cterm=NONE ctermbg=59 ctermfg=188 gui=NONE guibg=#232936 guifg=#9aa7bd
+    CSAHi Question term=NONE cterm=bold ctermbg=bg ctermfg=151 gui=bold guibg=bg guifg=#709d6c
+    CSAHi StatusLine term=bold,reverse cterm=NONE ctermbg=60 ctermfg=188 gui=NONE guibg=#323c4d guifg=#9aa7bd
+    CSAHi vimEcho term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi VertSplit term=reverse cterm=NONE ctermbg=59 ctermfg=103 gui=NONE guibg=#1b202a guifg=#51617d
+    CSAHi Title term=bold cterm=NONE ctermbg=bg ctermfg=186 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi Visual term=reverse cterm=NONE ctermbg=60 ctermfg=188 gui=NONE guibg=#323c4d guifg=#9aa7bd
+    CSAHi VisualNOS term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi WarningMsg term=NONE cterm=NONE ctermbg=bg ctermfg=175 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi WildMenu term=NONE cterm=NONE ctermbg=111 ctermfg=59 gui=NONE guibg=#608cc3 guifg=#232936
+    CSAHi vimEscapeBrace term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSetEqual term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlFiledescStatementNocomma term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_b_to_airline_c2 term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlFiledescStatementComma term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c2_inactive term=NONE cterm=NONE ctermbg=59 ctermfg=103 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi gitcommitOnBranch term=NONE cterm=NONE ctermbg=bg ctermfg=103 gui=NONE guibg=bg guifg=#51617d
+    CSAHi gitcommitFile term=NONE cterm=NONE ctermbg=bg ctermfg=116 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi gitcommitHeader term=NONE cterm=NONE ctermbg=bg ctermfg=146 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi gitcommitBranch term=NONE cterm=NONE ctermbg=bg ctermfg=180 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi gitcommitUnmerged term=NONE cterm=NONE ctermbg=bg ctermfg=151 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi gitcommitUntrackedFile term=NONE cterm=NONE ctermbg=bg ctermfg=116 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi gitcommitSelectedFile term=NONE cterm=NONE ctermbg=bg ctermfg=151 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi gitcommitDiscardedFile term=NONE cterm=NONE ctermbg=bg ctermfg=175 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi gitcommitUnmergedFile term=NONE cterm=NONE ctermbg=bg ctermfg=186 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi gitcommitSelectedType term=NONE cterm=NONE ctermbg=bg ctermfg=151 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi airline_c2_inactive_red term=NONE cterm=NONE ctermbg=59 ctermfg=175 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi vimAugroupSyncA term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSyncLinebreak term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSyncLinecont term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSyncRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimHiLink term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyDelimEscape term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyNestedParentheses term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyNestedCurlyBraces term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyNestedAngleBrackets term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyNestedSquareBrackets term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyRegexpParens term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Folded term=NONE cterm=NONE ctermbg=59 ctermfg=60 gui=NONE guibg=#1b202a guifg=#323c4d
+    CSAHi FoldColumn term=NONE cterm=NONE ctermbg=59 ctermfg=116 gui=NONE guibg=#1b202a guifg=#56adb7
+    CSAHi DiffAdd term=bold cterm=NONE ctermbg=151 ctermfg=60 gui=NONE guibg=#709d6c guifg=#323c4d
+    CSAHi DiffChange term=bold cterm=NONE ctermbg=186 ctermfg=60 gui=NONE guibg=#b5a262 guifg=#323c4d
+    CSAHi DiffDelete term=bold cterm=NONE ctermbg=175 ctermfg=60 gui=NONE guibg=#b15e7c guifg=#323c4d
+    CSAHi DiffText term=reverse cterm=NONE ctermbg=111 ctermfg=60 gui=NONE guibg=#608cc3 guifg=#323c4d
+    CSAHi SignColumn term=NONE cterm=NONE ctermbg=59 ctermfg=59 gui=NONE guibg=#1b202a guifg=#232936
+    CSAHi Conceal term=NONE cterm=NONE ctermbg=248 ctermfg=231 gui=NONE guibg=DarkGrey guifg=LightGrey
+    CSAHi SpellBad term=reverse cterm=undercurl ctermbg=bg ctermfg=196 gui=undercurl guibg=bg guifg=#b15e7c guisp=Red
+    CSAHi SpellCap term=reverse cterm=undercurl ctermbg=bg ctermfg=21 gui=undercurl guibg=bg guifg=#608cc3 guisp=Blue
+    CSAHi airline_x_to_airline_y_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_z_to_airline_warning_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c1_to_airline_x_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c_to_airline_x_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+elseif has("gui_running") || &t_Co == 256
+    CSAHi Normal term=NONE cterm=NONE ctermbg=16 ctermfg=109 gui=NONE guibg=#1b202a guifg=#9aa7bd
+    CSAHi gitcommitDiscardedType term=NONE cterm=NONE ctermbg=bg ctermfg=132 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi vimAuSyntax term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi htmlArg term=NONE cterm=NONE ctermbg=bg ctermfg=143 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi htmlEndTag term=NONE cterm=NONE ctermbg=bg ctermfg=97 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi sassClassChar term=NONE cterm=NONE ctermbg=bg ctermfg=137 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi vimHiKeyList term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimHiBang term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimHiCtermColor term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimHiFontname term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimHiGuiFontname term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi SpecialKey term=bold cterm=NONE ctermbg=bg ctermfg=60 gui=NONE guibg=bg guifg=#51617d
+    CSAHi NonText term=bold cterm=bold ctermbg=bg ctermfg=60 gui=bold guibg=bg guifg=#51617d
+    CSAHi Directory term=bold cterm=NONE ctermbg=bg ctermfg=67 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi ErrorMsg term=NONE cterm=bold ctermbg=16 ctermfg=132 gui=bold guibg=#1b202a guifg=#b15e7c
+    CSAHi IncSearch term=reverse cterm=reverse ctermbg=bg ctermfg=fg gui=reverse guibg=bg guifg=fg
+    CSAHi Search term=reverse cterm=NONE ctermbg=143 ctermfg=16 gui=NONE guibg=#b5a262 guifg=#1b202a
+    CSAHi MoreMsg term=bold cterm=bold ctermbg=bg ctermfg=71 gui=bold guibg=bg guifg=#709d6c
+    CSAHi ModeMsg term=bold cterm=bold ctermbg=bg ctermfg=71 gui=bold guibg=bg guifg=#709d6c
+    CSAHi LineNr term=underline cterm=NONE ctermbg=bg ctermfg=59 gui=NONE guibg=bg guifg=#323c4d
+    CSAHi rubyRegexpBrackets term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimPatRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyLocalVariableOrMethod term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSubstRep term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSubstRange term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi SpellRare term=reverse cterm=undercurl ctermbg=bg ctermfg=201 gui=undercurl guibg=bg guifg=fg guisp=Magenta
+    CSAHi SpellLocal term=underline cterm=undercurl ctermbg=bg ctermfg=51 gui=undercurl guibg=bg guifg=fg guisp=Cyan
+    CSAHi Pmenu term=NONE cterm=NONE ctermbg=59 ctermfg=109 gui=NONE guibg=#323c4d guifg=#9aa7bd
+    CSAHi PmenuSel term=NONE cterm=NONE ctermbg=67 ctermfg=17 gui=NONE guibg=#608cc3 guifg=#232936
+    CSAHi PmenuSbar term=NONE cterm=NONE ctermbg=60 ctermfg=59 gui=NONE guibg=#51617d guifg=#323c4d
+    CSAHi PmenuThumb term=NONE cterm=NONE ctermbg=109 ctermfg=60 gui=NONE guibg=#9aa7bd guifg=#51617d
+    CSAHi TabLine term=underline cterm=NONE ctermbg=16 ctermfg=59 gui=NONE guibg=#1b202a guifg=#323c4d
+    CSAHi TabLineSel term=bold cterm=bold ctermbg=60 ctermfg=17 gui=bold guibg=#51617d guifg=#232936
+    CSAHi TabLineFill term=reverse cterm=NONE ctermbg=17 ctermfg=60 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi CursorColumn term=reverse cterm=NONE ctermbg=17 ctermfg=fg gui=NONE guibg=#232936 guifg=fg
+    CSAHi Identifier term=underline cterm=NONE ctermbg=bg ctermfg=97 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi perlStatementIndirObjWrap term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlVarMember term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi htmlTag term=NONE cterm=NONE ctermbg=bg ctermfg=97 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi htmlTagName term=NONE cterm=NONE ctermbg=bg ctermfg=67 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi htmlTitle term=NONE cterm=NONE ctermbg=bg ctermfg=109 gui=NONE guibg=bg guifg=#9aa7bd
+    CSAHi javaScriptBraces term=NONE cterm=NONE ctermbg=bg ctermfg=109 gui=NONE guibg=bg guifg=#9aa7bd
+    CSAHi javaScriptIdentifier term=NONE cterm=NONE ctermbg=bg ctermfg=67 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi javaScriptFunction term=NONE cterm=NONE ctermbg=bg ctermfg=67 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi javaScriptNumber term=NONE cterm=NONE ctermbg=bg ctermfg=132 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi javaScriptReserved term=NONE cterm=NONE ctermbg=bg ctermfg=67 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi javaScriptRequire term=NONE cterm=NONE ctermbg=bg ctermfg=73 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi javaScriptNull term=NONE cterm=NONE ctermbg=bg ctermfg=132 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi airline_x_inactive term=NONE cterm=NONE ctermbg=17 ctermfg=60 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi airline_x_inactive_bold term=bold cterm=bold ctermbg=17 ctermfg=60 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi airline_x_inactive_red term=NONE cterm=NONE ctermbg=17 ctermfg=132 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi airline_y_inactive term=NONE cterm=NONE ctermbg=17 ctermfg=60 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi airline_y_inactive_bold term=bold cterm=bold ctermbg=17 ctermfg=60 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi airline_y_inactive_red term=NONE cterm=NONE ctermbg=17 ctermfg=132 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi airline_z_inactive term=NONE cterm=NONE ctermbg=17 ctermfg=60 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi vimHiTermcap term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyBlockArgument term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyHeredocStart term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi CursorLine term=underline cterm=NONE ctermbg=17 ctermfg=fg gui=NONE guibg=#232936 guifg=fg
+    CSAHi ColorColumn term=reverse cterm=NONE ctermbg=60 ctermfg=fg gui=NONE guibg=#51617d guifg=fg
+    CSAHi MatchParen term=reverse cterm=bold ctermbg=175 ctermfg=17 gui=bold guibg=#c47ebd guifg=#232936
+    CSAHi Comment term=bold cterm=NONE ctermbg=bg ctermfg=60 gui=NONE guibg=bg guifg=#51617d
+    CSAHi Constant term=underline cterm=NONE ctermbg=bg ctermfg=132 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi Special term=bold cterm=NONE ctermbg=bg ctermfg=73 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi vimCollection term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Statement term=bold cterm=NONE ctermbg=bg ctermfg=67 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi PreProc term=underline cterm=NONE ctermbg=bg ctermfg=73 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi Type term=underline cterm=NONE ctermbg=bg ctermfg=137 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi perlVarBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlVarBlock2 term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyBlockParameterList term=NONE cterm=NONE ctermbg=bg ctermfg=97 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi rubyInterpolationDelimiter term=NONE cterm=NONE ctermbg=bg ctermfg=97 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi rubyStringDelimiter term=NONE cterm=NONE ctermbg=bg ctermfg=71 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi rubyRegexpSpecial term=NONE cterm=NONE ctermbg=bg ctermfg=73 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi diffAdded term=NONE cterm=NONE ctermbg=bg ctermfg=71 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi diffRemoved term=NONE cterm=NONE ctermbg=bg ctermfg=132 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi SignifySignAdd term=NONE cterm=NONE ctermbg=bg ctermfg=71 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi airline_z_inactive_red term=NONE cterm=NONE ctermbg=17 ctermfg=132 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi SignifySignChange term=NONE cterm=NONE ctermbg=bg ctermfg=143 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi airline_error_inactive_bold term=bold cterm=bold ctermbg=88 ctermfg=16 gui=bold guibg=#990000 guifg=#000000
+    CSAHi airline_error_inactive_red term=NONE cterm=NONE ctermbg=88 ctermfg=132 gui=NONE guibg=#990000 guifg=#b15e7c
+    CSAHi airline_a_inactive term=NONE cterm=NONE ctermbg=17 ctermfg=60 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi airline_a_inactive_bold term=bold cterm=bold ctermbg=17 ctermfg=60 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi airline_a_inactive_red term=NONE cterm=NONE ctermbg=17 ctermfg=132 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi airline_b_inactive term=NONE cterm=NONE ctermbg=17 ctermfg=60 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi airline_b_inactive_bold term=bold cterm=bold ctermbg=17 ctermfg=60 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi vimCommentTitleLeader term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi luaInnerComment term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyAliasDeclaration2 term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimAutoEventList term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyMethodDeclaration term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyClassDeclaration term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyModuleDeclaration term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSubstPat term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Underlined term=underline cterm=NONE ctermbg=bg ctermfg=67 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi Ignore term=NONE cterm=NONE ctermbg=bg ctermfg=16 gui=NONE guibg=bg guifg=bg
+    CSAHi Error term=reverse cterm=bold ctermbg=16 ctermfg=132 gui=bold guibg=#1b202a guifg=#b15e7c
+    CSAHi Todo term=NONE cterm=bold ctermbg=16 ctermfg=175 gui=bold guibg=#1b202a guifg=#c47ebd
+    CSAHi String term=NONE cterm=NONE ctermbg=bg ctermfg=71 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi Character term=NONE cterm=NONE ctermbg=bg ctermfg=71 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi Function term=NONE cterm=NONE ctermbg=bg ctermfg=143 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi perlPackageConst term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi StatusLineNC term=reverse cterm=reverse ctermbg=17 ctermfg=60 gui=reverse guibg=#51617d guifg=#232936
+    CSAHi NONE term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_z_inactive_bold term=bold cterm=bold ctermbg=17 ctermfg=60 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi vimIf term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi SignifySignDelete term=NONE cterm=NONE ctermbg=bg ctermfg=132 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi GitGutterChangeDelete term=NONE cterm=NONE ctermbg=bg ctermfg=137 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi vimStdPlugin term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi NERDTreeLink term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_b_inactive_red term=NONE cterm=NONE ctermbg=17 ctermfg=132 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi airline_c_inactive_bold term=bold cterm=bold ctermbg=17 ctermfg=60 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi airline_c_inactive_red term=NONE cterm=NONE ctermbg=17 ctermfg=132 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi airline_error_inactive term=NONE cterm=NONE ctermbg=88 ctermfg=16 gui=NONE guibg=#990000 guifg=#000000
+    CSAHi airline_warning_inactive_bold term=bold cterm=bold ctermbg=166 ctermfg=16 gui=bold guibg=#df5f00 guifg=#000000
+    CSAHi airline_warning_inactive_red term=NONE cterm=NONE ctermbg=166 ctermfg=132 gui=NONE guibg=#df5f00 guifg=#b15e7c
+    CSAHi airline_x term=NONE cterm=NONE ctermbg=17 ctermfg=60 gui=NONE guibg=#232a36 guifg=#51617d
+    CSAHi airline_x_bold term=bold cterm=bold ctermbg=17 ctermfg=60 gui=bold guibg=#232a36 guifg=#51617d
+    CSAHi airline_x_red term=NONE cterm=NONE ctermbg=17 ctermfg=132 gui=NONE guibg=#232a36 guifg=#b15e7c
+    CSAHi airline_y term=NONE cterm=NONE ctermbg=59 ctermfg=109 gui=NONE guibg=#323c4d guifg=#9aa7bd
+    CSAHi luaIfThen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi luaElseifThen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi luaThenEnd term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi luaBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi luaLoopBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi luaParen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyMethodBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi CtrlPwhite term=bold cterm=bold ctermbg=137 ctermfg=17 gui=bold guibg=#b3785d guifg=#232936
+    CSAHi rubyDoBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimMapLhs term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimAutoCmdSpace term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Operator term=NONE cterm=NONE ctermbg=bg ctermfg=73 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi vimAutoCmdSfxList term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Define term=NONE cterm=NONE ctermbg=bg ctermfg=67 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi Macro term=NONE cterm=NONE ctermbg=bg ctermfg=67 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi vimGlobal term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimIsCommand term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimExtCmd term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimFilter term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_z_bold term=bold cterm=bold ctermbg=71 ctermfg=17 gui=bold guibg=#709d6c guifg=#232936
+    CSAHi airline_z_red term=NONE cterm=NONE ctermbg=71 ctermfg=132 gui=NONE guibg=#709d6c guifg=#b15e7c
+    CSAHi airline_error term=NONE cterm=NONE ctermbg=88 ctermfg=16 gui=NONE guibg=#990000 guifg=#000000
+    CSAHi airline_error_bold term=bold cterm=bold ctermbg=88 ctermfg=16 gui=bold guibg=#990000 guifg=#000000
+    CSAHi airline_error_red term=NONE cterm=NONE ctermbg=88 ctermfg=132 gui=NONE guibg=#990000 guifg=#b15e7c
+    CSAHi airline_a term=NONE cterm=NONE ctermbg=71 ctermfg=17 gui=NONE guibg=#709d6c guifg=#232936
+    CSAHi airline_a_bold term=bold cterm=bold ctermbg=71 ctermfg=17 gui=bold guibg=#709d6c guifg=#232936
+    CSAHi luaTableBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimNormCmds term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi cssClassNameDot term=NONE cterm=NONE ctermbg=bg ctermfg=137 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi rubyCurlyBlockDelimiter term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyCurlyBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyArrayDelimiter term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyArrayLiteral term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyBlockExpression term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyCaseExpression term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyConditionalExpression term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyOptionalDoLine term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimMapRhs term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimMapRhsExtend term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimMenuBang term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimMenuPriority term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimMenuMap term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Cursor term=NONE cterm=NONE ctermbg=109 ctermfg=17 gui=NONE guibg=#9aa7bd guifg=#232936
+    CSAHi airline_a_to_airline_b_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_y_bold term=bold cterm=bold ctermbg=59 ctermfg=109 gui=bold guibg=#323c4d guifg=#9aa7bd
+    CSAHi airline_b_to_airline_c2_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_y_red term=NONE cterm=NONE ctermbg=59 ctermfg=132 gui=NONE guibg=#323c4d guifg=#b15e7c
+    CSAHi airline_y_to_airline_z_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlAutoload term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_z term=NONE cterm=NONE ctermbg=71 ctermfg=17 gui=NONE guibg=#709d6c guifg=#232936
+    CSAHi airline_b_to_airline_c_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSet term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimUserCmd term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimCmdSep term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_a_red term=NONE cterm=NONE ctermbg=71 ctermfg=132 gui=NONE guibg=#709d6c guifg=#b15e7c
+    CSAHi airline_b term=NONE cterm=NONE ctermbg=59 ctermfg=109 gui=NONE guibg=#323c4d guifg=#9aa7bd
+    CSAHi airline_b_bold term=bold cterm=bold ctermbg=59 ctermfg=109 gui=bold guibg=#323c4d guifg=#9aa7bd
+    CSAHi airline_b_red term=NONE cterm=NONE ctermbg=59 ctermfg=132 gui=NONE guibg=#323c4d guifg=#b15e7c
+    CSAHi airline_c term=NONE cterm=NONE ctermbg=17 ctermfg=60 gui=NONE guibg=#232a36 guifg=#51617d
+    CSAHi airline_c_bold term=bold cterm=bold ctermbg=17 ctermfg=60 gui=bold guibg=#232a36 guifg=#51617d
+    CSAHi airline_c_red term=NONE cterm=NONE ctermbg=17 ctermfg=132 gui=NONE guibg=#232a36 guifg=#b15e7c
+    CSAHi airline_warning term=NONE cterm=NONE ctermbg=166 ctermfg=16 gui=NONE guibg=#df5f00 guifg=#000000
+    CSAHi airline_warning_bold term=bold cterm=bold ctermbg=166 ctermfg=16 gui=bold guibg=#df5f00 guifg=#000000
+    CSAHi airline_warning_red term=NONE cterm=NONE ctermbg=166 ctermfg=132 gui=NONE guibg=#df5f00 guifg=#b15e7c
+    CSAHi vimLuaRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi pythonSync term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyAliasDeclaration term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimPythonRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyRepeatExpression term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyMultilineComment term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_warning_inactive term=NONE cterm=NONE ctermbg=166 ctermfg=16 gui=NONE guibg=#df5f00 guifg=#000000
+    CSAHi vimMenuRhs term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi cssAttrComma term=NONE cterm=NONE ctermbg=bg ctermfg=71 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi cssAttributeSelector term=NONE cterm=NONE ctermbg=bg ctermfg=71 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi cssBraces term=NONE cterm=NONE ctermbg=bg ctermfg=109 gui=NONE guibg=bg guifg=#9aa7bd
+    CSAHi cssClassName term=NONE cterm=NONE ctermbg=bg ctermfg=137 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi vimGroupList term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi cssIdentifier term=NONE cterm=NONE ctermbg=bg ctermfg=143 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi cssImportant term=NONE cterm=NONE ctermbg=bg ctermfg=97 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi cssMediaType term=NONE cterm=NONE ctermbg=bg ctermfg=97 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi cssProp term=NONE cterm=NONE ctermbg=bg ctermfg=109 gui=NONE guibg=bg guifg=#9aa7bd
+    CSAHi cssSelectorOp term=NONE cterm=NONE ctermbg=bg ctermfg=67 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi luaFunctionBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c_inactive term=NONE cterm=NONE ctermbg=17 ctermfg=60 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi vimFiletype term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimAugroup term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimExecute term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi CtrlPdark term=NONE cterm=NONE ctermbg=59 ctermfg=109 gui=NONE guibg=#323c4d guifg=#9aa7bd
+    CSAHi CtrlParrow1 term=NONE cterm=NONE ctermbg=137 ctermfg=17 gui=NONE guibg=#b3785d guifg=#232936
+    CSAHi CtrlParrow2 term=NONE cterm=NONE ctermbg=17 ctermfg=137 gui=NONE guibg=#232936 guifg=#b3785d
+    CSAHi CtrlParrow3 term=NONE cterm=NONE ctermbg=59 ctermfg=17 gui=NONE guibg=#323c4d guifg=#232936
+    CSAHi airline_a_to_airline_b term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_b_to_airline_c term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c_to_airline_x term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_x_to_airline_y term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podBoldItalic term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podBoldOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podBoldAlternativeDelimOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podItalicBold term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSubstRep4 term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyKeywordAsMethod term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimRubyRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimCollClass term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi cssSelectorOp2 term=NONE cterm=NONE ctermbg=bg ctermfg=67 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi sassAmpersand term=NONE cterm=NONE ctermbg=bg ctermfg=67 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi sassClass term=NONE cterm=NONE ctermbg=bg ctermfg=137 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi vimClusterName term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi lessAmpersand term=NONE cterm=NONE ctermbg=bg ctermfg=67 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi lessClass term=NONE cterm=NONE ctermbg=bg ctermfg=137 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi lessClassChar term=NONE cterm=NONE ctermbg=bg ctermfg=137 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi lessFunction term=NONE cterm=NONE ctermbg=bg ctermfg=143 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi lessCssAttribute term=NONE cterm=NONE ctermbg=bg ctermfg=109 gui=NONE guibg=bg guifg=#9aa7bd
+    CSAHi gitcommitComment term=NONE cterm=NONE ctermbg=bg ctermfg=60 gui=NONE guibg=bg guifg=#51617d
+    CSAHi CtrlPlight term=NONE cterm=NONE ctermbg=17 ctermfg=137 gui=NONE guibg=#232936 guifg=#b3785d
+    CSAHi airline_y_to_airline_z term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_z_to_airline_warning term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c1_inactive term=NONE cterm=NONE ctermbg=17 ctermfg=60 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi perlFormat term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimFunction term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimOperParen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi bufferline_selected term=bold cterm=bold ctermbg=bg ctermfg=fg gui=bold guibg=bg guifg=fg
+    CSAHi podItalicOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podItalicAlternativeDelimOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podNoSpaceOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podNoSpaceAlternativeDelimOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podIndexOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podIndexAlternativeDelimOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podBold term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podBoldAlternativeDelim term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podItalic term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podItalicAlternativeDelim term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimIskList term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSynKeyRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlSync term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlSyncPOD term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimPerlRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSynMatchRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSynMtchCchar term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSynMtchGroup term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c1_to_airline_x term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSynLine term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlFakeGroup term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlBraces term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi pythonSpaceError term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi pythonAttribute term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Structure term=NONE cterm=NONE ctermbg=bg ctermfg=67 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi vimSynRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSynPatMod term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSyncLines term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSyncMatch term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyInterpolation term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimFuncBody term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c2_inactive_bold term=bold cterm=bold ctermbg=17 ctermfg=60 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi vimFuncBlank term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi CursorLineNr term=bold cterm=NONE ctermbg=17 ctermfg=109 gui=NONE guibg=#232936 guifg=#9aa7bd
+    CSAHi Question term=NONE cterm=bold ctermbg=bg ctermfg=71 gui=bold guibg=bg guifg=#709d6c
+    CSAHi StatusLine term=bold,reverse cterm=NONE ctermbg=59 ctermfg=109 gui=NONE guibg=#323c4d guifg=#9aa7bd
+    CSAHi vimEcho term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi VertSplit term=reverse cterm=NONE ctermbg=16 ctermfg=60 gui=NONE guibg=#1b202a guifg=#51617d
+    CSAHi Title term=bold cterm=NONE ctermbg=bg ctermfg=143 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi Visual term=reverse cterm=NONE ctermbg=59 ctermfg=109 gui=NONE guibg=#323c4d guifg=#9aa7bd
+    CSAHi VisualNOS term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi WarningMsg term=NONE cterm=NONE ctermbg=bg ctermfg=132 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi WildMenu term=NONE cterm=NONE ctermbg=67 ctermfg=17 gui=NONE guibg=#608cc3 guifg=#232936
+    CSAHi vimEscapeBrace term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSetEqual term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlFiledescStatementNocomma term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_b_to_airline_c2 term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlFiledescStatementComma term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c2_inactive term=NONE cterm=NONE ctermbg=17 ctermfg=60 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi gitcommitOnBranch term=NONE cterm=NONE ctermbg=bg ctermfg=60 gui=NONE guibg=bg guifg=#51617d
+    CSAHi gitcommitFile term=NONE cterm=NONE ctermbg=bg ctermfg=73 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi gitcommitHeader term=NONE cterm=NONE ctermbg=bg ctermfg=97 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi gitcommitBranch term=NONE cterm=NONE ctermbg=bg ctermfg=137 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi gitcommitUnmerged term=NONE cterm=NONE ctermbg=bg ctermfg=71 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi gitcommitUntrackedFile term=NONE cterm=NONE ctermbg=bg ctermfg=73 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi gitcommitSelectedFile term=NONE cterm=NONE ctermbg=bg ctermfg=71 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi gitcommitDiscardedFile term=NONE cterm=NONE ctermbg=bg ctermfg=132 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi gitcommitUnmergedFile term=NONE cterm=NONE ctermbg=bg ctermfg=143 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi gitcommitSelectedType term=NONE cterm=NONE ctermbg=bg ctermfg=71 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi airline_c2_inactive_red term=NONE cterm=NONE ctermbg=17 ctermfg=132 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi vimAugroupSyncA term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSyncLinebreak term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSyncLinecont term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSyncRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimHiLink term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyDelimEscape term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyNestedParentheses term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyNestedCurlyBraces term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyNestedAngleBrackets term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyNestedSquareBrackets term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyRegexpParens term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Folded term=NONE cterm=NONE ctermbg=16 ctermfg=59 gui=NONE guibg=#1b202a guifg=#323c4d
+    CSAHi FoldColumn term=NONE cterm=NONE ctermbg=16 ctermfg=73 gui=NONE guibg=#1b202a guifg=#56adb7
+    CSAHi DiffAdd term=bold cterm=NONE ctermbg=71 ctermfg=59 gui=NONE guibg=#709d6c guifg=#323c4d
+    CSAHi DiffChange term=bold cterm=NONE ctermbg=143 ctermfg=59 gui=NONE guibg=#b5a262 guifg=#323c4d
+    CSAHi DiffDelete term=bold cterm=NONE ctermbg=132 ctermfg=59 gui=NONE guibg=#b15e7c guifg=#323c4d
+    CSAHi DiffText term=reverse cterm=NONE ctermbg=67 ctermfg=59 gui=NONE guibg=#608cc3 guifg=#323c4d
+    CSAHi SignColumn term=NONE cterm=NONE ctermbg=16 ctermfg=17 gui=NONE guibg=#1b202a guifg=#232936
+    CSAHi Conceal term=NONE cterm=NONE ctermbg=248 ctermfg=252 gui=NONE guibg=DarkGrey guifg=LightGrey
+    CSAHi SpellBad term=reverse cterm=undercurl ctermbg=bg ctermfg=196 gui=undercurl guibg=bg guifg=#b15e7c guisp=Red
+    CSAHi SpellCap term=reverse cterm=undercurl ctermbg=bg ctermfg=21 gui=undercurl guibg=bg guifg=#608cc3 guisp=Blue
+    CSAHi airline_x_to_airline_y_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_z_to_airline_warning_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c1_to_airline_x_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c_to_airline_x_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+elseif has("gui_running") || &t_Co == 88
+    CSAHi Normal term=NONE cterm=NONE ctermbg=80 ctermfg=38 gui=NONE guibg=#1b202a guifg=#9aa7bd
+    CSAHi gitcommitDiscardedType term=NONE cterm=NONE ctermbg=bg ctermfg=53 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi vimAuSyntax term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi htmlArg term=NONE cterm=NONE ctermbg=bg ctermfg=53 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi htmlEndTag term=NONE cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi sassClassChar term=NONE cterm=NONE ctermbg=bg ctermfg=53 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi vimHiKeyList term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimHiBang term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimHiCtermColor term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimHiFontname term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimHiGuiFontname term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi SpecialKey term=bold cterm=NONE ctermbg=bg ctermfg=37 gui=NONE guibg=bg guifg=#51617d
+    CSAHi NonText term=bold cterm=bold ctermbg=bg ctermfg=37 gui=bold guibg=bg guifg=#51617d
+    CSAHi Directory term=bold cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi ErrorMsg term=NONE cterm=bold ctermbg=80 ctermfg=53 gui=bold guibg=#1b202a guifg=#b15e7c
+    CSAHi IncSearch term=reverse cterm=reverse ctermbg=bg ctermfg=fg gui=reverse guibg=bg guifg=fg
+    CSAHi Search term=reverse cterm=NONE ctermbg=53 ctermfg=80 gui=NONE guibg=#b5a262 guifg=#1b202a
+    CSAHi MoreMsg term=bold cterm=bold ctermbg=bg ctermfg=37 gui=bold guibg=bg guifg=#709d6c
+    CSAHi ModeMsg term=bold cterm=bold ctermbg=bg ctermfg=37 gui=bold guibg=bg guifg=#709d6c
+    CSAHi LineNr term=underline cterm=NONE ctermbg=bg ctermfg=17 gui=NONE guibg=bg guifg=#323c4d
+    CSAHi rubyRegexpBrackets term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimPatRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyLocalVariableOrMethod term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSubstRep term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSubstRange term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi SpellRare term=reverse cterm=undercurl ctermbg=bg ctermfg=67 gui=undercurl guibg=bg guifg=fg guisp=Magenta
+    CSAHi SpellLocal term=underline cterm=undercurl ctermbg=bg ctermfg=31 gui=undercurl guibg=bg guifg=fg guisp=Cyan
+    CSAHi Pmenu term=NONE cterm=NONE ctermbg=17 ctermfg=38 gui=NONE guibg=#323c4d guifg=#9aa7bd
+    CSAHi PmenuSel term=NONE cterm=NONE ctermbg=38 ctermfg=80 gui=NONE guibg=#608cc3 guifg=#232936
+    CSAHi PmenuSbar term=NONE cterm=NONE ctermbg=37 ctermfg=17 gui=NONE guibg=#51617d guifg=#323c4d
+    CSAHi PmenuThumb term=NONE cterm=NONE ctermbg=38 ctermfg=37 gui=NONE guibg=#9aa7bd guifg=#51617d
+    CSAHi TabLine term=underline cterm=NONE ctermbg=80 ctermfg=17 gui=NONE guibg=#1b202a guifg=#323c4d
+    CSAHi TabLineSel term=bold cterm=bold ctermbg=37 ctermfg=80 gui=bold guibg=#51617d guifg=#232936
+    CSAHi TabLineFill term=reverse cterm=NONE ctermbg=80 ctermfg=37 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi CursorColumn term=reverse cterm=NONE ctermbg=80 ctermfg=fg gui=NONE guibg=#232936 guifg=fg
+    CSAHi Identifier term=underline cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi perlStatementIndirObjWrap term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlVarMember term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi htmlTag term=NONE cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi htmlTagName term=NONE cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi htmlTitle term=NONE cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#9aa7bd
+    CSAHi javaScriptBraces term=NONE cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#9aa7bd
+    CSAHi javaScriptIdentifier term=NONE cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi javaScriptFunction term=NONE cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi javaScriptNumber term=NONE cterm=NONE ctermbg=bg ctermfg=53 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi javaScriptReserved term=NONE cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi javaScriptRequire term=NONE cterm=NONE ctermbg=bg ctermfg=42 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi javaScriptNull term=NONE cterm=NONE ctermbg=bg ctermfg=53 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi airline_x_inactive term=NONE cterm=NONE ctermbg=80 ctermfg=37 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi airline_x_inactive_bold term=bold cterm=bold ctermbg=80 ctermfg=37 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi airline_x_inactive_red term=NONE cterm=NONE ctermbg=80 ctermfg=53 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi airline_y_inactive term=NONE cterm=NONE ctermbg=80 ctermfg=37 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi airline_y_inactive_bold term=bold cterm=bold ctermbg=80 ctermfg=37 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi airline_y_inactive_red term=NONE cterm=NONE ctermbg=80 ctermfg=53 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi airline_z_inactive term=NONE cterm=NONE ctermbg=80 ctermfg=37 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi vimHiTermcap term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyBlockArgument term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyHeredocStart term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi CursorLine term=underline cterm=NONE ctermbg=80 ctermfg=fg gui=NONE guibg=#232936 guifg=fg
+    CSAHi ColorColumn term=reverse cterm=NONE ctermbg=37 ctermfg=fg gui=NONE guibg=#51617d guifg=fg
+    CSAHi MatchParen term=reverse cterm=bold ctermbg=54 ctermfg=80 gui=bold guibg=#c47ebd guifg=#232936
+    CSAHi Comment term=bold cterm=NONE ctermbg=bg ctermfg=37 gui=NONE guibg=bg guifg=#51617d
+    CSAHi Constant term=underline cterm=NONE ctermbg=bg ctermfg=53 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi Special term=bold cterm=NONE ctermbg=bg ctermfg=42 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi vimCollection term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Statement term=bold cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi PreProc term=underline cterm=NONE ctermbg=bg ctermfg=42 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi Type term=underline cterm=NONE ctermbg=bg ctermfg=53 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi perlVarBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlVarBlock2 term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyBlockParameterList term=NONE cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi rubyInterpolationDelimiter term=NONE cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi rubyStringDelimiter term=NONE cterm=NONE ctermbg=bg ctermfg=37 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi rubyRegexpSpecial term=NONE cterm=NONE ctermbg=bg ctermfg=42 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi diffAdded term=NONE cterm=NONE ctermbg=bg ctermfg=37 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi diffRemoved term=NONE cterm=NONE ctermbg=bg ctermfg=53 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi SignifySignAdd term=NONE cterm=NONE ctermbg=bg ctermfg=37 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi airline_z_inactive_red term=NONE cterm=NONE ctermbg=80 ctermfg=53 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi SignifySignChange term=NONE cterm=NONE ctermbg=bg ctermfg=53 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi airline_error_inactive_bold term=bold cterm=bold ctermbg=32 ctermfg=16 gui=bold guibg=#990000 guifg=#000000
+    CSAHi airline_error_inactive_red term=NONE cterm=NONE ctermbg=32 ctermfg=53 gui=NONE guibg=#990000 guifg=#b15e7c
+    CSAHi airline_a_inactive term=NONE cterm=NONE ctermbg=80 ctermfg=37 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi airline_a_inactive_bold term=bold cterm=bold ctermbg=80 ctermfg=37 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi airline_a_inactive_red term=NONE cterm=NONE ctermbg=80 ctermfg=53 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi airline_b_inactive term=NONE cterm=NONE ctermbg=80 ctermfg=37 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi airline_b_inactive_bold term=bold cterm=bold ctermbg=80 ctermfg=37 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi vimCommentTitleLeader term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi luaInnerComment term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyAliasDeclaration2 term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimAutoEventList term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyMethodDeclaration term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyClassDeclaration term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyModuleDeclaration term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSubstPat term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Underlined term=underline cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi Ignore term=NONE cterm=NONE ctermbg=bg ctermfg=80 gui=NONE guibg=bg guifg=bg
+    CSAHi Error term=reverse cterm=bold ctermbg=80 ctermfg=53 gui=bold guibg=#1b202a guifg=#b15e7c
+    CSAHi Todo term=NONE cterm=bold ctermbg=80 ctermfg=54 gui=bold guibg=#1b202a guifg=#c47ebd
+    CSAHi String term=NONE cterm=NONE ctermbg=bg ctermfg=37 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi Character term=NONE cterm=NONE ctermbg=bg ctermfg=37 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi Function term=NONE cterm=NONE ctermbg=bg ctermfg=53 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi perlPackageConst term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi StatusLineNC term=reverse cterm=reverse ctermbg=80 ctermfg=37 gui=reverse guibg=#51617d guifg=#232936
+    CSAHi NONE term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_z_inactive_bold term=bold cterm=bold ctermbg=80 ctermfg=37 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi vimIf term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi SignifySignDelete term=NONE cterm=NONE ctermbg=bg ctermfg=53 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi GitGutterChangeDelete term=NONE cterm=NONE ctermbg=bg ctermfg=53 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi vimStdPlugin term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi NERDTreeLink term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_b_inactive_red term=NONE cterm=NONE ctermbg=80 ctermfg=53 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi airline_c_inactive_bold term=bold cterm=bold ctermbg=80 ctermfg=37 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi airline_c_inactive_red term=NONE cterm=NONE ctermbg=80 ctermfg=53 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi airline_error_inactive term=NONE cterm=NONE ctermbg=32 ctermfg=16 gui=NONE guibg=#990000 guifg=#000000
+    CSAHi airline_warning_inactive_bold term=bold cterm=bold ctermbg=52 ctermfg=16 gui=bold guibg=#df5f00 guifg=#000000
+    CSAHi airline_warning_inactive_red term=NONE cterm=NONE ctermbg=52 ctermfg=53 gui=NONE guibg=#df5f00 guifg=#b15e7c
+    CSAHi airline_x term=NONE cterm=NONE ctermbg=80 ctermfg=37 gui=NONE guibg=#232a36 guifg=#51617d
+    CSAHi airline_x_bold term=bold cterm=bold ctermbg=80 ctermfg=37 gui=bold guibg=#232a36 guifg=#51617d
+    CSAHi airline_x_red term=NONE cterm=NONE ctermbg=80 ctermfg=53 gui=NONE guibg=#232a36 guifg=#b15e7c
+    CSAHi airline_y term=NONE cterm=NONE ctermbg=17 ctermfg=38 gui=NONE guibg=#323c4d guifg=#9aa7bd
+    CSAHi luaIfThen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi luaElseifThen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi luaThenEnd term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi luaBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi luaLoopBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi luaParen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyMethodBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi CtrlPwhite term=bold cterm=bold ctermbg=53 ctermfg=80 gui=bold guibg=#b3785d guifg=#232936
+    CSAHi rubyDoBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimMapLhs term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimAutoCmdSpace term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Operator term=NONE cterm=NONE ctermbg=bg ctermfg=42 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi vimAutoCmdSfxList term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Define term=NONE cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi Macro term=NONE cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi vimGlobal term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimIsCommand term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimExtCmd term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimFilter term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_z_bold term=bold cterm=bold ctermbg=37 ctermfg=80 gui=bold guibg=#709d6c guifg=#232936
+    CSAHi airline_z_red term=NONE cterm=NONE ctermbg=37 ctermfg=53 gui=NONE guibg=#709d6c guifg=#b15e7c
+    CSAHi airline_error term=NONE cterm=NONE ctermbg=32 ctermfg=16 gui=NONE guibg=#990000 guifg=#000000
+    CSAHi airline_error_bold term=bold cterm=bold ctermbg=32 ctermfg=16 gui=bold guibg=#990000 guifg=#000000
+    CSAHi airline_error_red term=NONE cterm=NONE ctermbg=32 ctermfg=53 gui=NONE guibg=#990000 guifg=#b15e7c
+    CSAHi airline_a term=NONE cterm=NONE ctermbg=37 ctermfg=80 gui=NONE guibg=#709d6c guifg=#232936
+    CSAHi airline_a_bold term=bold cterm=bold ctermbg=37 ctermfg=80 gui=bold guibg=#709d6c guifg=#232936
+    CSAHi luaTableBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimNormCmds term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi cssClassNameDot term=NONE cterm=NONE ctermbg=bg ctermfg=53 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi rubyCurlyBlockDelimiter term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyCurlyBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyArrayDelimiter term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyArrayLiteral term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyBlockExpression term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyCaseExpression term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyConditionalExpression term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyOptionalDoLine term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimMapRhs term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimMapRhsExtend term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimMenuBang term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimMenuPriority term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimMenuMap term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Cursor term=NONE cterm=NONE ctermbg=38 ctermfg=80 gui=NONE guibg=#9aa7bd guifg=#232936
+    CSAHi airline_a_to_airline_b_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_y_bold term=bold cterm=bold ctermbg=17 ctermfg=38 gui=bold guibg=#323c4d guifg=#9aa7bd
+    CSAHi airline_b_to_airline_c2_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_y_red term=NONE cterm=NONE ctermbg=17 ctermfg=53 gui=NONE guibg=#323c4d guifg=#b15e7c
+    CSAHi airline_y_to_airline_z_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlAutoload term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_z term=NONE cterm=NONE ctermbg=37 ctermfg=80 gui=NONE guibg=#709d6c guifg=#232936
+    CSAHi airline_b_to_airline_c_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSet term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimUserCmd term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimCmdSep term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_a_red term=NONE cterm=NONE ctermbg=37 ctermfg=53 gui=NONE guibg=#709d6c guifg=#b15e7c
+    CSAHi airline_b term=NONE cterm=NONE ctermbg=17 ctermfg=38 gui=NONE guibg=#323c4d guifg=#9aa7bd
+    CSAHi airline_b_bold term=bold cterm=bold ctermbg=17 ctermfg=38 gui=bold guibg=#323c4d guifg=#9aa7bd
+    CSAHi airline_b_red term=NONE cterm=NONE ctermbg=17 ctermfg=53 gui=NONE guibg=#323c4d guifg=#b15e7c
+    CSAHi airline_c term=NONE cterm=NONE ctermbg=80 ctermfg=37 gui=NONE guibg=#232a36 guifg=#51617d
+    CSAHi airline_c_bold term=bold cterm=bold ctermbg=80 ctermfg=37 gui=bold guibg=#232a36 guifg=#51617d
+    CSAHi airline_c_red term=NONE cterm=NONE ctermbg=80 ctermfg=53 gui=NONE guibg=#232a36 guifg=#b15e7c
+    CSAHi airline_warning term=NONE cterm=NONE ctermbg=52 ctermfg=16 gui=NONE guibg=#df5f00 guifg=#000000
+    CSAHi airline_warning_bold term=bold cterm=bold ctermbg=52 ctermfg=16 gui=bold guibg=#df5f00 guifg=#000000
+    CSAHi airline_warning_red term=NONE cterm=NONE ctermbg=52 ctermfg=53 gui=NONE guibg=#df5f00 guifg=#b15e7c
+    CSAHi vimLuaRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi pythonSync term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyAliasDeclaration term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimPythonRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyRepeatExpression term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyMultilineComment term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_warning_inactive term=NONE cterm=NONE ctermbg=52 ctermfg=16 gui=NONE guibg=#df5f00 guifg=#000000
+    CSAHi vimMenuRhs term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi cssAttrComma term=NONE cterm=NONE ctermbg=bg ctermfg=37 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi cssAttributeSelector term=NONE cterm=NONE ctermbg=bg ctermfg=37 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi cssBraces term=NONE cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#9aa7bd
+    CSAHi cssClassName term=NONE cterm=NONE ctermbg=bg ctermfg=53 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi vimGroupList term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi cssIdentifier term=NONE cterm=NONE ctermbg=bg ctermfg=53 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi cssImportant term=NONE cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi cssMediaType term=NONE cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi cssProp term=NONE cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#9aa7bd
+    CSAHi cssSelectorOp term=NONE cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi luaFunctionBlock term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c_inactive term=NONE cterm=NONE ctermbg=80 ctermfg=37 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi vimFiletype term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimAugroup term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimExecute term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi CtrlPdark term=NONE cterm=NONE ctermbg=17 ctermfg=38 gui=NONE guibg=#323c4d guifg=#9aa7bd
+    CSAHi CtrlParrow1 term=NONE cterm=NONE ctermbg=53 ctermfg=80 gui=NONE guibg=#b3785d guifg=#232936
+    CSAHi CtrlParrow2 term=NONE cterm=NONE ctermbg=80 ctermfg=53 gui=NONE guibg=#232936 guifg=#b3785d
+    CSAHi CtrlParrow3 term=NONE cterm=NONE ctermbg=17 ctermfg=80 gui=NONE guibg=#323c4d guifg=#232936
+    CSAHi airline_a_to_airline_b term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_b_to_airline_c term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c_to_airline_x term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_x_to_airline_y term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podBoldItalic term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podBoldOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podBoldAlternativeDelimOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podItalicBold term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSubstRep4 term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyKeywordAsMethod term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimRubyRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimCollClass term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi cssSelectorOp2 term=NONE cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi sassAmpersand term=NONE cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi sassClass term=NONE cterm=NONE ctermbg=bg ctermfg=53 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi vimClusterName term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi lessAmpersand term=NONE cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi lessClass term=NONE cterm=NONE ctermbg=bg ctermfg=53 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi lessClassChar term=NONE cterm=NONE ctermbg=bg ctermfg=53 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi lessFunction term=NONE cterm=NONE ctermbg=bg ctermfg=53 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi lessCssAttribute term=NONE cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#9aa7bd
+    CSAHi gitcommitComment term=NONE cterm=NONE ctermbg=bg ctermfg=37 gui=NONE guibg=bg guifg=#51617d
+    CSAHi CtrlPlight term=NONE cterm=NONE ctermbg=80 ctermfg=53 gui=NONE guibg=#232936 guifg=#b3785d
+    CSAHi airline_y_to_airline_z term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_z_to_airline_warning term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c1_inactive term=NONE cterm=NONE ctermbg=80 ctermfg=37 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi perlFormat term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimFunction term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimOperParen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi bufferline_selected term=bold cterm=bold ctermbg=bg ctermfg=fg gui=bold guibg=bg guifg=fg
+    CSAHi podItalicOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podItalicAlternativeDelimOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podNoSpaceOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podNoSpaceAlternativeDelimOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podIndexOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podIndexAlternativeDelimOpen term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podBold term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podBoldAlternativeDelim term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podItalic term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi podItalicAlternativeDelim term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimIskList term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSynKeyRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlSync term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlSyncPOD term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimPerlRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSynMatchRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSynMtchCchar term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSynMtchGroup term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c1_to_airline_x term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSynLine term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlFakeGroup term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlBraces term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi pythonSpaceError term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi pythonAttribute term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Structure term=NONE cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#608cc3
+    CSAHi vimSynRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSynPatMod term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSyncLines term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSyncMatch term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyInterpolation term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimFuncBody term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c2_inactive_bold term=bold cterm=bold ctermbg=80 ctermfg=37 gui=bold guibg=#232936 guifg=#51617d
+    CSAHi vimFuncBlank term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi CursorLineNr term=bold cterm=NONE ctermbg=80 ctermfg=38 gui=NONE guibg=#232936 guifg=#9aa7bd
+    CSAHi Question term=NONE cterm=bold ctermbg=bg ctermfg=37 gui=bold guibg=bg guifg=#709d6c
+    CSAHi StatusLine term=bold,reverse cterm=NONE ctermbg=17 ctermfg=38 gui=NONE guibg=#323c4d guifg=#9aa7bd
+    CSAHi vimEcho term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi VertSplit term=reverse cterm=NONE ctermbg=80 ctermfg=37 gui=NONE guibg=#1b202a guifg=#51617d
+    CSAHi Title term=bold cterm=NONE ctermbg=bg ctermfg=53 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi Visual term=reverse cterm=NONE ctermbg=17 ctermfg=38 gui=NONE guibg=#323c4d guifg=#9aa7bd
+    CSAHi VisualNOS term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi WarningMsg term=NONE cterm=NONE ctermbg=bg ctermfg=53 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi WildMenu term=NONE cterm=NONE ctermbg=38 ctermfg=80 gui=NONE guibg=#608cc3 guifg=#232936
+    CSAHi vimEscapeBrace term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSetEqual term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlFiledescStatementNocomma term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_b_to_airline_c2 term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi perlFiledescStatementComma term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c2_inactive term=NONE cterm=NONE ctermbg=80 ctermfg=37 gui=NONE guibg=#232936 guifg=#51617d
+    CSAHi gitcommitOnBranch term=NONE cterm=NONE ctermbg=bg ctermfg=37 gui=NONE guibg=bg guifg=#51617d
+    CSAHi gitcommitFile term=NONE cterm=NONE ctermbg=bg ctermfg=42 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi gitcommitHeader term=NONE cterm=NONE ctermbg=bg ctermfg=38 gui=NONE guibg=bg guifg=#8f72bf
+    CSAHi gitcommitBranch term=NONE cterm=NONE ctermbg=bg ctermfg=53 gui=NONE guibg=bg guifg=#b3785d
+    CSAHi gitcommitUnmerged term=NONE cterm=NONE ctermbg=bg ctermfg=37 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi gitcommitUntrackedFile term=NONE cterm=NONE ctermbg=bg ctermfg=42 gui=NONE guibg=bg guifg=#56adb7
+    CSAHi gitcommitSelectedFile term=NONE cterm=NONE ctermbg=bg ctermfg=37 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi gitcommitDiscardedFile term=NONE cterm=NONE ctermbg=bg ctermfg=53 gui=NONE guibg=bg guifg=#b15e7c
+    CSAHi gitcommitUnmergedFile term=NONE cterm=NONE ctermbg=bg ctermfg=53 gui=NONE guibg=bg guifg=#b5a262
+    CSAHi gitcommitSelectedType term=NONE cterm=NONE ctermbg=bg ctermfg=37 gui=NONE guibg=bg guifg=#709d6c
+    CSAHi airline_c2_inactive_red term=NONE cterm=NONE ctermbg=80 ctermfg=53 gui=NONE guibg=#232936 guifg=#b15e7c
+    CSAHi vimAugroupSyncA term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSyncLinebreak term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSyncLinecont term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimSyncRegion term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi vimHiLink term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyDelimEscape term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyNestedParentheses term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyNestedCurlyBraces term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyNestedAngleBrackets term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyNestedSquareBrackets term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi rubyRegexpParens term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi Folded term=NONE cterm=NONE ctermbg=80 ctermfg=17 gui=NONE guibg=#1b202a guifg=#323c4d
+    CSAHi FoldColumn term=NONE cterm=NONE ctermbg=80 ctermfg=42 gui=NONE guibg=#1b202a guifg=#56adb7
+    CSAHi DiffAdd term=bold cterm=NONE ctermbg=37 ctermfg=17 gui=NONE guibg=#709d6c guifg=#323c4d
+    CSAHi DiffChange term=bold cterm=NONE ctermbg=53 ctermfg=17 gui=NONE guibg=#b5a262 guifg=#323c4d
+    CSAHi DiffDelete term=bold cterm=NONE ctermbg=53 ctermfg=17 gui=NONE guibg=#b15e7c guifg=#323c4d
+    CSAHi DiffText term=reverse cterm=NONE ctermbg=38 ctermfg=17 gui=NONE guibg=#608cc3 guifg=#323c4d
+    CSAHi SignColumn term=NONE cterm=NONE ctermbg=80 ctermfg=80 gui=NONE guibg=#1b202a guifg=#232936
+    CSAHi Conceal term=NONE cterm=NONE ctermbg=84 ctermfg=86 gui=NONE guibg=DarkGrey guifg=LightGrey
+    CSAHi SpellBad term=reverse cterm=undercurl ctermbg=bg ctermfg=64 gui=undercurl guibg=bg guifg=#b15e7c guisp=Red
+    CSAHi SpellCap term=reverse cterm=undercurl ctermbg=bg ctermfg=19 gui=undercurl guibg=bg guifg=#608cc3 guisp=Blue
+    CSAHi airline_x_to_airline_y_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_z_to_airline_warning_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c1_to_airline_x_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+    CSAHi airline_c_to_airline_x_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
+endif
 
-function! s:HL(group, fg, bg, attr)
-    let l:attr = a:attr
-    if !g:deepspace_italics && l:attr ==# 'italic'
-        let l:attr = 'none'
-    endif
-
-    if !empty(a:fg)
-        exec 'hi ' . a:group . ' ctermfg=' . a:fg
-    endif
-    if !empty(a:bg)
-        exec 'hi ' . a:group . ' ctermbg=' . a:bg
-    endif
-    if !empty(a:attr)
-        exec 'hi ' . a:group . ' cterm=' . l:attr . ' cterm=' . l:attr
-    endif
-endfun
-
-" Editor Highlights
-call s:HL('ColorColumn',                    '',         s:gray4,    '')
-call s:HL('Cursor',                         s:gray2,    s:gray5,    '')
-call s:HL('CursorColumn',                   '',         s:gray2,    '')
-call s:HL('CursorLine',                     '',         s:gray2,    'none')
-call s:HL('Directory',                      s:blue,     '',         '')
-call s:HL('DiffAdd',                        s:gray3,    s:green,    'none')
-call s:HL('DiffChange',                     s:gray3,    s:yellow,   'none')
-call s:HL('DiffDelete',                     s:gray3,    s:red,      'none')
-call s:HL('DiffText',                       s:gray3,    s:blue,     'none')
-call s:HL('ErrorMsg',                       s:red,      s:gray1,    'bold')
-call s:HL('VertSplit',                      s:gray4,    s:gray1,    'none')
-call s:HL('Folded',                         s:gray3,    s:gray1,    '')
-call s:HL('FoldColumn',                     s:cyan,     s:gray1,    '')
-call s:HL('SignColumn',                     s:gray2,    s:gray1,    '')
-call s:HL('LineNr',                         s:gray3,    '',         '')
-call s:HL('CursorLineNr',                   s:gray5,    s:gray2,    'none')
-call s:HL('MatchParen',                     s:gray2,    s:pink,     'bold')
-call s:HL('ModeMsg',                        s:green,    '',         '')
-call s:HL('MoreMsg',                        s:green,    '',         '')
-call s:HL('NonText',                        s:gray4,    '',         '')
-call s:HL('Normal',                         s:gray5,    s:gray1,    'none')
-call s:HL('Pmenu',                          s:gray5,    s:gray3,    '')
-call s:HL('PmenuSel',                       s:gray2,    s:blue,     '')
-call s:HL('PmenuSbar',                      s:gray3,    s:gray4,    '')
-call s:HL('PmenuThumb',                     s:gray4,    s:gray5,    '')
-call s:HL('Question',                       s:green,    '',         '')
-call s:HL('Search',                         s:gray1,    s:yellow,   '')
-call s:HL('SpecialKey',                     s:gray4,    '',         '')
-call s:HL('SpellCap',                       s:blue,     '',         'undercurl')
-call s:HL('SpellBad',                       s:red,      '',         'undercurl')
-call s:HL('StatusLine',                     s:gray5,    s:gray3,    'none')
-call s:HL('StatusLineNC',                   s:gray2,    s:gray4,    '')
-call s:HL('TabLine',                        s:gray3,    s:gray1,    'none')
-call s:HL('TabLineFill',                    s:gray4,    s:gray2,    'none')
-call s:HL('TabLineSel',                     s:gray2,    s:gray4,    '')
-call s:HL('Title',                          s:yellow,   '',         'none')
-call s:HL('Visual',                         s:gray5,    s:gray3,    '')
-call s:HL('WarningMsg',                     s:red,      '',         '')
-call s:HL('WildMenu',                       s:gray2,    s:blue,     '')
-
-" Standard Syntax
-call s:HL('Comment',                        s:gray4,    '',         'italic')
-call s:HL('Constant',                       s:red,      '',         '')
-call s:HL('String',                         s:green,    '',         '')
-call s:HL('Character',                      s:green,    '',         '')
-call s:HL('Identifier',                     s:purple,   '',         'none')
-call s:HL('Function',                       s:yellow,   '',         '')
-call s:HL('Statement',                      s:blue,     '',         'none')
-call s:HL('Operator',                       s:cyan,     '',         'none')
-call s:HL('PreProc',                        s:cyan,     '',         '')
-call s:HL('Define',                         s:blue,     '',         '')
-call s:HL('Macro',                          s:blue,     '',         '')
-call s:HL('Type',                           s:orange,   '',         'none')
-call s:HL('Structure',                      s:blue,     '',         '')
-call s:HL('Special',                        s:cyan,     '',         '')
-call s:HL('Underlined',                     s:blue,     '',         'none')
-call s:HL('Error',                          s:red,      s:gray1,    'bold')
-call s:HL('Todo',                           s:pink,     s:gray1,    'bold')
-
-" CSS/Sass/Less
-call s:HL('cssAttrComma',                   s:green,    '',         '')
-call s:HL('cssAttributeSelector',           s:green,    '',         '')
-call s:HL('cssBraces',                      s:gray5,    '',         '')
-call s:HL('cssClassName',                   s:orange,   '',         '')
-call s:HL('cssClassNameDot',                s:orange,   '',         '')
-call s:HL('cssIdentifier',                  s:yellow,   '',         '')
-call s:HL('cssImportant',                   s:purple,   '',         '')
-call s:HL('cssMediaType',                   s:purple,   '',         '')
-call s:HL('cssProp',                        s:gray5,    '',         '')
-call s:HL('cssSelectorOp',                  s:blue,     '',         '')
-call s:HL('cssSelectorOp2',                 s:blue,     '',         '')
-
-call s:HL('sassAmpersand',                  s:blue,     '',         '')
-call s:HL('sassClass',                      s:orange,   '',         '')
-call s:HL('sassClassChar',                  s:orange,   '',         '')
-
-call s:HL('lessAmpersand',                  s:blue,     '',         '')
-call s:HL('lessClass',                      s:orange,   '',         '')
-call s:HL('lessClassChar',                  s:orange,   '',         '')
-call s:HL('lessFunction',                   s:yellow,   '',         '')
-call s:HL('lessCssAttribute',               s:gray5,    '',         '')
-
-" Git
-call s:HL('gitcommitComment',               s:gray4,    '',         'italic')
-call s:HL('gitcommitOnBranch',              s:gray4,    '',         'italic')
-call s:HL('gitcommitFile',                  s:cyan,     '',         '')
-call s:HL('gitcommitHeader',                s:purple,   '',         '')
-call s:HL('gitcommitBranch',                s:orange,   '',         '')
-call s:HL('gitcommitUnmerged',              s:green,    '',         '')
-call s:HL('gitcommitUntrackedFile',         s:cyan,     '',         '')
-call s:HL('gitcommitSelectedFile',          s:green,    '',         '')
-call s:HL('gitcommitDiscardedFile',         s:red,      '',         '')
-call s:HL('gitcommitUnmergedFile',          s:yellow,   '',         '')
-call s:HL('gitcommitSelectedType',          s:green,    '',         '')
-call s:HL('gitcommitDiscardedType',         s:red,      '',         '')
-hi link gitcommitNoBranch       gitcommitBranch
-hi link gitcommitUntracked      gitcommitComment
-hi link gitcommitDiscarded      gitcommitComment
-hi link gitcommitSelected       gitcommitComment
-hi link gitcommitDiscardedArrow gitcommitDiscardedFile
-hi link gitcommitSelectedArrow  gitcommitSelectedFile
-hi link gitcommitUnmergedArrow  gitcommitUnmergedFile
-
-" HTML
-call s:HL('htmlArg',                        s:yellow,   '',         '')
-call s:HL('htmlEndTag',                     s:purple,   '',         '')
-call s:HL('htmlTag',                        s:purple,   '',         '')
-call s:HL('htmlTagName',                    s:blue,     '',         '')
-call s:HL('htmlTitle',                      s:gray5,    '',         '')
-
-" Javascript
-call s:HL('javaScriptBraces',               s:gray5,    '',         '')
-call s:HL('javaScriptIdentifier',           s:blue,     '',         '')
-call s:HL('javaScriptFunction',             s:blue,     '',         '')
-call s:HL('javaScriptNumber',               s:red,      '',         '')
-call s:HL('javaScriptReserved',             s:blue,     '',         '')
-call s:HL('javaScriptRequire',              s:cyan,     '',         '')
-call s:HL('javaScriptNull',                 s:red,      '',         '')
-
-" Ruby
-call s:HL('rubyBlockParameterList',         s:purple,   '',         '')
-call s:HL('rubyInterpolationDelimiter',     s:purple,   '',         '')
-call s:HL('rubyStringDelimiter',            s:green,    '',         '')
-call s:HL('rubyRegexpSpecial',              s:cyan,     '',         '')
-
-" Vim-Fugitive
-call s:HL('diffAdded',                      s:green,    '',         '')
-call s:HL('diffRemoved',                    s:red,      '',         '')
-
-" Vim-Gittgutter
-hi link GitGutterAdd    SignifySignAdd
-hi link GitGutterChange SignifySignChange
-hi link GitGutterDelete SignifySignDelete
-call s:HL('GitGutterChangeDelete',          s:orange,   '',         '')
-
-" Vim-Signify
-call s:HL('SignifySignAdd',                 s:green,    '',         '')
-call s:HL('SignifySignChange',              s:yellow,   '',         '')
-call s:HL('SignifySignDelete',              s:red,      '',         '')
+if 1
+    delcommand CSAHi
+endif
