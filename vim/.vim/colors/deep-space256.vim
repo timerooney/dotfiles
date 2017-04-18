@@ -685,7 +685,7 @@ elseif has("gui_running") || (&t_Co == 256 && (&term ==# "xterm" || &term =~# "^
     CSAHi airline_c1_to_airline_x_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
     CSAHi airline_c_to_airline_x_inactive term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
 elseif has("gui_running") || &t_Co == 256
-    CSAHi Normal term=NONE cterm=NONE ctermbg=16 ctermfg=109 gui=NONE guibg=#1b202a guifg=#9aa7bd
+    CSAHi Normal term=NONE cterm=NONE ctermbg=233 ctermfg=109 gui=NONE guibg=#1b202a guifg=#9aa7bd
     CSAHi gitcommitDiscardedType term=NONE cterm=NONE ctermbg=bg ctermfg=132 gui=NONE guibg=bg guifg=#b15e7c
     CSAHi vimAuSyntax term=NONE cterm=NONE ctermbg=bg ctermfg=fg gui=NONE guibg=bg guifg=fg
     CSAHi htmlArg term=NONE cterm=NONE ctermbg=bg ctermfg=143 gui=NONE guibg=bg guifg=#b5a262
