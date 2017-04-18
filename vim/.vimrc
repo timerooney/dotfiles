@@ -72,8 +72,11 @@ set t_Co=256
 colorscheme wombat256mod
 let g:airline_theme='wombat'
 
+" Windows-specific configuratations
 " Set font
 set guifont=DejaVuSansMonoForPowerline_NF:h11:cANSI:qDRAFT
+" Maximize on startup
+au GUIEnter * simalt ~x
 
 "
 " General configuration
