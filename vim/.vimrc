@@ -69,8 +69,8 @@ filetype plugin indent on    " required
 " 256 colors
 set t_Co=256
 " Colorscheme
-colorscheme wombat256mod
-let g:airline_theme='wombat'
+colorscheme lucario
+let g:airline_theme='lucius'
 
 " Windows-specific configuratations
 " Set font
