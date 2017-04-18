@@ -69,7 +69,7 @@ filetype plugin indent on    " required
 " 256 colors
 set t_Co=256
 " Colorscheme
-colorscheme lucario
+colorscheme deep-space
 let g:airline_theme='lucius'
 
 "
