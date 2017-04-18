@@ -116,8 +116,6 @@ nnoremap <leader>. :CtrlPTag<CR>
 nnoremap <leader>t :NERDTreeToggle<CR>
 " Create a command to generate tag files in the current directory
 command GenerateTags execute ':silent !ctags -R -f tags .' | execute ':redraw!'
-" Create a command to create a pdf of the current pandoc document
-command PDF execute ':w' | execute 'Pandoc -o ' . expand('%:r') . '.pdf'
 " Set easymotion to use space
 map <Space> <Plug>(easymotion-prefix)
 " Create a command to remove whitespace from a document
