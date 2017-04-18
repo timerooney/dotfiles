@@ -30,8 +30,6 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'junegunn/gv.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'easymotion/vim-easymotion'
-Plugin 'davidhalter/jedi-vim.git'
-" Plugin 'python-mode/python-mode'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -40,10 +38,11 @@ Plugin 'tpope/vim-surround'
 Plugin 'bling/vim-bufferline'
 Plugin 'majutsushi/tagbar'
 Plugin 'craigemery/vim-autotag'
-Plugin 'ajh17/VimCompletesMe'
 Plugin 'ervandew/supertab'
-Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+
 
 if vundleAvailable  == 0
     echo "Installing Vundles, please ignore key map error messages"
@@ -77,10 +76,10 @@ let g:airline_theme='wombat'
 " General configuration
 syntax on
 
-set tabstop=4
-set softtabstop=4
+set tabstop=2
+set softtabstop=2
 set expandtab
-set shiftwidth=4
+set shiftwidth=2
 set autoindent
 set smartindent
 
@@ -96,13 +95,6 @@ set incsearch   " Search as typing
 " Start up nerdtree on boot
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
-
-
-" Set supertab to scroll down
-let g:SuperTabDefaultCompletionType = "<c-n>"
-
-" Set supertab to use jedi-vim whenever available
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
 
 " Disable python-mode rope to avoid interfering with jedi-vim
@@ -125,7 +117,14 @@ nnoremap <leader>. :CtrlPTag<CR>
 nnoremap <leader>t :NERDTreeToggle<CR>
 " Create a command to generate tag files in the current directory
 command GenerateTags execute ':silent !ctags -R -f tags .' | execute ':redraw!'
+" Create a command to create a pdf of the current pandoc document
+command PDF execute ':w' | execute 'Pandoc -o ' . expand('%:r') . '.pdf'
 " Set easymotion to use space
 map <Space> <Plug>(easymotion-prefix)
 " Create a command to remove whitespace from a document
 command RemoveWhitespace execute ':%s/\s\+$//e'
+" Remap split movements to ctrl keys
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
