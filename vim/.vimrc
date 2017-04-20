@@ -69,8 +69,12 @@ filetype plugin indent on    " required
 " 256 colors
 set t_Co=256
 " Colorscheme
-colorscheme deep-space256
-let g:airline_theme='lucius'
+if has('gui_running')
+  colorscheme deep-space
+  set guifont=DejaVu\ Sans\ Mono\ 11
+else
+  colorscheme deep-space256
+endif
 
 " Windows-specific configuratations
 " Set font
@@ -103,7 +107,6 @@ set backspace=indent,eol,start
 " Set splits to below and right
 set splitbelow
 set splitright
-
 
 " Start up nerdtree on boot
 autocmd VimEnter * NERDTree
