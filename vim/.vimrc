@@ -75,6 +75,7 @@ if has('gui_running')
 else
   colorscheme deep-space256
 endif
+let g:airline_theme='deep_space'
 
 " Windows-specific configuratations
 " Set font
