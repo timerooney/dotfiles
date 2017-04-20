@@ -70,7 +70,12 @@ filetype plugin indent on    " required
 " 256 colors
 set t_Co=256
 " Colorscheme
-colorscheme deep-space256
+if has('gui_running')
+  colorscheme deep-space
+  set guifont=DejaVu\ Sans\ Mono\ 11
+else
+  colorscheme deep-space256
+endif
 let g:airline_theme='deep_space'
 
 "
