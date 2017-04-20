@@ -44,6 +44,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'reedes/vim-pencil'
 Plugin 'godlygeek/csapprox'
+Plugin 'jpalardy/vim-slime'
 
 if vundleAvailable  == 0
     echo "Installing Vundles, please ignore key map error messages"
@@ -119,10 +120,8 @@ augroup pencil
 augroup END
 
 
-" Disable python-mode rope to avoid interfering with jedi-vim
-let g:pymode_rope_lookup_project = 0
-let g:pymode_rope_complete_on_dot = 0
-let g:pymode_rope = 0
+" Configure slime to use tmux
+let g:slime_target = "tmux"
 
 
 " Remappings "
