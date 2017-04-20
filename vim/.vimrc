@@ -147,3 +147,12 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+" Remap jj to escape insert mode
+inoremap jj <ESC>
+" Remap gvim copy and paste
+if has('gui_running')
+  vmap <C-c> "+yi
+  vmap <C-x> "+c
+  vmap <C-v> c<ESC>"+p
+  imap <C-v> <C-r><C-o>+
+endif
