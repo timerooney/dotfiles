@@ -45,6 +45,8 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'reedes/vim-pencil'
 Plugin 'godlygeek/csapprox'
 Plugin 'jpalardy/vim-slime'
+Plugin 'junegunn/goyo.vim'
+Plugin 'junegunn/limelight.vim'
 
 if vundleAvailable  == 0
     echo "Installing Vundles, please ignore key map error messages"
@@ -76,6 +78,8 @@ if has('gui_running')
   set guifont=DejaVu\ Sans\ Mono\ 11
 else
   colorscheme deep-space256
+  " Set the terminal color for limelight
+  let g:limelight_conceal_ctermfg = 240
 endif
 let g:airline_theme='deep_space'
 
@@ -109,9 +113,11 @@ set splitright
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 
-
 " Use pencil for markdown  and text files
-" let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
+let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
+let g:pencil#autoformat = 1
+" Change default spacing for markdown files
+autocmd FileType markdown,mkd set tabstop=4|set softtabstop=4|set shiftwidth=4
 
 augroup pencil
   autocmd!
