@@ -47,6 +47,7 @@ Plugin 'godlygeek/csapprox'
 Plugin 'jpalardy/vim-slime'
 Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
+Plugin 'junegunn/seoul256.vim'
 
 if vundleAvailable  == 0
     echo "Installing Vundles, please ignore key map error messages"
@@ -55,7 +56,7 @@ if vundleAvailable  == 0
 endif
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
+call vundle#end()  " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -74,14 +75,13 @@ filetype plugin indent on    " required
 set t_Co=256
 " Colorscheme
 if has('gui_running')
-  colorscheme deep-space
   set guifont=DejaVu\ Sans\ Mono\ 11
 else
-  colorscheme deep-space256
   " Set the terminal color for limelight
   let g:limelight_conceal_ctermfg = 240
 endif
-let g:airline_theme='deep_space'
+colorscheme seoul256
+let g:airline_theme='distinguished'
 
 "
 " General configuration
