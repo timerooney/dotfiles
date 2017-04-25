@@ -126,6 +126,17 @@ augroup pencil
 augroup END
 
 
+" Configure Goyo on enter and exit
+function! s:goyo_enter()
+  colorscheme seoul256-light
+endfunction
+function! s:goyo_leave()
+  colorscheme seoul256
+endfunction
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+
 " Configure slime to use tmux
 let g:slime_target = "tmux"
 
