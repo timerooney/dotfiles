@@ -99,3 +99,6 @@ fi
 
 # Additional exports
 export EDITOR="vim"
+
+# fzf config
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
