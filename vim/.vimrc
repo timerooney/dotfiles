@@ -48,6 +48,7 @@ Plugin 'jpalardy/vim-slime'
 Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
 Plugin 'junegunn/seoul256.vim'
+Plugin 'reedes/vim-wordy'
 
 if vundleAvailable  == 0
     echo "Installing Vundles, please ignore key map error messages"
