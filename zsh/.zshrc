@@ -85,6 +85,9 @@ source $ZSH/oh-my-zsh.sh
 # Automatically run ls after using cd
 chpwd() ls
 
+# May have to set pythonpath to get vim-jedi to work correctly, eg:
+# export PYTHONPATH=/cygdrive/c/Users/trooney/AppData/Local/Continuum/Anaconda3/Lib/site-packages
+
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
