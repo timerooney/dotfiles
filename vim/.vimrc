@@ -40,15 +40,18 @@ Plugin 'bling/vim-bufferline'
 Plugin 'majutsushi/tagbar'
 Plugin 'craigemery/vim-autotag'
 Plugin 'ervandew/supertab'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
+Plugin 'gabrielelana/vim-markdown'
 Plugin 'reedes/vim-pencil'
 Plugin 'godlygeek/csapprox'
 Plugin 'jpalardy/vim-slime'
 Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
 Plugin 'junegunn/seoul256.vim'
+<<<<<<< HEAD
 Plugin 'davidhalter/jedi-vim'
+=======
+Plugin 'reedes/vim-wordy'
+>>>>>>> a684588c44111b87d6da94aa4908178ef9bcefc1
 
 if vundleAvailable  == 0
     echo "Installing Vundles, please ignore key map error messages"
