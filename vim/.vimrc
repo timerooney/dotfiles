@@ -132,6 +132,7 @@ let g:pencil#textwidth = 65
 " Configure Goyo on enter and exit
 function! s:goyo_enter()
   colorscheme seoul256-light
+  syn on " turn on bold and italics highlighting even within Goyo
 endfunction
 function! s:goyo_leave()
   colorscheme seoul256
@@ -177,3 +178,11 @@ if has('gui_running')
   vmap <C-v> c<ESC>"+p
   imap <C-v> <C-r><C-o>+
 endif
+
+" Ignore swapfiles if in a dropbox folder
+autocmd BufNewFile,BufRead *
+  \ if expand('%:~') =~ '^\~/Dropbox' |
+  \   set noswapfile |
+  \ else |
+  \   set swapfile |
+  \ endif
