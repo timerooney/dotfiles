@@ -40,7 +40,8 @@ Plugin 'bling/vim-bufferline'
 Plugin 'majutsushi/tagbar'
 Plugin 'craigemery/vim-autotag'
 Plugin 'ervandew/supertab'
-Plugin 'gabrielelana/vim-markdown'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 Plugin 'reedes/vim-pencil'
 Plugin 'godlygeek/csapprox'
 Plugin 'jpalardy/vim-slime'
@@ -185,3 +186,7 @@ autocmd BufNewFile,BufRead *
   \ else |
   \   set swapfile |
   \ endif
+
+" Enable spell checking for markdown files
+au BufRead *.md setlocal spell
+au BufRead *.markdown setlocal spell
