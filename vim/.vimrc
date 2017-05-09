@@ -50,6 +50,8 @@ Plugin 'junegunn/limelight.vim'
 Plugin 'junegunn/seoul256.vim'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'reedes/vim-wordy'
+Plugin 'junegunn/fzf'
+Plugin 'Alok/notational-fzf-vim'
 
 if vundleAvailable  == 0
     echo "Installing Vundles, please ignore key map error messages"
@@ -190,3 +192,6 @@ autocmd BufNewFile,BufRead *
 " Enable spell checking for markdown files
 au BufRead *.md setlocal spell
 au BufRead *.markdown setlocal spell
+
+" Configure nvdirectories
+let g:nv_directories = ['~/Notes']
