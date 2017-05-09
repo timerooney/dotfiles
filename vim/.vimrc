@@ -118,14 +118,14 @@ autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 
 " Use pencil for markdown  and text files
-let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
+let g:pencil#wrapModeDefault = 'hard'   " default is 'hard'
 let g:pencil#autoformat = 1
 " Change default spacing for markdown files
 autocmd FileType markdown,mkd set tabstop=4|set softtabstop=4|set shiftwidth=4
 
 augroup pencil
   autocmd!
-  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType markdown,mkd,md call pencil#init()
   autocmd FileType text         call pencil#init()
 augroup END
 let g:pencil#textwidth = 65
