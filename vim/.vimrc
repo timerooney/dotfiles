@@ -40,9 +40,8 @@ Plugin 'bling/vim-bufferline'
 Plugin 'majutsushi/tagbar'
 Plugin 'craigemery/vim-autotag'
 Plugin 'ervandew/supertab'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'reedes/vim-pencil'
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'godlygeek/csapprox'
 Plugin 'jpalardy/vim-slime'
 Plugin 'junegunn/goyo.vim'
@@ -84,7 +83,7 @@ else
   " Set the terminal color for limelight
   let g:limelight_conceal_ctermfg = 240
 endif
-colorscheme seoul256
+colorscheme OceanicNext
 let g:airline_theme='distinguished'
 
 "
@@ -117,28 +116,21 @@ set splitright
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 
-" Use pencil for markdown  and text files
-let g:pencil#wrapModeDefault = 'hard'   " default is 'hard'
-let g:pencil#autoformat = 1
+" Formatting for vim-pandoc
+let g:pandoc#formatting#mode = 'ha'
+let g:pandoc#formatting#textwidth = 65
+
 " Change default spacing for markdown files
-autocmd FileType markdown,mkd set tabstop=4|set softtabstop=4|set shiftwidth=4
-
-augroup pencil
-  autocmd!
-  autocmd FileType markdown,mkd,md call pencil#init()
-  autocmd FileType text         call pencil#init()
-augroup END
-let g:pencil#textwidth = 65
-
+autocmd FileType markdown,mkd,md set tabstop=4|set softtabstop=4|set shiftwidth=4
 
 " Configure Goyo on enter and exit
 function! s:goyo_enter()
-  colorscheme seoul256-light
+  " colorscheme seoul256-light
   syn on " turn on bold and italics highlighting even within Goyo
 endfunction
-function! s:goyo_leave()
-  colorscheme seoul256
-endfunction
+" function! s:goyo_leave()
+"   colorscheme seoul256
+" endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 let g:goyo_width = 65
