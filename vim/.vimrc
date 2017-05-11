@@ -36,7 +36,6 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-surround'
-Plugin 'bling/vim-bufferline'
 Plugin 'majutsushi/tagbar'
 Plugin 'craigemery/vim-autotag'
 Plugin 'ervandew/supertab'
@@ -117,6 +116,11 @@ set splitright
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+" Show buffer numbers in tabline
+let g:airline#extensions#tabline#buffer_nr_show = 1
+
 " Use pencil for markdown  and text files
 let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
 let g:pencil#autoformat = 1
@@ -180,6 +184,8 @@ if has('gui_running')
   vmap <C-v> c<ESC>"+p
   imap <C-v> <C-r><C-o>+
 endif
+" Remap leader r to tagbar toggle
+nnoremap <leader>r :TagbarToggle<CR>
 
 " Ignore swapfiles if in a dropbox folder
 autocmd BufNewFile,BufRead *
