@@ -115,7 +115,6 @@ set splitright
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 
-<<<<<<< HEAD
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 " Show buffer numbers in tabline
@@ -133,11 +132,10 @@ augroup pencil
   autocmd FileType text         call pencil#init()
 augroup END
 let g:pencil#textwidth = 65
-=======
+
 " Formatting for vim-pandoc
-let g:pandoc#formatting#mode = 'ha'
+let g:pandoc#formatting#mode = 'sa'
 let g:pandoc#formatting#textwidth = 65
->>>>>>> 163b410be67b94e5e964bc18bd21ca3f59cdf89c
 
 " Change default spacing for markdown files
 autocmd FileType markdown,mkd,md set tabstop=4|set softtabstop=4|set shiftwidth=4
