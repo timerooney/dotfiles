@@ -50,6 +50,7 @@ Plugin 'davidhalter/jedi-vim'
 Plugin 'reedes/vim-wordy'
 Plugin 'junegunn/fzf'
 Plugin 'Alok/notational-fzf-vim'
+Plugin 'dhruvasagar/vim-table-mode'
 
 if vundleAvailable  == 0
     echo "Installing Vundles, please ignore key map error messages"
@@ -120,19 +121,6 @@ let g:airline#extensions#tabline#enabled = 1
 " Show buffer numbers in tabline
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
-" Use pencil for markdown  and text files
-let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
-let g:pencil#autoformat = 1
-" Change default spacing for markdown files
-autocmd FileType markdown,mkd set tabstop=4|set softtabstop=4|set shiftwidth=4
-
-augroup pencil
-  autocmd!
-  autocmd FileType markdown,mkd call pencil#init()
-  autocmd FileType text         call pencil#init()
-augroup END
-let g:pencil#textwidth = 65
-
 " Formatting for vim-pandoc
 let g:pandoc#formatting#mode = 'sa'
 let g:pandoc#formatting#textwidth = 65
@@ -151,6 +139,9 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 let g:goyo_width = 65
+
+" Configure vim-table-mode
+let g:table_mode_corner='|'
 
 
 " Configure slime to use tmux
