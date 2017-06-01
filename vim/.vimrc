@@ -5,7 +5,7 @@ if !filereadable(vundle_readme)
     echo "Installing Vundle.."
     echo ""
     silent !mkdir -p $HOME/vimfiles/bundle
-    silent !git clone https://github.com/VundleVim/Vundle.vim vimfiles/bundle/vundle
+    silent !git clone https://github.com/VundleVim/Vundle.vim.git $HOME/vimfiles/bundle/vundle
     let vundleAvailable=0
 endif
 
@@ -15,7 +15,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=$HOME/vimfiles/bundle/vundle
+set rtp+=$HOME/vimfiles/bundle/vundle/
 call vundle#begin('$HOME/vimfiles/bundle/')
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
