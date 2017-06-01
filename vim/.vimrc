@@ -78,7 +78,7 @@ filetype plugin indent on    " required
 set t_Co=256
 " Colorscheme
 if has('gui_running')
-  set guifont=DejaVu\ Sans\ Mono\ 11
+  set guifont=DejaVuSansMonoForPowerline_NF:h11:cANSI:qDRAFT
 else
   " Set the terminal color for limelight
   let g:limelight_conceal_ctermfg = 240
@@ -86,7 +86,8 @@ endif
 colorscheme OceanicNext
 let g:airline_theme='distinguished'
 
-"
+
+
 " General configuration
 syntax on
 
@@ -197,3 +198,6 @@ au BufRead *.markdown setlocal spell
 
 " Configure nvdirectories
 let g:nv_directories = ['~/Notes']
+
+" Automatically start gVim fullscreen on Windows
+autocmd GUIEnter * simalt ~x
