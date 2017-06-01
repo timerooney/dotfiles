@@ -1,11 +1,11 @@
 " Automatic installation of Vundle if it is not available
 let vundleAvailable=1
-let vundle_readme=expand('$HOME/.vim/bundle/vundle/README.md')
+let vundle_readme=expand('$HOME/vimfiles/bundle/vundle/README.md')
 if !filereadable(vundle_readme)
     echo "Installing Vundle.."
     echo ""
-    silent !mkdir -p $HOME/.vim/bundle
-    silent !git clone https://github.com/VundleVim/Vundle.vim $HOME/.vim/bundle/vundle
+    silent !mkdir -p $HOME/vimfiles/bundle
+    silent !git clone https://github.com/VundleVim/Vundle.vim vimfiles/bundle/vundle
     let vundleAvailable=0
 endif
 
@@ -15,8 +15,8 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle
-call vundle#begin()
+set rtp+=$HOME/vimfiles/bundle/vundle
+call vundle#begin('$HOME/vimfiles/bundle/')
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
