@@ -51,6 +51,11 @@ Plugin 'reedes/vim-wordy'
 Plugin 'junegunn/fzf'
 Plugin 'Alok/notational-fzf-vim'
 Plugin 'dhruvasagar/vim-table-mode'
+Plugin 'tpope/vim-fireplace'
+Plugin 'tpope/vim-salve'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'eagletmt/ghcmod-vim'
+Plugin 'eagletmt/neco-ghc'
 
 if vundleAvailable  == 0
     echo "Installing Vundles, please ignore key map error messages"
@@ -127,6 +132,11 @@ let g:pandoc#formatting#textwidth = 65
 
 " Change default spacing for markdown files
 autocmd FileType markdown,mkd,md set tabstop=4|set softtabstop=4|set shiftwidth=4
+
+" Configure Haskell autocompletion
+let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
+let g:haskellmode_completion_ghc = 1
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " Configure Goyo on enter and exit
 function! s:goyo_enter()
