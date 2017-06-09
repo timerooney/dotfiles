@@ -32,6 +32,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin '907th/vim-auto-save'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'jiangmiao/auto-pairs'
@@ -135,8 +136,8 @@ let g:pandoc#formatting#textwidth = 65
 autocmd FileType markdown,mkd,md set tabstop=4|set softtabstop=4|set shiftwidth=4
 
 " Configure Haskell autocompletion
-let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
-let g:haskellmode_completion_ghc = 1
+let g:SuperTabDefaultCompletionType = 'context'
+let g:haskellmode_completion_ghc = 0
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " Configure Goyo on enter and exit
