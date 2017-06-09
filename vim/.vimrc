@@ -41,7 +41,7 @@ Plugin 'craigemery/vim-autotag'
 Plugin 'ervandew/supertab'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
-Plugin 'vitalk/vim-simple-todo'
+Plugin 'freitass/todo.txt-vim'
 Plugin 'godlygeek/csapprox'
 Plugin 'jpalardy/vim-slime'
 Plugin 'junegunn/goyo.vim'
@@ -163,6 +163,7 @@ let g:slime_target = "tmux"
 
 " Remap the leader
 let mapleader = ","
+let maplocalleader = ","
 " Remap control-c to close current buffer without closing the window
 nnoremap <C-c> :bp\|bd#<CR>
 " Remap F8 to opening the tagbar
