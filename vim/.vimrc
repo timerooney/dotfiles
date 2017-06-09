@@ -51,7 +51,6 @@ Plugin 'junegunn/seoul256.vim'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'reedes/vim-wordy'
 Plugin 'junegunn/fzf'
-Plugin 'Alok/notational-fzf-vim'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'tpope/vim-fireplace'
 Plugin 'tpope/vim-salve'
@@ -195,6 +194,9 @@ if has('gui_running')
 endif
 " Remap leader r to tagbar toggle
 nnoremap <leader>r :TagbarToggle<CR>
+" Remap F5 to inserting the current datetime
+nnoremap <F5> "=strftime('%c')<CR>P"
+inoremap <F5> <C-R>=strftime('%c')<CR>
 
 " Ignore swapfiles if in a dropbox folder
 autocmd BufNewFile,BufRead *
@@ -207,6 +209,3 @@ autocmd BufNewFile,BufRead *
 " Enable spell checking for markdown files
 au BufRead *.md setlocal spell
 au BufRead *.markdown setlocal spell
-
-" Configure nvdirectories
-let g:nv_directories = ['~/Notes']
