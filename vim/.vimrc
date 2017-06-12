@@ -34,6 +34,7 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'lifepillar/vim-solarized8'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-surround'
 Plugin 'majutsushi/tagbar'
@@ -41,6 +42,8 @@ Plugin 'craigemery/vim-autotag'
 Plugin 'ervandew/supertab'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'freitass/todo.txt-vim'
+Plugin '907th/vim-auto-save'
 Plugin 'godlygeek/csapprox'
 Plugin 'jpalardy/vim-slime'
 Plugin 'junegunn/goyo.vim'
@@ -51,6 +54,11 @@ Plugin 'reedes/vim-wordy'
 Plugin 'junegunn/fzf'
 Plugin 'Alok/notational-fzf-vim'
 Plugin 'dhruvasagar/vim-table-mode'
+Plugin 'tpope/vim-fireplace'
+Plugin 'tpope/vim-salve'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'eagletmt/ghcmod-vim'
+Plugin 'eagletmt/neco-ghc'
 
 if vundleAvailable  == 0
     echo "Installing Vundles, please ignore key map error messages"
@@ -83,8 +91,10 @@ else
   " Set the terminal color for limelight
   let g:limelight_conceal_ctermfg = 240
 endif
-colorscheme OceanicNext
-let g:airline_theme='distinguished'
+" colorscheme OceanicNext
+" let g:airline_theme='distinguished'
+colorscheme solarized8_light_high
+let g:airline_theme='solarized'
 
 
 
@@ -122,12 +132,22 @@ let g:airline#extensions#tabline#enabled = 1
 " Show buffer numbers in tabline
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
+" Set ctrlp to use the opening path always
+let g:ctrlp_root_markers = ['.ctrlp']
+" Set ctrlp to ignore Archive folder for searching
+let g:ctrlp_custom_ignore = "Archive"
+
 " Formatting for vim-pandoc
 let g:pandoc#formatting#mode = 'sa'
 let g:pandoc#formatting#textwidth = 65
 
 " Change default spacing for markdown files
 autocmd FileType markdown,mkd,md set tabstop=4|set softtabstop=4|set shiftwidth=4
+
+" Configure Haskell autocompletion
+let g:SuperTabDefaultCompletionType = 'context'
+let g:haskellmode_completion_ghc = 0
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " Configure Goyo on enter and exit
 function! s:goyo_enter()
@@ -153,6 +173,7 @@ let g:slime_target = "tmux"
 
 " Remap the leader
 let mapleader = ","
+let maplocalleader = ","
 " Remap control-c to close current buffer without closing the window
 nnoremap <C-c> :bp\|bd#<CR>
 " Remap F8 to opening the tagbar
@@ -183,6 +204,9 @@ if has('gui_running')
 endif
 " Remap leader r to tagbar toggle
 nnoremap <leader>r :TagbarToggle<CR>
+" Remap F6 to inserting the current datetime
+nnoremap <F6> "=strftime('%c')<CR>P"
+inoremap <F6> <C-R>=strftime('%c')<CR>
 
 " Ignore swapfiles if in a dropbox folder
 autocmd BufNewFile,BufRead *
