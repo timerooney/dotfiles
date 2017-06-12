@@ -43,6 +43,7 @@ Plugin 'ervandew/supertab'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'freitass/todo.txt-vim'
+" Plugin 'vitalk/vim-simple-todo'
 Plugin 'godlygeek/csapprox'
 Plugin 'jpalardy/vim-slime'
 Plugin 'junegunn/goyo.vim'
@@ -126,6 +127,9 @@ autocmd VimEnter * wincmd p
 let g:airline#extensions#tabline#enabled = 1
 " Show buffer numbers in tabline
 let g:airline#extensions#tabline#buffer_nr_show = 1
+
+" Set ctrlp to use the opening path always
+let g:ctrlp_root_markers = ['.ctrlp']
 
 " Formatting for vim-pandoc
 let g:pandoc#formatting#mode = 'sa'
