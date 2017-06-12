@@ -35,6 +35,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin '907th/vim-auto-save'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'lifepillar/vim-solarized8'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-surround'
 Plugin 'majutsushi/tagbar'
@@ -90,8 +91,10 @@ else
   " Set the terminal color for limelight
   let g:limelight_conceal_ctermfg = 240
 endif
-colorscheme OceanicNext
-let g:airline_theme='distinguished'
+" colorscheme OceanicNext
+" let g:airline_theme='distinguished'
+colorscheme solarized8_light_high
+let g:airline_theme='solarized'
 
 "
 " General configuration
@@ -130,6 +133,8 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 
 " Set ctrlp to use the opening path always
 let g:ctrlp_root_markers = ['.ctrlp']
+" Set ctrlp to ignore Archive folder for searching
+let g:ctrlp_custom_ignore = "Archive"
 
 " Formatting for vim-pandoc
 let g:pandoc#formatting#mode = 'sa'
@@ -198,9 +203,9 @@ if has('gui_running')
 endif
 " Remap leader r to tagbar toggle
 nnoremap <leader>r :TagbarToggle<CR>
-" Remap F5 to inserting the current datetime
-nnoremap <F5> "=strftime('%c')<CR>P"
-inoremap <F5> <C-R>=strftime('%c')<CR>
+" Remap F6 to inserting the current datetime
+nnoremap <F6> "=strftime('%c')<CR>P"
+inoremap <F6> <C-R>=strftime('%c')<CR>
 
 " Ignore swapfiles if in a dropbox folder
 autocmd BufNewFile,BufRead *
