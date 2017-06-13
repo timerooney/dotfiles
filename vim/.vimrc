@@ -145,6 +145,7 @@ autocmd FileType markdown,mkd,md set tabstop=4|set softtabstop=4|set shiftwidth=
 
 " Configure Haskell autocompletion
 let g:SuperTabDefaultCompletionType = 'context'
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
 let g:haskellmode_completion_ghc = 0
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
