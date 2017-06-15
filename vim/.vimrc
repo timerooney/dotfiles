@@ -2,13 +2,12 @@
 let vundleAvailable=1
 let vundle_readme=expand('C:/Users/trooney/vimfiles/bundle/Vundle.vim/README.md')
 if !filereadable(vundle_readme)
-    echo "Installing Vundle.."
-    echo ""
-    silent !mkdir -p C:\Users\trooney\vimfiles\bundle
-    silent !git clone https://github.com/VundleVim/Vundle.vim.git C:/Users/trooney/vimfiles/bundle/Vundle.vim
-    let vundleAvailable=0
+  echo "Installing Vundle.."
+  echo ""
+  silent !mkdir -p C:\Users\trooney\vimfiles\bundle
+  silent !git clone https://github.com/VundleVim/Vundle.vim.git C:/Users/trooney/vimfiles/bundle/Vundle.vim
+  let vundleAvailable=0
 endif
-
 
 " Setup of Vundle
 set nocompatible              " be iMproved, required
@@ -52,7 +51,6 @@ Plugin 'junegunn/seoul256.vim'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'reedes/vim-wordy'
 Plugin 'junegunn/fzf'
-Plugin 'Alok/notational-fzf-vim'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'tpope/vim-fireplace'
 Plugin 'tpope/vim-salve'
@@ -61,9 +59,9 @@ Plugin 'eagletmt/ghcmod-vim'
 Plugin 'eagletmt/neco-ghc'
 
 if vundleAvailable  == 0
-    echo "Installing Vundles, please ignore key map error messages"
-    echo ""
-    :PluginInstall
+  echo "Installing Vundles, please ignore key map error messages"
+  echo ""
+  :PluginInstall
 endif
 
 " All of your Plugins must be added before the following line
@@ -82,25 +80,30 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 
+"""
+" Colorscheme configuration
+"""
 " 256 colors
 set t_Co=256
 " Colorscheme
 if has('gui_running')
   set guifont=DejaVuSansMonoForPowerline_NF:h11:cANSI:qDRAFT
+  colorscheme solarized8_light_high
+  let g:airline_theme='solarized'
 else
   " Set the terminal color for limelight
   let g:limelight_conceal_ctermfg = 240
+  colorscheme PaperColor
+  let g:airline_theme='silver'
 endif
-" colorscheme OceanicNext
-" let g:airline_theme='distinguished'
-colorscheme solarized8_light_high
-let g:airline_theme='solarized'
 
 
-
-" General configuration
+"""
+" General vim configuration
+"""
 syntax on
 
+" Indentation settings
 set tabstop=2
 set softtabstop=2
 set expandtab
@@ -108,12 +111,12 @@ set shiftwidth=2
 set autoindent
 set smartindent
 
+" General preferences
 set number
 set showcmd     " Show last command
 set wildmenu    " Show menu suggestions
 set lazyredraw  " Only redraw when needed
 set showmatch   " Show matching brackets
-
 set incsearch   " Search as typing
 
 " Make backspace work like normal editors
@@ -123,32 +126,54 @@ set backspace=indent,eol,start
 set splitbelow
 set splitright
 
+" Ignore swapfiles if in a dropbox folder
+autocmd BufNewFile,BufRead *
+  \ if expand('%:~') =~ '^\~/Dropbox' |
+  \   set noswapfile |
+  \ else |
+  \   set swapfile |
+  \ endif
+
+
+"""
+" Nerdtree
+"""
 " Start up nerdtree on boot
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 
+
+"""
+" Airline configuration
+"""
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 " Show buffer numbers in tabline
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
+
+"""
+" ctrlp configuraiton
+"""
 " Set ctrlp to use the opening path always
 let g:ctrlp_root_markers = ['.ctrlp']
 " Set ctrlp to ignore Archive folder for searching
 let g:ctrlp_custom_ignore = "Archive"
 
+
+"""
+" Markdown formating
+"""
 " Formatting for vim-pandoc
 let g:pandoc#formatting#mode = 'sa'
 let g:pandoc#formatting#textwidth = 65
 
 " Change default spacing for markdown files
 autocmd FileType markdown,mkd,md set tabstop=4|set softtabstop=4|set shiftwidth=4
-
-" Configure Haskell autocompletion
-let g:SuperTabDefaultCompletionType = 'context'
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
-let g:haskellmode_completion_ghc = 0
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+"
+" Enable spell checking for markdown files
+au BufRead *.md setlocal spell
+au BufRead *.markdown setlocal spell
 
 " Configure Goyo on enter and exit
 function! s:goyo_enter()
@@ -166,8 +191,21 @@ let g:goyo_width = 65
 let g:table_mode_corner='|'
 
 
+"""
+" Slime
+"""
 " Configure slime to use tmux
 let g:slime_target = "tmux"
+
+
+"""
+" Haskell configuration
+"""
+" Configure Haskell autocompletion
+let g:SuperTabDefaultCompletionType = 'context'
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
+let g:haskellmode_completion_ghc = 0
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 
 " Remappings "
@@ -209,20 +247,9 @@ nnoremap <leader>r :TagbarToggle<CR>
 nnoremap <F6> "=strftime('%c')<CR>P"
 inoremap <F6> <C-R>=strftime('%c')<CR>
 
-" Ignore swapfiles if in a dropbox folder
-autocmd BufNewFile,BufRead *
-  \ if expand('%:~') =~ '^\~/Dropbox' |
-  \   set noswapfile |
-  \ else |
-  \   set swapfile |
-  \ endif
 
-" Enable spell checking for markdown files
-au BufRead *.md setlocal spell
-au BufRead *.markdown setlocal spell
-
-" Configure nvdirectories
-let g:nv_directories = ['~/Notes']
-
+"""
+" Last steps
+"""
 " Automatically start gVim fullscreen on Windows
 autocmd GUIEnter * simalt ~x
