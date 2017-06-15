@@ -43,7 +43,6 @@ Plugin 'ervandew/supertab'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'freitass/todo.txt-vim'
-Plugin '907th/vim-auto-save'
 Plugin 'godlygeek/csapprox'
 Plugin 'jpalardy/vim-slime'
 Plugin 'junegunn/goyo.vim'
@@ -88,7 +87,7 @@ filetype plugin indent on    " required
 set t_Co=256
 " Colorscheme
 if has('gui_running')
-  set guifont=DejaVuSansMonoForPowerline_NF:h11:cANSI:qDRAFT
+  set guifont=DejaVu\ Sans\ Mono\ 11
   colorscheme solarized8_light_high
   let g:airline_theme='solarized'
 else
@@ -253,4 +252,4 @@ inoremap <F6> <C-R>=strftime('%c')<CR>
 " Last steps
 """
 " Automatically start gVim fullscreen on Windows
-autocmd GUIEnter * simalt ~x
+" autocmd GUIEnter * simalt ~x
