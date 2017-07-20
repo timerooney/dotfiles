@@ -166,7 +166,7 @@ let g:ctrlp_custom_ignore = "Archive"
 """
 " Formatting for vim-pandoc
 let g:pandoc#formatting#mode = 'sa'
-let g:pandoc#formatting#textwidth = 65
+let g:pandoc#formatting#textwidth = 80
 
 " Change default spacing for markdown files
 autocmd FileType markdown,mkd,md set tabstop=4|set softtabstop=4|set shiftwidth=4
@@ -180,12 +180,12 @@ function! s:goyo_enter()
   " colorscheme seoul256-light
   syn on " turn on bold and italics highlighting even within Goyo
 endfunction
-" function! s:goyo_leave()
+function! s:goyo_leave()
 "   colorscheme seoul256
-" endfunction
+endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
-let g:goyo_width = 65
+let g:goyo_width = 80
 
 " Configure vim-table-mode
 let g:table_mode_corner='|'
