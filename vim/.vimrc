@@ -246,6 +246,9 @@ nnoremap <leader>r :TagbarToggle<CR>
 " Remap F6 to inserting the current datetime
 nnoremap <F6> "=strftime('%c')<CR>P"
 inoremap <F6> <C-R>=strftime('%c')<CR>
+" Enable shortcuts for moving elements to the left and right in a vim-table
+nnoremap tl T\|ldt\|lpl
+nnoremap th T\|ldt\|hhhhpbhhhh
 
 
 """
