@@ -49,6 +49,7 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
 Plugin 'junegunn/seoul256.vim'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'cjrh/vim-conda'
 Plugin 'reedes/vim-wordy'
 Plugin 'junegunn/fzf'
 Plugin 'dhruvasagar/vim-table-mode'
@@ -166,7 +167,7 @@ let g:ctrlp_custom_ignore = "Archive"
 """
 " Formatting for vim-pandoc
 let g:pandoc#formatting#mode = 'sa'
-let g:pandoc#formatting#textwidth = 65
+let g:pandoc#formatting#textwidth = 80
 
 " Change default spacing for markdown files
 autocmd FileType markdown,mkd,md set tabstop=4|set softtabstop=4|set shiftwidth=4
@@ -185,7 +186,7 @@ endfunction
 " endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
-let g:goyo_width = 65
+let g:goyo_width = 80
 
 " Configure vim-table-mode
 let g:table_mode_corner='|'
@@ -206,6 +207,12 @@ let g:SuperTabDefaultCompletionType = 'context'
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 let g:haskellmode_completion_ghc = 0
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+"""
+" Python configuration
+"""
+" Configure dll location
+let g:pythondll = "C:/Users/trooney/AppData/Local/Continuum/Anaconda3/envs/python27/python27.dll"
 
 
 " Remappings "
@@ -246,7 +253,9 @@ nnoremap <leader>r :TagbarToggle<CR>
 " Remap F6 to inserting the current datetime
 nnoremap <F6> "=strftime('%c')<CR>P"
 inoremap <F6> <C-R>=strftime('%c')<CR>
-
+" Enable shortcuts for moving elements to the left and right in a vim-table
+nnoremap tl T\|ldt\|lpl
+nnoremap th T\|ldt\|hhhhpbhhhh
 
 """
 " Last steps
