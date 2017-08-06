@@ -1,15 +1,11 @@
---- chromebook_m_ralt_old	2017-05-10 14:44:44.534569509 -0500
-+++ chromebook_m_ralt	2017-05-06 14:20:44.522969275 -0500
-@@ -30,9 +30,9 @@
-     key <AE07> { overlay1=<FK07> };
-     key <AE08> { overlay1=<FK08> };
-     key <AE09> { overlay1=<FK09> };
--    key <AE10> { overlay1=<I236> }; // KEY_KBDILLUMTOGGLE
--    key <AE11> { overlay1=<I237> }; // KEY_KBDILLUMDOWN
--    key <AE12> { overlay1=<I238> }; // KEY_KBDILLUMUP
-+    key <AE10> { overlay1=<FK10> }; // KEY_KBDILLUMTOGGLE
-+    key <AE11> { overlay1=<FK11> }; // KEY_KBDILLUMDOWN
-+    key <AE12> { overlay1=<FK12> }; // KEY_KBDILLUMUP
+--- chromebook_m_ralt.bak	2017-08-06 14:52:02.920224786 -0400
++++ chromebook_m_ralt	2017-08-06 14:51:57.287224672 -0400
+@@ -35,5 +35,8 @@
+     key <AE12> { overlay1=<I238> }; // KEY_KBDILLUMUP
      key <BKSP> { overlay1=<DELE> };
  
++    key <LWIN> { [Control_L]     };
++    key <LCTL> { [Super_L]       };
++
      key <RTSH> { overlay1=<CAPS> };
+ };
