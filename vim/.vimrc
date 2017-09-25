@@ -88,7 +88,7 @@ set t_Co=256
 " Colorscheme
 if has('gui_running')
   set guifont=DejaVu\ Sans\ Mono\ 11
-  colorscheme solarized8_light_high
+  colorscheme solarized8_dark
   let g:airline_theme='solarized'
 else
   " Set the terminal color for limelight
