@@ -31,15 +31,16 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin '907th/vim-auto-save'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'lifepillar/vim-solarized8'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'morhetz/gruvbox'
+" Plugin 'lifepillar/vim-solarized8'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-surround'
 Plugin 'majutsushi/tagbar'
 Plugin 'craigemery/vim-autotag'
-Plugin 'ervandew/supertab'
+" Plugin 'ervandew/supertab'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'freitass/todo.txt-vim'
@@ -47,16 +48,17 @@ Plugin 'godlygeek/csapprox'
 Plugin 'jpalardy/vim-slime'
 Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
-Plugin 'junegunn/seoul256.vim'
-Plugin 'davidhalter/jedi-vim'
+" Plugin 'junegunn/seoul256.vim'
+Plugin 'cjrh/vim-conda'
+" Plugin 'davidhalter/jedi-vim'
 Plugin 'reedes/vim-wordy'
 Plugin 'junegunn/fzf'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'tpope/vim-fireplace'
 Plugin 'tpope/vim-salve'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'eagletmt/ghcmod-vim'
-Plugin 'eagletmt/neco-ghc'
+" Plugin 'Shougo/vimproc.vim'
+" Plugin 'eagletmt/ghcmod-vim'
+" Plugin 'eagletmt/neco-ghc'
 
 if vundleAvailable  == 0
   echo "Installing Vundles, please ignore key map error messages"
@@ -199,13 +201,10 @@ let g:slime_target = "tmux"
 
 
 """
-" Haskell configuration
+" Autocompletion configuration
 """
-" Configure Haskell autocompletion
-let g:SuperTabDefaultCompletionType = 'context'
+let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
-let g:haskellmode_completion_ghc = 0
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 
 " Remappings "
