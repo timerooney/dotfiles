@@ -86,17 +86,19 @@ filetype plugin indent on    " required
 " Colorscheme configuration
 """
 " 256 colors
-set t_Co=256
+" set t_Co=256
+" 16 bit colors
+set termguicolors
 " Colorscheme
 if has('gui_running')
   set guifont=DejaVu\ Sans\ Mono\ 11
-  colorscheme solarized8_dark
-  let g:airline_theme='solarized'
+  colorscheme gruvbox
+  let g:airline_theme='gruvbox'
 else
   " Set the terminal color for limelight
   let g:limelight_conceal_ctermfg = 240
-  colorscheme PaperColor
-  let g:airline_theme='silver'
+  colorscheme gruvbox
+  let g:airline_theme='gruvbox'
 endif
 
 
