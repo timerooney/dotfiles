@@ -34,6 +34,9 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'heavenshell/vim-pydocstring'
+Plugin 'Vimjas/vim-python-pep8-indent'
+Plugin 'integralist/vim-mypy'
 Plugin 'morhetz/gruvbox'
 " Plugin 'lifepillar/vim-solarized8'
 Plugin 'jiangmiao/auto-pairs'
@@ -229,6 +232,7 @@ map <Space> <Plug>(easymotion-prefix)
 " Create a command to remove whitespace from a document
 command RemoveWhitespace execute ':%s/\s\+$//e'
 " Remap split movements to ctrl keys
+" unmap <C-L>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -250,6 +254,10 @@ inoremap <F6> <C-R>=strftime('%c')<CR>
 " Enable shortcuts for moving elements to the left and right in a vim-table
 nnoremap tl T\|ldt\|lpl
 nnoremap th T\|ldt\|hhhhpbhhhh
+" Enable MyPy execution with ,mp
+nnoremap <leader>mp :Mypy<CR>
+" Add a docstring in python with ,i
+nnoremap <leader>i <Plug>(pydocstring)
 
 
 """
