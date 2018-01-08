@@ -37,13 +37,12 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'heavenshell/vim-pydocstring'
 Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'integralist/vim-mypy'
+Plugin 'alfredodeza/pytest.vim'
 Plugin 'morhetz/gruvbox'
-" Plugin 'lifepillar/vim-solarized8'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-surround'
 Plugin 'majutsushi/tagbar'
 Plugin 'craigemery/vim-autotag'
-" Plugin 'ervandew/supertab'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'freitass/todo.txt-vim'
@@ -51,14 +50,16 @@ Plugin 'godlygeek/csapprox'
 Plugin 'jpalardy/vim-slime'
 Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
-" Plugin 'junegunn/seoul256.vim'
 Plugin 'cjrh/vim-conda'
-" Plugin 'davidhalter/jedi-vim'
 Plugin 'reedes/vim-wordy'
 Plugin 'junegunn/fzf'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'tpope/vim-fireplace'
 Plugin 'tpope/vim-salve'
+" Plugin 'lifepillar/vim-solarized8'
+" Plugin 'ervandew/supertab'
+" Plugin 'junegunn/seoul256.vim'
+" Plugin 'davidhalter/jedi-vim'
 " Plugin 'Shougo/vimproc.vim'
 " Plugin 'eagletmt/ghcmod-vim'
 " Plugin 'eagletmt/neco-ghc'
@@ -232,7 +233,6 @@ map <Space> <Plug>(easymotion-prefix)
 " Create a command to remove whitespace from a document
 command RemoveWhitespace execute ':%s/\s\+$//e'
 " Remap split movements to ctrl keys
-" unmap <C-L>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -257,7 +257,7 @@ nnoremap th T\|ldt\|hhhhpbhhhh
 " Enable MyPy execution with ,mp
 nnoremap <leader>mp :Mypy<CR>
 " Add a docstring in python with ,i
-nnoremap <leader>i <Plug>(pydocstring)
+nmap <silent> <C-i> <Plug>(pydocstring)
 
 
 """
