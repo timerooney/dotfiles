@@ -94,6 +94,7 @@ chpwd() ls
 alias lisa="ls -lisa"
 alias clera="clear"
 alias sl="ls"
+alias sb="rlwrap sbcl"
 
 # Custom imports for system outside of dotfiles
 if [ -r $HOME/.zshrc_custom ]; then
