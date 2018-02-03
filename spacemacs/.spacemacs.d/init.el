@@ -324,7 +324,7 @@ you should place your code here."
   (if (eq system-type 'windows-nt)
       (setq inferior-lisp-program "C:\\Program Files\\Steel Bank Common Lisp\\1.4.2\\sbcl.core")
     (setq inferior-lisp-program "/usr/bin/sbcl"))
-  (setq slime-contribs '(slime-fancy)))
+  (setq slime-contribs '(slime-fancy slime-company)))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
