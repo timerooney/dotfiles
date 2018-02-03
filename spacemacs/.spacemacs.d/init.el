@@ -140,8 +140,8 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("FiraCode"
-                               :size 18
+   dotspacemacs-default-font '("DejaVu Sans Mono"
+                               :size 16
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -322,11 +322,7 @@ you should place your code here."
   (if (eq system-type 'windows-nt)
       (setq inferior-lisp-program "C:\\Program Files\\Steel Bank Common Lisp\\1.4.2\\sbcl.core")
     (setq inferior-lisp-program "/usr/bin/sbcl"))
-  (setq slime-contribs '(slime-fancy))
-
-  ;; Auto completion configuration
-  (setq auto-completion-return-key-behavior nil) ;Prevents autofill when tabbing on a blank line
-  )
+  (setq slime-contribs '(slime-fancy)))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
