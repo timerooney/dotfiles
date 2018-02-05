@@ -320,7 +320,7 @@ you should place your code here."
 
   ;; Slime configuration
   (if (eq system-type 'windows-nt)
-      (setq inferior-lisp-program "C:\\Program Files\\Steel Bank Common Lisp\\1.4.2\\sbcl.core")
+      (setq inferior-lisp-program "sbcl.exe")
     (setq inferior-lisp-program "/usr/bin/sbcl"))
   (setq slime-contribs '(slime-fancy slime-company)))
 
