@@ -4,7 +4,7 @@ function get_host {
 	echo $USER'.'$HOST
 }
 
-PROMPT='%F{153}$(get_host) %F{196}>%F{202}>%F{214}>%f '
+PROMPT='%F{153}$(get_host) %F{196}:%F{202}:%F{214}:%f '
 RPROMPT='%F{214}[%F{153}%~$(git_prompt_info)%F{214}]'
 
 # ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[yellow]%}✗"
