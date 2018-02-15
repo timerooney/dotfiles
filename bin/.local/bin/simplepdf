@@ -1,0 +1,6 @@
+#!/bin/bash
+input_filename=$1
+filename=$(basename $input_filename .md)
+output_filename="$filename.pdf"
+
+pandoc $input_filename -o $output_filename --template=simple --pdf-engine=xelatex --listings
