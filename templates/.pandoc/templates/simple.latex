@@ -109,6 +109,8 @@ $if(sansfont)$
 $endif$
 $if(monofont)$
     \setmonofont[Mapping=tex-ansi$if(monofontoptions)$,$for(monofontoptions)$$monofontoptions$$sep$,$endfor$$endif$]{$monofont$}
+$else$
+    \setmonofont{Fira Code}    
 $endif$
 $if(mathfont)$
 $if(mathspec)$
@@ -412,11 +414,11 @@ $if(babel-newcommands)$
   $babel-newcommands$
 $endif$
 \else
-  $if(mainfont)$
-  $else$
-  % See issue https://github.com/reutenauer/polyglossia/issues/127
-  \renewcommand*\familydefault{\sfdefault}
-  $endif$
+  % $if(mainfont)$
+  % $else$
+  % % See issue https://github.com/reutenauer/polyglossia/issues/127
+  % \renewcommand*\familydefault{\sfdefault}
+  % $endif$
   % load polyglossia as late as possible as it *could* call bidi if RTL lang (e.g. Hebrew or Arabic)
   \usepackage{polyglossia}
   \setmainlanguage[]{english}
@@ -437,7 +439,8 @@ $endif$
 %
 % listing colors
 %
-\definecolor{listing-background}{HTML}{F7F7F7}
+%\definecolor{listing-background}{HTML}{F7F7F7}
+\definecolor{listing-background}{HTML}{FFFFFF}
 \definecolor{listing-rule}{HTML}{B3B2B3}
 \definecolor{listing-numbers}{HTML}{B3B2B3}
 \definecolor{listing-text-color}{HTML}{000000}
@@ -649,16 +652,17 @@ $endif$
 %
 % header and footer
 %
+\newfontfamily\headerfont{Quicksand}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhead{}
 \fancyfoot{}
-\lhead{$title$}
+\lhead{\headerfont{$title$}}
 \chead{}
-\rhead{$date$}
-\lfoot{$for(author)$$author$$sep$, $endfor$}
+\rhead{\headerfont{$date$}}
+\lfoot{\headerfont{$for(author)$$author$$sep$, $endfor$}}
 \cfoot{}
-\rfoot{\thepage}
+\rfoot{\headerfont{\thepage}}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
 

@@ -333,9 +333,16 @@ you should place your code here."
 
   ;; Markdown preview configuration
   (setq markdown-command "pandoc")
+  ;; Enable markdown mode by default
+  (setq markdown-enable-math t)
+  ;; Associate markdown mode with .taskpaper filetype
+  (add-to-list 'auto-mode-alist '("\\.taskpaper$" . markdown-mode))
+  ;; Automatically enable visual mode with markdown
+  (add-hook 'markdown-mode-hook 'visual-line-mode)
 
   ;; Associate the latex layer with .latex filetype
   (add-to-list 'auto-mode-alist '("\\.latex$" . latex-mode))
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
