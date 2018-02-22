@@ -85,7 +85,8 @@ $endif$
 \addtokomafont{subsubsection}{\sectionfont}
 \addtokomafont{paragraph}{\sectionfont}
 \addtokomafont{subparagraph}{\sectionfont}
-\RedeclareSectionCommands[beforeskip=1pt, afterskip=1pt]{section,subsection,subsubsection,paragraph,subparagraph}
+\RedeclareSectionCommands[beforeskip=1pt, afterskip=1pt]{section,subsection,subsubsection}
+\RedeclareSectionCommands[afterskip=1pt]{paragraph,subparagraph}
 $if(mathspec)$
   \ifxetex
     \usepackage{mathspec}
