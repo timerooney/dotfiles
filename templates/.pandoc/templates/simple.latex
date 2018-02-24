@@ -502,7 +502,7 @@ $endif$
 % captions
 %
 \definecolor{caption-color}{HTML}{777777}
-\usepackage[font={stretch=1.2}, textfont={color=caption-color}, position=top, skip=4mm, labelfont=bf, singlelinecheck=false, justification=$if(caption-justification)$$caption-justification$$else$raggedright$endif$]{caption}
+\usepackage[font={stretch=1.2}, textfont={color=caption-color}, position=top, skip=4mm, labelfont=bf, singlelinecheck=false, justification=$if(caption-justification)$$caption-justification$$else$centering$endif$]{caption}
 \setcapindent{0em}
 \captionsetup[longtable]{position=above}
 
@@ -545,7 +545,7 @@ $endif$
 \title{$title$}
 \author{$for(author)$$author$$sep$, $endfor$}
 $if(maketitle)$
-\setlength{\droptitle}{-4em}
+\setlength{\droptitle}{-6em}
 $endif$
 
 %
@@ -667,6 +667,19 @@ $endif$
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
 
+\fancypagestyle{plain}{
+\fancyhead{}
+\fancyfoot{}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{\headerfont{$for(author)$$author$$sep$, $endfor$}}
+\cfoot{}
+\rfoot{\headerfont{\thepage}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}}
+
+
 %%
 %% end added
 %%
@@ -729,7 +742,7 @@ $endif$
 
 $if(maketitle)$
 \maketitle
-\thispagestyle{fancy}
+\thispagestyle{plain}
 $endif$
 
 $for(include-before)$
