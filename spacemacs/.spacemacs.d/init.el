@@ -148,7 +148,7 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("DejaVu Sans Mono"
+   dotspacemacs-default-font '("Fira Mono"
                                :size 15
                                :weight normal
                                :width normal
@@ -338,8 +338,6 @@ you should place your code here."
   (setq markdown-enable-math t)
   ;; Associate markdown mode with .taskpaper filetype
   (add-to-list 'auto-mode-alist '("\\.taskpaper$" . markdown-mode))
-  ;; Automatically enable visual mode with markdown
-  (add-hook 'markdown-mode-hook 'visual-line-mode)
 
   ;; Associate the latex layer with .latex filetype
   (add-to-list 'auto-mode-alist '("\\.latex$" . latex-mode))
@@ -367,4 +365,4 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(fixed-pitch ((t (:family "Fira Mono")))))
