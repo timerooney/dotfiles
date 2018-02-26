@@ -342,6 +342,11 @@ you should place your code here."
   ;; Associate the latex layer with .latex filetype
   (add-to-list 'auto-mode-alist '("\\.latex$" . latex-mode))
 
+  ;; Change the default font for markdown-mode
+  (add-hook 'markdown-mode-hook (lambda ()
+                                  (setq buffer-face-mode-face '(:family "Open Sans"))
+                                  (buffer-face-mode)))
+
   ;; Configure Python-mode to load sphinx-doc
   (add-hook 'python-mode-hook (lambda ()
                                 (require 'sphinx-doc)
@@ -365,4 +370,7 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(fixed-pitch ((t (:family "Fira Mono")))))
+ '(fixed-pitch ((t (:family "Fira Mono"))))
+ '(markdown-bold-face ((t (:inherit bold))))
+ '(markdown-header-delimiter-face ((t (:inherit markdown-header-face :foreground "gray"))))
+ '(markdown-header-face ((t (:inherit font-lock-function-name-face :height 140 :family "Roboto Slab Bold")))))
