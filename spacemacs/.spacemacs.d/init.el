@@ -373,4 +373,4 @@ you should place your code here."
  '(fixed-pitch ((t (:family "Fira Mono"))))
  '(markdown-bold-face ((t (:inherit bold))))
  '(markdown-header-delimiter-face ((t (:inherit markdown-header-face :foreground "gray"))))
- '(markdown-header-face ((t (:inherit font-lock-function-name-face :height 140 :family "Roboto Slab Bold")))))
+ '(markdown-header-face ((t (:inherit font-lock-function-name-face :weight bold :height 140 :family "RobotoSlab")))))
