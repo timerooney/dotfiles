@@ -142,8 +142,8 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(zenburn
-                         anti-zenburn)
+   dotspacemacs-themes '(lush
+                         tango-plus)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
@@ -373,4 +373,6 @@ you should place your code here."
  '(fixed-pitch ((t (:family "Fira Mono"))))
  '(markdown-bold-face ((t (:inherit bold))))
  '(markdown-header-delimiter-face ((t (:inherit markdown-header-face :foreground "gray"))))
- '(markdown-header-face ((t (:inherit font-lock-function-name-face :weight bold :height 140 :family "RobotoSlab")))))
+ '(markdown-header-face ((t (:inherit font-lock-function-name-face :weight bold :height 140 :family "RobotoSlab"))))
+ '(markdown-math-face ((t (:inherit font-lock-string-face :family "Fira Mono"))))
+ '(markdown-url-face ((t (:inherit font-lock-string-face :family "Fira Mono")))))

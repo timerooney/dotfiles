@@ -101,9 +101,6 @@ h6 {
 p, blockquote, ol, dl, table, pre {
    margin: 15px 0; }
 
-ul, li {
-}
-
 hr {
    border: 0 none;
    color: #cccccc;
@@ -318,7 +315,7 @@ sup {
        border-right: 2px solid gray;
    }
 
-   #TOC ul, li {
+   #TOC ul, #TOC li {
        list-style: none;
        padding-left: 10px;
        padding-right: 5px;
@@ -348,3 +345,6 @@ sup {
 	 }
 }
 
+.footnotes {
+    border-top: 1px solid #cccccc;
+}

@@ -1,0 +1,6 @@
+#!/bin/bash
+input_filename=$1
+filename=$(basename $input_filename .md)
+output_filename="$filename.html"
+
+pandoc $input_filename -o $output_filename --toc -c $HOME/.pandoc/templates/modern.css --template=simple --listings --filter=pandoc-eqnos --filter=pandoc-fignos
