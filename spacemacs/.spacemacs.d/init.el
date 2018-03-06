@@ -377,9 +377,11 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Fira Mono" :foundry "outline" :slant normal :weight normal :height 90 :width normal))))
  '(fixed-pitch ((t (:family "Fira Mono"))))
  '(markdown-bold-face ((t (:inherit bold))))
  '(markdown-header-delimiter-face ((t (:inherit markdown-header-face :foreground "gray"))))
  '(markdown-header-face ((t (:inherit font-lock-function-name-face :weight bold :height 140 :family "RobotoSlab"))))
+ '(markdown-italic-face ((t (:inherit italic :slant italic))))
  '(markdown-math-face ((t (:inherit font-lock-string-face :family "Fira Mono"))))
  '(markdown-url-face ((t (:inherit font-lock-string-face :family "Fira Mono")))))
