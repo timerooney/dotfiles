@@ -78,7 +78,7 @@ $endif$
 $if(sectionfont)$
   \newfontfamily\sectionfont{$sectionfont$}
 $else$
-  \newfontfamily\sectionfont{Quicksand}
+  \newfontfamily\sectionfont{Merriweather Sans Light}
 $endif$
 \addtokomafont{section}{\sectionfont}
 \addtokomafont{subsection}{\sectionfont}
@@ -103,7 +103,7 @@ $endfor$
 $if(mainfont)$
     \setmainfont[$for(mainfontoptions)$$mainfontoptions$$sep$,$endfor$]{$mainfont$}
 $else$
-    \setmainfont{EB Garamond}
+    \setmainfont{Merriweather}
 $endif$
 $if(sansfont)$
     \setsansfont[$for(sansfontoptions)$$sansfontoptions$$sep$,$endfor$]{$sansfont$}
@@ -653,7 +653,7 @@ $endif$
 %
 % header and footer
 %
-\newfontfamily\headerfont{Quicksand}
+\newfontfamily\headerfont{Merriweather Sans Light}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhead{}

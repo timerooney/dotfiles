@@ -3,4 +3,4 @@ input_filename=$1
 filename=$(basename $input_filename .md)
 output_filename="$filename.pdf"
 
-pandoc $input_filename -o $output_filename --template=simple --pdf-engine=xelatex --listings --filter=pandoc-eqnos --filter=pandoc-fignos
+pandoc $input_filename -o $output_filename --template=simple --pdf-engine=xelatex --listings --filter=pandoc-eqnos --filter=pandoc-fignos --filter=pandoc-tablenos
