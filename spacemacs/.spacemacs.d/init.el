@@ -358,8 +358,9 @@ you should place your code here."
                                 (require 'sphinx-doc)
                                 (sphinx-doc-mode t)))
 
-  ;; Set the default deft directory location
+  ;; Set the default deft directory location and filetype
   (setq deft-directory "~/Dropbox/Docs/Drafts")
+  (setq deft-default-extension "md")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
