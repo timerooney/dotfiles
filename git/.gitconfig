@@ -5,7 +5,7 @@
     # subtree update
     sbu = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
 [core]
-    editor = vim
+    editor = nano
     excludesfile = ~/.global_gitignore
 [user]
 	name = Tim Rooney
