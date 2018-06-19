@@ -42,7 +42,7 @@ values."
      emacs-lisp
      git
      markdown
-     ;; org
+     org
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -331,6 +331,12 @@ you should place your code here."
   ;; Configure writeroom-mode
   (spacemacs/set-leader-keys "tz" 'writeroom-mode)
   (setq writeroom-fullscreen-effect 'maximized)
+  (add-hook 'text-mode-hook 'writeroom-mode)
+  (add-hook 'markdown-mode-hook 'writeroom-mode)
+  (add-hook 'org-mode-hook 'writeroom-mode)
+  (add-hook 'text-mode-hook 'visual-line-mode)
+  (add-hook 'markdown-mode-hook 'visual-line-mode)
+  (add-hook 'org-mode-hook 'visual-line-mode)
 
   ;; Slime configuration
   (if (eq system-type 'windows-nt)
@@ -357,6 +363,31 @@ you should place your code here."
   (add-hook 'python-mode-hook (lambda ()
                                 (require 'sphinx-doc)
                                 (sphinx-doc-mode t)))
+
+  ;; Set org-mode configuration
+  (setq org-agenda-files '("~/org" "~/org/projects"))
+  (setq org-refile-targets (quote ((nil :maxlevel . 9)
+                                   (org-agenda-files :maxlevel . 9))))
+  (setq org-capture-templates
+        '(("t" "todo" entry (file org-default-notes-file)
+           "* TODO %?\n%u\n")
+          ("m" "Meeting" entry (file org-default-notes-file)
+           "* MEETING with %? :MEETING:\n%t\n")
+          ("j" "Journal" entry (file+datetree "~/org/journal.org")
+           "* %?\n%U\n")))
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "NEXT(n)" "WAITING(w@)" "INACTIVE(i@)" "|" "CANCELED(c@)" "MEETING(m)" "DONE(d!)")))
+  (setq org-agenda-custom-commands
+        '(("c" "Test custom"
+           ((agenda "" ((org-agenda-span 1)
+                        (org-deadline-warning-days 7)
+                        (org-agenda-overriding-header "Today's Schedule:")
+                        (org-agenda-)))
+            (todo "NEXT" ((org-agenda-overriding-header "Next Tasks:")))
+            (tags-todo "LEVEL=1" ((org-agenda-overriding-header "Active Projects:")))
+            (agenda "" ((org-agenda-start-day "+1d")
+                        (org-agenda-span 6)
+                        (org-agenda-overriding-header "Week at a Glance:")))))))
 
   ;; Set the default deft directory location and filetype
   (setq deft-directory "~/Dropbox/Docs/Drafts")
