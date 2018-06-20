@@ -365,18 +365,19 @@ you should place your code here."
                                 (sphinx-doc-mode t)))
 
   ;; Set org-mode configuration
-  (setq org-agenda-files '("~/org" "~/org/projects"))
+  (setq org-directory "~/Dropbox/org")
+  (setq org-agenda-files '("~/Dropbox/org" "~/Dropbox/org/projects"))
   (setq org-refile-targets (quote ((nil :maxlevel . 9)
                                    (org-agenda-files :maxlevel . 9))))
   (setq org-capture-templates
         '(("t" "todo" entry (file org-default-notes-file)
-           "* TODO %?\n%u\n")
+           "* TODO %?\n  %u\n")
           ("m" "Meeting" entry (file org-default-notes-file)
            "* MEETING with %? :MEETING:\n%t\n")
           ("j" "Journal" entry (file+datetree "~/org/journal.org")
            "* %?\n%U\n")))
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "NEXT(n)" "WAITING(w@)" "INACTIVE(i@)" "|" "CANCELED(c@)" "MEETING(m)" "DONE(d!)")))
+        '((sequence "TODO(t)" "NEXT(n)" "WAITING(w@)" "INACTIVE(i@)" "|" "CANCELED(c@)" "MEETING(m)" "DONE(d)")))
   (setq org-agenda-custom-commands
         '(("c" "Test custom"
            ((agenda "" ((org-agenda-span 1)
@@ -388,6 +389,9 @@ you should place your code here."
             (agenda "" ((org-agenda-start-day "+1d")
                         (org-agenda-span 6)
                         (org-agenda-overriding-header "Week at a Glance:")))))))
+  (setq org-mobile-inbox-for-pull "~/Dropbox/org/inbox.org")
+  (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
+  (setq org-mobile-files '("~/Dropbox/org" "~/Dropbox/org/projects"))
 
   ;; Set the default deft directory location and filetype
   (setq deft-directory "~/Dropbox/Docs/Drafts")
@@ -404,6 +408,9 @@ you should place your code here."
  '(ansi-color-names-vector
    ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
  '(evil-want-Y-yank-to-eol nil)
+ '(org-agenda-files
+   (quote
+    ("/home/trooney/org/inbox.org" "/home/trooney/org/notes.org" "/home/trooney/org/tasks.org" "/home/trooney/org/projects/notes.org" "/home/trooney/org/projects/research.org")))
  '(package-selected-packages
    (quote
     (deft workgroups2 anaphora web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern tern coffee-mode sphinx-doc writeroom-mode visual-fill-column company-auctex auctex-latexmk auctex csv-mode flyspell-correct-helm flyspell-correct auto-dictionary org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data zenburn-theme zen-and-art-theme yapfify xterm-color white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle slime-company slime shell-pop seti-theme reverse-theme rebecca-theme ranger railscasts-theme pyvenv pytest pyenv-mode py-isort purple-haze-theme professional-theme planet-theme pip-requirements phoenix-dark-pink-theme phoenix-dark-mono-theme pandoc-mode ox-pandoc ht orgit organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme multi-term monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme material-theme markdown-toc markdown-mode majapahit-theme magit-gitflow madhat2r-theme lush-theme live-py-mode light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme hy-mode dash-functional heroku-theme hemisu-theme helm-pydoc helm-gitignore helm-company helm-c-yasnippet hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md gandalf-theme fuzzy flycheck-pos-tip pos-tip flycheck flatui-theme flatland-theme farmhouse-theme exotica-theme evil-magit magit magit-popup git-commit ghub let-alist with-editor espresso-theme eshell-z eshell-prompt-extras esh-help dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cython-mode cyberpunk-theme company-statistics company-anaconda company common-lisp-snippets color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme auto-yasnippet yasnippet apropospriate-theme anti-zenburn-theme anaconda-mode pythonic ample-zen-theme ample-theme alect-themes afternoon-theme ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
