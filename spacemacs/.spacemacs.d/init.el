@@ -145,7 +145,7 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(lush
-                         tango-plus)
+                         sanityinc-solarized-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
@@ -375,13 +375,14 @@ you should place your code here."
           ("n" "Note" entry (file+datetree "~/Dropbox/org/taskdiary.org")
            "* %^{Note description} %^g\n  Added: %U\n %?")
           ("m" "Meeting" entry (file+datetree "~/Dropbox/org/meetings.org")
-           "* MEETING %^{Meeting title} %^g :MEETING:\nSCHEDULED: %^{Scheduled}t\n  Added: %U\n")
+           "* MEETING %^{Meeting title} %^g:MEETING:\nSCHEDULED: %^{Scheduled}t\n  Added: %U\n")
           ("e" "Event" entry (file+datetree "~/Dropbox/org/events.org")
-           "* EVENT %^{Event} %^g :EVENT:\nSCHEDULED: %^{Scheduled}t\n  Added: %U\n")
+           "* EVENT %^{Event} %^g:EVENT:\nSCHEDULED: %^{Scheduled}t\n  Added: %U\n")
           ("j" "Journal" entry (file+datetree "~/Dropbox/org/journal.org")
            "* %^g %U\n%?\n")
           ("l" "Log Time" entry (file+datetree "~/Dropbox/org/timelog.org")
-           "* %U - %^{Activity} %^g :TIME:")))
+           "* %U - %^{Activity} %^g:TIME:")))
+
   (setq org-todo-keywords
         '((sequence "TODO(t)" "NEXT(n)" "WAITING(w@)" "INACTIVE(i@)" "|" "EVENT(e)" "CANCELED(c@)" "MEETING(m)" "DONE(d)")))
   (setq org-agenda-custom-commands
@@ -390,8 +391,7 @@ you should place your code here."
                         (org-deadline-warning-days 7)
                         (org-agenda-overriding-header "Today's Schedule:")
                         (org-agenda-)))
-            (todo "NEXT" ((org-agenda-overriding-header "Next Tasks:")
-                          (org-agenda-sorting-strategy '(time-up))))
+            (todo "NEXT" ((org-agenda-overriding-header "Next Tasks:")))
             ;(tags-todo "LEVEL=1" ((org-agenda-overriding-header "Active Projects:")))
             (agenda "" ((org-agenda-start-day "+1d")
                         (org-agenda-span 6)
@@ -408,6 +408,10 @@ you should place your code here."
   ;; Set the default deft directory location and filetype
   (setq deft-directory "~/Dropbox/org/drafts")
   (setq deft-default-extension "org")
+
+  ;; Flyspell configuration on Windows
+  (when (eq system-type 'windows-nt)
+    (setq ispell-program-name "C:\\Program Files (x86)\\Aspell\\bin\\aspell.exe"))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
