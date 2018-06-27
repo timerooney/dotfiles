@@ -73,6 +73,8 @@ values."
      visual-fill-column
      writeroom-mode
      sphinx-doc
+     org-ref
+     org-download
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -332,10 +334,8 @@ you should place your code here."
   ;; Configure writeroom-mode
   (spacemacs/set-leader-keys "tz" 'writeroom-mode)
   (setq writeroom-fullscreen-effect 'maximized)
-  (add-hook 'text-mode-hook 'writeroom-mode)
   (add-hook 'markdown-mode-hook 'writeroom-mode)
   (add-hook 'org-mode-hook 'writeroom-mode)
-  (add-hook 'text-mode-hook 'visual-line-mode)
   (add-hook 'markdown-mode-hook 'visual-line-mode)
   (add-hook 'org-mode-hook 'visual-line-mode)
 
@@ -359,6 +359,11 @@ you should place your code here."
   (add-hook 'markdown-mode-hook (lambda ()
                                   (setq buffer-face-mode-face '(:family "Open Sans"))
                                   (buffer-face-mode)))
+
+  ;; Change the default font for org-mode
+  (add-hook 'org-mode-hook (lambda ()
+                             (setq buffer-face-mode-face '(:family "Open Sans"))
+                             (buffer-face-mode)))
 
   ;; Configure Python-mode to load sphinx-doc
   (add-hook 'python-mode-hook (lambda ()
@@ -399,13 +404,15 @@ you should place your code here."
                         (org-agenda-overriding-header "Week at a Glance:")))
             (todo "WAITING" ((org-agenda-overriding-header "Waiting Tasks:")))
             (tags "-DEADLINE={.+}/!+TODO|+NEXT|+WAITING" ((org-agenda-overriding-header "Tasks without Deadlines:")))))))
+
+  (setq org-latex-create-formula-image-program 'dvipng)
+  (setq org-html-validation-link nil)
+  (setq org-confirm-babel-evaluate nil)
+
   (setq org-mobile-inbox-for-pull "~/Dropbox/org/inbox.org")
   (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
   (setq org-mobile-files '("~/Dropbox/org" "~/Dropbox/org/drafts"))
   (setq org-agenda-window-setup "only-window")
-  (setq org-latex-create-formula-image-program 'dvipng)
-  (setq org-html-validation-link nil)
-  (setq org-confirm-babel-evaluate nil)
 
   ;; Set the default deft directory location and filetype
   (setq deft-directory "~/Dropbox/org/drafts")
@@ -430,10 +437,53 @@ you should place your code here."
  '(evil-want-Y-yank-to-eol nil)
  '(fci-rule-color "#eee8d5" t)
  '(org-agenda-files nil)
+ '(org-structure-template-alist
+   (quote
+    (("s" "#+BEGIN_SRC ?
+
+#+END_SRC")
+     ("e" "#+BEGIN_EXAMPLE
+?
+#+END_EXAMPLE")
+     ("q" "#+BEGIN_QUOTE
+?
+#+END_QUOTE")
+     ("v" "#+BEGIN_VERSE
+?
+#+END_VERSE")
+     ("V" "#+BEGIN_VERBATIM
+?
+#+END_VERBATIM")
+     ("c" "#+BEGIN_CENTER
+?
+#+END_CENTER")
+     ("C" "#+BEGIN_COMMENT
+?
+#+END_COMMENT")
+     ("l" "#+BEGIN_EXPORT latex
+?
+#+END_EXPORT")
+     ("L" "#+LaTeX: ")
+     ("h" "#+BEGIN_EXPORT html
+?
+#+END_EXPORT")
+     ("H" "#+HTML: ")
+     ("a" "#+BEGIN_EXPORT ascii
+?
+#+END_EXPORT")
+     ("A" "#+ASCII: ")
+     ("i" "#+INDEX: ?")
+     ("I" "#+INCLUDE: %file ?")
+     ("t" "#+TITLE: ?")
+     ("img" "#+NAME: fig:?
+#+CAPTION: ")
+     ("tbl" "#+NAME: tbl:?
+#+CAPTION: "))))
  '(package-selected-packages
    (quote
-    (ess-smart-equals ess-R-data-view ctable ess julia-mode deft workgroups2 anaphora web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern tern coffee-mode sphinx-doc writeroom-mode visual-fill-column company-auctex auctex-latexmk auctex csv-mode flyspell-correct-helm flyspell-correct auto-dictionary org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data zenburn-theme zen-and-art-theme yapfify xterm-color white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle slime-company slime shell-pop seti-theme reverse-theme rebecca-theme ranger railscasts-theme pyvenv pytest pyenv-mode py-isort purple-haze-theme professional-theme planet-theme pip-requirements phoenix-dark-pink-theme phoenix-dark-mono-theme pandoc-mode ox-pandoc ht orgit organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme multi-term monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme material-theme markdown-toc markdown-mode majapahit-theme magit-gitflow madhat2r-theme lush-theme live-py-mode light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme hy-mode dash-functional heroku-theme hemisu-theme helm-pydoc helm-gitignore helm-company helm-c-yasnippet hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md gandalf-theme fuzzy flycheck-pos-tip pos-tip flycheck flatui-theme flatland-theme farmhouse-theme exotica-theme evil-magit magit magit-popup git-commit ghub let-alist with-editor espresso-theme eshell-z eshell-prompt-extras esh-help dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cython-mode cyberpunk-theme company-statistics company-anaconda company common-lisp-snippets color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme auto-yasnippet yasnippet apropospriate-theme anti-zenburn-theme anaconda-mode pythonic ample-zen-theme ample-theme alect-themes afternoon-theme ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+    (org-ref pdf-tools key-chord ivy helm-bibtex biblio parsebib biblio-core tablist ess-smart-equals ess-R-data-view ctable ess julia-mode deft workgroups2 anaphora web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern tern coffee-mode sphinx-doc writeroom-mode visual-fill-column company-auctex auctex-latexmk auctex csv-mode flyspell-correct-helm flyspell-correct auto-dictionary org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download htmlize gnuplot web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data zenburn-theme zen-and-art-theme yapfify xterm-color white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle slime-company slime shell-pop seti-theme reverse-theme rebecca-theme ranger railscasts-theme pyvenv pytest pyenv-mode py-isort purple-haze-theme professional-theme planet-theme pip-requirements phoenix-dark-pink-theme phoenix-dark-mono-theme pandoc-mode ox-pandoc ht orgit organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme multi-term monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme material-theme markdown-toc markdown-mode majapahit-theme magit-gitflow madhat2r-theme lush-theme live-py-mode light-soap-theme jbeans-theme jazz-theme ir-black-theme inkpot-theme hy-mode dash-functional heroku-theme hemisu-theme helm-pydoc helm-gitignore helm-company helm-c-yasnippet hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md gandalf-theme fuzzy flycheck-pos-tip pos-tip flycheck flatui-theme flatland-theme farmhouse-theme exotica-theme evil-magit magit magit-popup git-commit ghub let-alist with-editor espresso-theme eshell-z eshell-prompt-extras esh-help dracula-theme django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cython-mode cyberpunk-theme company-statistics company-anaconda company common-lisp-snippets color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme auto-yasnippet yasnippet apropospriate-theme anti-zenburn-theme anaconda-mode pythonic ample-zen-theme ample-theme alect-themes afternoon-theme ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
  '(paradox-github-token t)
+ '(safe-local-variable-values (quote ((org-download-image-dir . "./img/cbecc-res"))))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
@@ -468,4 +518,16 @@ you should place your code here."
  '(markdown-header-face ((t (:inherit font-lock-function-name-face :weight bold :height 140 :family "RobotoSlab"))))
  '(markdown-italic-face ((t (:inherit italic :slant italic))))
  '(markdown-math-face ((t (:inherit font-lock-string-face :family "Fira Mono"))))
- '(markdown-url-face ((t (:inherit font-lock-string-face :family "Fira Mono")))))
+ '(markdown-url-face ((t (:inherit font-lock-string-face :family "Fira Mono"))))
+ '(org-block ((t (:foreground "#cb4b16" :family "Fira Code"))))
+ '(org-code ((t (:foreground "#b58900" :family "Fira Code"))))
+ '(org-date ((t (:foreground "#268bd2" :underline t :family "Fira Code"))))
+ '(org-document-info-keyword ((t (:foreground "#859900" :family "Fira Code"))))
+ '(org-document-title ((t (:foreground "#b58900" :weight bold :height 1.44 :family "Roboto Slab"))))
+ '(org-level-1 ((t (:inherit outline-1))))
+ '(org-level-2 ((t (:inherit outline-2))))
+ '(org-meta-line ((t (:inherit font-lock-comment-face :family "Fira Code"))))
+ '(org-table ((t (:foreground "#6c71c4" :family "Fira Code"))))
+ '(org-verbatim ((t (:inherit shadow :family "Fira Code"))))
+ '(outline-1 ((t (:foreground "#268bd2" :family "Roboto Slab"))))
+ '(outline-2 ((t (:inherit outline-1 :foreground "#6c71c4")))))
