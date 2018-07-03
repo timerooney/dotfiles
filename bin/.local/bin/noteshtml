@@ -1,0 +1,6 @@
+#!/bin/bash
+input_filename=$1
+filename=$(basename $input_filename .org)
+output_filename="$filename.html"
+
+pandoc $input_filename -o $output_filename --toc -s -c https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css -c http://assets.timothy.engineer/css/notes.css
