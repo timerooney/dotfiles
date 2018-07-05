@@ -334,6 +334,7 @@ you should place your code here."
 
   ;; Configure writeroom-mode
   (spacemacs/set-leader-keys "tz" 'writeroom-mode)
+  (setq writeroom-width 100)
   (setq writeroom-fullscreen-effect 'maximized)
   (add-hook 'markdown-mode-hook 'writeroom-mode)
   (add-hook 'org-mode-hook 'writeroom-mode)
@@ -398,7 +399,7 @@ you should place your code here."
   (setq org-agenda-custom-commands
         '(("c" "Main"
            ((agenda "" ((org-agenda-span 1)
-                        (org-deadline-warning-days 7)
+                        (org-deadline-warning-days 0)
                         (org-agenda-overriding-header "Today's Schedule:")))
             (todo "NEXT" ((org-agenda-overriding-header "Next Tasks:")))
             ;(tags-todo "LEVEL=1" ((org-agenda-overriding-header "Active Projects:")))
