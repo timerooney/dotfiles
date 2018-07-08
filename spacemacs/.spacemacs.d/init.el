@@ -382,13 +382,15 @@ you should place your code here."
                                    (org-agenda-files :maxlevel . 9))))
   (setq org-capture-templates
         '(("t" "todo" entry (file+datetree "~/Dropbox/org/taskdiary.org")
-           "* TODO %^{Task} %^g\n  Added: %U\n %?")
+           "* TODO %^{Task} %^g\n%U\n%?")
           ("n" "Note" entry (file+datetree "~/Dropbox/org/taskdiary.org")
-           "* %^{Note description} %^g\n  Added: %U\n %?")
+           "* %^{Note description} %^g\n%U\n%?")
           ("m" "Meeting" entry (file+datetree "~/Dropbox/org/meetings.org")
-           "* MEETING %^{Meeting title} %^g:MEETING:\nSCHEDULED: %^{Scheduled}t\n  Added: %U\n")
+           "* MEETING %^{Meeting title} %^g:MEETING:\nSCHEDULED: %^{Scheduled}t\n%U\n")
           ("e" "Event" entry (file+datetree "~/Dropbox/org/events.org")
-           "* EVENT %^{Event} %^g:EVENT:\nSCHEDULED: %^{Scheduled}t\n  Added: %U\n")
+           "* EVENT %^{Event} %^g:EVENT:\nSCHEDULED: %^{Scheduled}t\n%U\n")
+          ("p" "Phone call" entry (file+datetree "~/Dropbox/org/phonecalls.org")
+           "* Call: %^{Summary} %^g:call:\n  Added: %U\nPhone number: %^{Phone number}\nAttendees: %^{Attendees}\nPurpose: %^{Purpose}\n** Notes\n%?")
           ("j" "Journal" entry (file+datetree "~/Dropbox/org/journal.org")
            "* %^g %U\n%?\n")
           ("l" "Log Time" entry (file+datetree "~/Dropbox/org/timelog.org")
@@ -407,18 +409,43 @@ you should place your code here."
                         (org-agenda-span 6)
                         (org-agenda-overriding-header "Week at a Glance:")))
             (todo "WAITING" ((org-agenda-overriding-header "Waiting Tasks:")))
-            (tags "-DEADLINE={.+}/!+TODO|+NEXT|+WAITING" ((org-agenda-overriding-header "Tasks without Deadlines:")))))
+            (tags "-DEADLINE={.+}/!+TODO|+NEXT|+WAITING" ((org-agenda-overriding-header "Tasks without Deadlines:"))))
+           nil
+           ("~/Dropbox/org/agenda.html" "~/Dropbox/org/agenda.ics" "~/Dropbox/org/agenda.txt"))
           ("o" "Month view"
            ((agenda "" ((org-agenda-overriding-header "Month View")
                         (org-agenda-month-view)))))))
 
+  ;;; exporting data
+  (setq org-publish-project-alist
+        '(("orgfiles"
+           :base-directory "~/Dropbox/org/drafts/"
+           :base-extension "org"
+           :publishing-directory "~/tmp/web/"
+           :publishing-function org-html-publish-to-html
+           :auto-sitemap t)
+          ("images"
+           :base-directory "~/Dropbox/org/drafts/img/"
+           :base-extension any
+           :recursive t
+           :publishing-directory "~/tmp/web/img/"
+           :publishing-function org-publish-attachment)
+          ("content"
+           :base-directory "~/Dropbox/org/drafts/content/"
+           :base-extension any
+           :recursive t
+           :publishing-directory "~/tmp/web/content/"
+           :publishing-function org-publish-attachment)
+          ("website" :components ("orgfiles" "images" "content"))))
+
+  ;;; Misc configurations
   (setq org-latex-create-formula-image-program 'dvipng)
   (setq org-html-validation-link nil)
   (setq org-confirm-babel-evaluate nil)
 
   (setq org-mobile-inbox-for-pull "~/Dropbox/org/inbox.org")
   (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
-  (setq org-mobile-files '("~/Dropbox/org" "~/Dropbox/org/drafts"))
+  (setq org-mobile-files '("~/Dropbox/org"))
   (setq org-agenda-window-setup "only-window")
   (setq org-download-image-dir "~/Dropbox/org/drafts/img")
 
