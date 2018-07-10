@@ -155,7 +155,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Fira Mono"
-                               :size 16
+                               :size 14
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -332,8 +332,15 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+  (setq user-full-name "Tim Rooney")
+
+  (defun sync-org-personal-website ()
+    (interactive)
+    (shell-command "aws s3 sync --delete \"C:\\Users\\trooney\\publish\\org\\personal\" s3://org.timothy.engineer/ --profile trooney-org"))
+
   ;; Configure writeroom-mode
   (spacemacs/set-leader-keys "tz" 'writeroom-mode)
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode "es" 'sync-org-personal-website)
   (setq writeroom-width 100)
   (setq writeroom-fullscreen-effect 'maximized)
   (add-hook 'markdown-mode-hook 'writeroom-mode)
@@ -411,32 +418,72 @@ you should place your code here."
             (todo "WAITING" ((org-agenda-overriding-header "Waiting Tasks:")))
             (tags "-DEADLINE={.+}/!+TODO|+NEXT|+WAITING" ((org-agenda-overriding-header "Tasks without Deadlines:"))))
            nil
-           ("~/Dropbox/org/agenda.html" "~/Dropbox/org/agenda.ics" "~/Dropbox/org/agenda.txt"))
+           ("~/publish/org/personal/agenda.html"))
           ("o" "Month view"
            ((agenda "" ((org-agenda-overriding-header "Month View")
                         (org-agenda-month-view)))))))
 
   ;;; exporting data
   (setq org-publish-project-alist
-        '(("orgfiles"
+        '(("orgfiles-personal"
            :base-directory "~/Dropbox/org/drafts/"
            :base-extension "org"
-           :publishing-directory "~/tmp/web/"
+           :exclude "wkx\\|scx"
+           :publishing-directory "~/publish/org/personal/"
            :publishing-function org-html-publish-to-html
+           :sitemap-title "Index of Notes"
            :auto-sitemap t)
-          ("images"
+          ("images-personal"
            :base-directory "~/Dropbox/org/drafts/img/"
            :base-extension any
            :recursive t
-           :publishing-directory "~/tmp/web/img/"
+           :publishing-directory "~/publish/org/personal/img/"
            :publishing-function org-publish-attachment)
-          ("content"
+          ("content-personal"
            :base-directory "~/Dropbox/org/drafts/content/"
            :base-extension any
            :recursive t
-           :publishing-directory "~/tmp/web/content/"
+           :publishing-directory "~/publish/org/personal/web/content/"
            :publishing-function org-publish-attachment)
-          ("website" :components ("orgfiles" "images" "content"))))
+          ("website-personal" :components ("orgfiles-personal" "images-personal" "content-personal"))
+
+          ("orgfiles-school"
+           :base-directory "~/Dropbox/org/drafts/school/"
+           :base-extension "org"
+           :publishing-directory "~/publish/org/school/"
+           :publishing-function org-html-publish-to-html)
+          ("images-school"
+           :base-directory "~/Dropbox/org/drafts/school/img/"
+           :base-extension any
+           :recursive t
+           :publishing-directory "~/publish/org/school/web/img/"
+           :publishing-function org-publish-attachment)
+          ("content-school"
+           :base-directory "~/Dropbox/org/drafts/school/content/"
+           :base-extension any
+           :recursive t
+           :publishing-directory "~/publish/org/school/content/"
+           :publishing-function org-publish-attachment)
+          ("website-school" :components ("orgfiles-school" "images-school" "content-school"))
+
+          ("orgfiles-work"
+           :base-directory "~/Dropbox/org/drafts/work/"
+           :base-extension "org"
+           :publishing-directory "~/publish/org/work/"
+           :publishing-function org-html-publish-to-html)
+          ("images-work"
+           :base-directory "~/Dropbox/org/drafts/work/img/"
+           :base-extension any
+           :recursive t
+           :publishing-directory "~/publish/org/work/img/"
+           :publishing-function org-publish-attachment)
+          ("content-work"
+           :base-directory "~/Dropbox/org/drafts/work/content/"
+           :base-extension any
+           :recursive t
+           :publishing-directory "~/publish/org/work/content/"
+           :publishing-function org-publish-attachment)
+          ("website-work" :components ("orgfiles-work" "images-work" "content-work"))))
 
   ;;; Misc configurations
   (setq org-latex-create-formula-image-program 'dvipng)
@@ -451,7 +498,7 @@ you should place your code here."
 
   (setq org-ref-default-bibliography '("~/Dropbox/org/drafts/content/references.bib"))
 
-  (setq org-html-head "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css\"/> <link rel=\"stylesheet\" href=\"http://assets.timothy.engineer/css/max-width.css\"/>")
+  (setq org-html-head "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css\"/> <link rel=\"stylesheet\" href=\"http://assets.timothy.engineer/css/notes.css\"/>")
 
   ;; Set the default deft directory location and filetype
   (setq deft-directory "~/Dropbox/org/drafts")
