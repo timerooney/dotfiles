@@ -1,21 +1,9 @@
-" Automatic installation of Vundle if it is not available
-let vundleAvailable=1
-let vundle_readme=expand('$HOME/.vim/bundle/vundle/README.md')
-if !filereadable(vundle_readme)
-    echo "Installing Vundle.."
-    echo ""
-    silent !mkdir -p $HOME/.vim/bundle
-    silent !git clone https://github.com/VundleVim/Vundle.vim $HOME/.vim/bundle/vundle
-    let vundleAvailable=0
-endif
-
-" Setup of Vundle
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle
-call vundle#begin()
+set rtp+=$HOME/.vim/bundle/Vundle.vim/
+call vundle#begin('$HOME/.vim/bundle/')
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
@@ -25,54 +13,28 @@ Plugin 'VundleVim/Vundle.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
+
 Plugin 'tpope/vim-fugitive'
-Plugin 'junegunn/gv.vim'
+Plugin 'reedes/vim-pencil'
+Plugin 'junegunn/goyo.vim'
+Plugin 'reedes/vim-wordy'
+Plugin 'reedes/vim-lexical'
+Plugin 'nightsense/rusticated'
+
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin '907th/vim-auto-save'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'heavenshell/vim-pydocstring'
-Plugin 'Vimjas/vim-python-pep8-indent'
-Plugin 'integralist/vim-mypy'
-Plugin 'alfredodeza/pytest.vim'
-Plugin 'morhetz/gruvbox'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-surround'
 Plugin 'majutsushi/tagbar'
-Plugin 'craigemery/vim-autotag'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
-Plugin 'freitass/todo.txt-vim'
-Plugin 'godlygeek/csapprox'
-Plugin 'jpalardy/vim-slime'
-Plugin 'junegunn/goyo.vim'
-Plugin 'junegunn/limelight.vim'
-Plugin 'cjrh/vim-conda'
-Plugin 'reedes/vim-wordy'
-Plugin 'junegunn/fzf'
-Plugin 'dhruvasagar/vim-table-mode'
-Plugin 'tpope/vim-fireplace'
-Plugin 'tpope/vim-salve'
-" Plugin 'lifepillar/vim-solarized8'
-" Plugin 'ervandew/supertab'
-" Plugin 'junegunn/seoul256.vim'
-" Plugin 'davidhalter/jedi-vim'
-" Plugin 'Shougo/vimproc.vim'
-" Plugin 'eagletmt/ghcmod-vim'
-" Plugin 'eagletmt/neco-ghc'
-
-if vundleAvailable  == 0
-  echo "Installing Vundles, please ignore key map error messages"
-  echo ""
-  :PluginInstall
-endif
 
 " All of your Plugins must be added before the following line
-call vundle#end()  " required
+call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -86,31 +48,14 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-
-"""
-" Colorscheme configuration
-"""
-" 256 colors
-" set t_Co=256
-" 16 bit colors
-set termguicolors
-" Colorscheme
-if has('gui_running')
-  set guifont=DejaVu\ Sans\ Mono\ 11
-  colorscheme gruvbox
-  let g:airline_theme='gruvbox'
-else
-  " Set the terminal color for limelight
-  let g:limelight_conceal_ctermfg = 240
-  colorscheme gruvbox
-  let g:airline_theme='gruvbox'
-endif
-
-
-"""
-" General vim configuration
-"""
+""" General vim configuration
 syntax on
+
+set termguicolors
+
+colorscheme rusticated
+let g:airline_theme='rusticated'
+set guifont=DejaVu_Sans_Mono:h12:cANSI:qDRAFT
 
 " Indentation settings
 set tabstop=2
@@ -122,35 +67,25 @@ set smartindent
 
 " General preferences
 set number
-set showcmd     " Show last command
-set wildmenu    " Show menu suggestions
-set lazyredraw  " Only redraw when needed
-set showmatch   " Show matching brackets
-set incsearch   " Search as typing
+set showcmd
+set wildmenu
+set lazyredraw
+set showmatch
+set incsearch
 
-" Make backspace work like normal editors
+" Make backspace work like normal
 set backspace=indent,eol,start
 
 " Set splits to below and right
 set splitbelow
 set splitright
 
-" Ignore swapfiles if in a dropbox folder
-autocmd BufNewFile,BufRead *
-  \ if expand('%:~') =~ '^\~/Dropbox' |
-  \   set noswapfile |
-  \ else |
-  \   set swapfile |
-  \ endif
-
-
 """
 " Nerdtree
 """
-" Start up nerdtree on boot
+" Start up Nerdtree on boot
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
-
 
 """
 " Airline configuration
@@ -162,13 +97,12 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 
 
 """
-" ctrlp configuraiton
+" ctrlp configuration
 """
 " Set ctrlp to use the opening path always
 let g:ctrlp_root_markers = ['.ctrlp']
 " Set ctrlp to ignore Archive folder for searching
 let g:ctrlp_custom_ignore = "Archive"
-
 
 """
 " Markdown formating
@@ -184,6 +118,14 @@ autocmd FileType markdown,mkd,md set tabstop=4|set softtabstop=4|set shiftwidth=
 au BufRead *.md setlocal spell
 au BufRead *.markdown setlocal spell
 
+" Configure lexical
+augroup lexical
+  autocmd!
+  autocmd FileType markdown,mkd call lexical#init()
+  autocmd FileType textile call lexical#init()
+  autocmd FileType text call lexical#init({ 'spell': 0 })
+augroup END
+
 " Configure Goyo on enter and exit
 function! s:goyo_enter()
   " colorscheme seoul256-light
@@ -195,26 +137,6 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 let g:goyo_width = 80
-
-" Configure vim-table-mode
-let g:table_mode_corner='|'
-
-
-"""
-" Slime
-"""
-" Configure slime to use tmux
-let g:slime_target = "tmux"
-
-
-"""
-" Autocompletion configuration
-"""
-let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
-
-
-" Remappings "
 
 " Remap the leader
 let mapleader = ","
@@ -239,7 +161,7 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 " Remap jj to escape insert mode
-inoremap jj <ESC>
+inoremap fd <ESC>
 " Remap gvim copy and paste
 if has('gui_running')
   vmap <C-c> "+yi
@@ -250,19 +172,12 @@ endif
 " Remap leader r to tagbar toggle
 nnoremap <leader>r :TagbarToggle<CR>
 " Remap F6 to inserting the current datetime
-nnoremap <F6> "=strftime('%c')<CR>P"
-inoremap <F6> <C-R>=strftime('%c')<CR>
+"nnoremap <F6> "=strftime('%c')<CR>P"
+"inoremap <F6> <C-R>=strftime('%c')<CR>
 " Enable shortcuts for moving elements to the left and right in a vim-table
-nnoremap tl T\|ldt\|lpl
-nnoremap th T\|ldt\|hhhhpbhhhh
+"nnoremap tl T\|ldt\|lpl
+"nnoremap th T\|ldt\|hhhhpbhhhh
 " Enable MyPy execution with ,mp
-nnoremap <leader>mp :Mypy<CR>
+"nnoremap <leader>mp :Mypy<CR>
 " Add a docstring in python with ,i
-nmap <silent> <C-i> <Plug>(pydocstring)
-
-
-"""
-" Last steps
-"""
-" Automatically start gVim fullscreen on Windows
-" autocmd GUIEnter * simalt ~x
+"nmap <silent> <C-i> <Plug>(pydocstring)
