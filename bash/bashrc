@@ -1,0 +1,6 @@
+## Prompt format
+GREEN="\[$(tput setaf 2)\]"
+BLUE="\[$(tput setaf 4)\]"
+RESET="\[$(tput sgr0)\]"
+
+PS1="[$GREEN\u$RESET.$GREEN\h$RESET: $BLUE\w$RESET]$ "
