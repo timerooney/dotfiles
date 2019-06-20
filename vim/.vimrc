@@ -25,6 +25,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'flazz/vim-colorschemes'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'jiangmiao/auto-pairs'
@@ -53,8 +54,8 @@ syntax on
 
 set termguicolors
 
-colorscheme rusticated
-let g:airline_theme='rusticated'
+colorscheme wombat256
+let g:airline_theme='wombat'
 set guifont=DejaVu_Sans_Mono:h12:cANSI:qDRAFT
 
 " Indentation settings
