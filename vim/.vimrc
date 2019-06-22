@@ -15,11 +15,11 @@ Plugin 'VundleVim/Vundle.vim'
 " plugin on GitHub repo
 
 Plugin 'tpope/vim-fugitive'
+
 Plugin 'reedes/vim-pencil'
 Plugin 'junegunn/goyo.vim'
 Plugin 'reedes/vim-wordy'
 Plugin 'reedes/vim-lexical'
-Plugin 'nightsense/rusticated'
 
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
@@ -30,7 +30,13 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-surround'
+
 Plugin 'majutsushi/tagbar'
+
+Plugin 'jpalardy/vim-slime'
+
+Plugin 'davidhalter/jedi-vim'
+
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 
@@ -139,11 +145,13 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 let g:goyo_width = 80
 
+" Configure vim-slime
+let g:slime_target="tmux"
+let g:slime_python_ipython=1
+
 " Remap the leader
 let mapleader = ","
 let maplocalleader = ","
-" Remap control-c to close current buffer without closing the window
-nnoremap <C-c> :bp\|bd#<CR>
 " Remap F8 to opening the tagbar
 nmap <F8> :TagbarToggle<CR>
 " Remap <leader>. to search tags
@@ -163,13 +171,6 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 " Remap jj to escape insert mode
 inoremap fd <ESC>
-" Remap gvim copy and paste
-if has('gui_running')
-  vmap <C-c> "+yi
-  vmap <C-x> "+c
-  vmap <C-v> c<ESC>"+p
-  imap <C-v> <C-r><C-o>+
-endif
 " Remap leader r to tagbar toggle
 nnoremap <leader>r :TagbarToggle<CR>
 " Remap F6 to inserting the current datetime
