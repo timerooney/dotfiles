@@ -36,6 +36,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'jpalardy/vim-slime'
 
 Plugin 'davidhalter/jedi-vim'
+Plugin 'Vimjas/vim-python-pep8-indent'
 
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
