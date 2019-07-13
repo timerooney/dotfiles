@@ -20,6 +20,7 @@ Plugin 'reedes/vim-pencil'
 Plugin 'junegunn/goyo.vim'
 Plugin 'reedes/vim-wordy'
 Plugin 'reedes/vim-lexical'
+Plugin 'ervandew/supertab'
 
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
@@ -59,7 +60,10 @@ filetype plugin indent on    " required
 """ General vim configuration
 syntax on
 
-set termguicolors
+"set termguicolors
+if $TERM -- "xterm-256color"
+  set t_Co=256
+endif
 
 colorscheme wombat256
 let g:airline_theme='wombat'
@@ -111,6 +115,11 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:ctrlp_root_markers = ['.ctrlp']
 " Set ctrlp to ignore Archive folder for searching
 let g:ctrlp_custom_ignore = "Archive"
+
+"""
+" Supertab configuration
+"""
+let g:SuperTabDefaultCompletionType = "<C-n>"
 
 """
 " Markdown formating
