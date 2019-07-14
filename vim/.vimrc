@@ -1,3 +1,4 @@
+set shell=/bin/bash           " ensure that bash shell is being used
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -37,6 +38,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'jpalardy/vim-slime'
 
 Plugin 'davidhalter/jedi-vim'
+Plugin 'heavenshell/vim-pydocstring'
 Plugin 'Vimjas/vim-python-pep8-indent'
 
 Plugin 'vim-pandoc/vim-pandoc'
