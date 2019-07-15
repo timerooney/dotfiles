@@ -1,3 +1,6 @@
+# Set the default editor
+export EDITOR=vim
+
 # Prompt format
 GREEN="\[$(tput setaf 2)\]"
 CYAN="\[$(tput setaf 6)\]"
