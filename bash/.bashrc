@@ -11,4 +11,6 @@ PS1="[$GREEN\u$RESET.$GREEN\h$RESET: $CYAN\w$RESET]$ "
 # Todo.txt configuration
 export TODO_DEFAULT_ACTION=ls
 alias t='$HOME/.tools/todotxt/todo.sh -d $HOME/.tools/todotxt/todo.cfg -t'
+alias td='t due'
+alias tx='t do'
 source $HOME/.tools/todotxt/todo_completion
