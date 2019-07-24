@@ -67,8 +67,8 @@ if $TERM -- "xterm-256color"
   set t_Co=256
 endif
 
-colorscheme wombat256
-let g:airline_theme='wombat'
+colorscheme zenburn
+let g:airline_theme='zenburn'
 set guifont=DejaVu_Sans_Mono:h12:cANSI:qDRAFT
 
 " Indentation settings

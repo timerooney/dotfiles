@@ -14,3 +14,6 @@ alias t='$HOME/.tools/todotxt/todo.sh -d $HOME/.tools/todotxt/todo.cfg -t'
 alias td='clear; t due'
 alias tx='t do'
 source $HOME/.tools/todotxt/todo_completion
+
+# Allow 256 colors when remote
+export TERM=xterm-256color
