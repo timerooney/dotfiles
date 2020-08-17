@@ -37,13 +37,6 @@ Plugin 'majutsushi/tagbar'
 
 Plugin 'jpalardy/vim-slime'
 
-Plugin 'davidhalter/jedi-vim'
-Plugin 'heavenshell/vim-pydocstring'
-Plugin 'Vimjas/vim-python-pep8-indent'
-
-Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
-
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
