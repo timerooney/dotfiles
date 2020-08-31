@@ -37,6 +37,8 @@ Plugin 'majutsushi/tagbar'
 
 Plugin 'jpalardy/vim-slime'
 
+Plugin 'chrisbra/csv.vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -60,7 +62,8 @@ if $TERM -- "xterm-256color"
   set t_Co=256
 endif
 
-colorscheme wombat256
+colorscheme gruvbox
+set background=dark
 let g:airline_theme='wombat'
 set guifont=DejaVu_Sans_Mono:h12:cANSI:qDRAFT
 
