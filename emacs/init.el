@@ -13,7 +13,7 @@
    '("939ea070fb0141cd035608b2baabc4bd50d8ecc86af8528df9d41f4d83664c6a" "aded61687237d1dff6325edb492bde536f40b048eab7246c61d5c6643c696b7f" default))
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(gruvbox-theme neotree which-key autopair evil-surround evil-escape rainbow-delimiters company helm-slime slime evil-collection evil)))
+   '(company-jedi gruvbox-theme neotree which-key autopair evil-surround evil-escape rainbow-delimiters company helm-slime slime evil-collection evil)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -53,3 +53,8 @@
 
 ;; Lisp configuration
 (setq inferior-lisp-program "sbcl.exe")
+
+;; Python configuration
+(add-hook 'python-mode-hook
+	  (lambda ()
+	    (add-to-list 'company-backends 'company-jedi)))
