@@ -1,4 +1,5 @@
 let b:is_chicken=1
+let b:AutoPairs={'(':')', '[':']', '{':'}','"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
 setl complete+=,k~/.vim/ftplugin/scheme-word-list
 
 setl include=\^\(\\(use\\\|require-extension\\)\\s\\+
