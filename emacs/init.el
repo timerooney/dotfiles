@@ -14,9 +14,9 @@
  '(ansi-color-names-vector
    (vector "#ffffff" "#c82829" "#718c00" "#eab700" "#4271ae" "#8959a8" "#3e999f" "#4d4d4c"))
  '(beacon-color "#c82829")
- '(custom-enabled-themes '(gruvbox-light-soft))
+ '(custom-enabled-themes '(gruvbox-light-hard))
  '(custom-safe-themes
-   '("1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "4cf9ed30ea575fb0ca3cff6ef34b1b87192965245776afa9e9e20c17d115f3fb" "e1d09f1b2afc2fed6feb1d672be5ec6ae61f84e058cb757689edb669be926896" "123a8dabd1a0eff6e0c48a03dc6fb2c5e03ebc7062ba531543dfbce587e86f2a" "939ea070fb0141cd035608b2baabc4bd50d8ecc86af8528df9d41f4d83664c6a" "aded61687237d1dff6325edb492bde536f40b048eab7246c61d5c6643c696b7f" default))
+   '("628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "4cf9ed30ea575fb0ca3cff6ef34b1b87192965245776afa9e9e20c17d115f3fb" "e1d09f1b2afc2fed6feb1d672be5ec6ae61f84e058cb757689edb669be926896" "123a8dabd1a0eff6e0c48a03dc6fb2c5e03ebc7062ba531543dfbce587e86f2a" "939ea070fb0141cd035608b2baabc4bd50d8ecc86af8528df9d41f4d83664c6a" "aded61687237d1dff6325edb492bde536f40b048eab7246c61d5c6643c696b7f" default))
  '(fci-rule-color "#d6d6d6")
  '(flycheck-color-mode-line-face-to-color 'mode-line-buffer-id)
  '(frame-background-mode 'light)
@@ -24,10 +24,10 @@
  '(helm-completion-style 'emacs)
  '(inhibit-startup-screen t)
  '(org-agenda-files
-   '("~/Notes/TankModeling.org" "~/Notes/Field-Data.org" "~/Notes/UEF.org" "~/Notes/Tube-in-Tube.org" "~/Notes/HPWHSizer.org" "~/Notes/Gas.org" "~/Notes/GT-SUITE.org" "~/Notes/CBECC.org" "~/Notes/admin.org"))
+   '("~/Notes/prx-UK-Spark.org" "~/Notes/prx-TankModeling.org" "~/Notes/prx-Field-Data.org" "~/Notes/prx-UEF.org" "~/Notes/prx-Tube-in-Tube.org" "~/Notes/prx-HPWHSizer.org" "~/Notes/prx-Gas.org" "~/Notes/prx-GT-SUITE.org" "~/Notes/prx-CBECC.org" "~/Notes/Admin.org"))
  '(org-latex-compiler "xelatex")
  '(package-selected-packages
-   '(evil-org evil-easymotion org-autolist csv-mode evil-magit color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized helm-projectile magit company-jedi gruvbox-theme neotree which-key autopair evil-surround evil-escape rainbow-delimiters company helm-slime slime evil-collection evil))
+   '(ess-view-data ess evil-org evil-easymotion org-autolist csv-mode evil-magit color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized helm-projectile magit company-jedi gruvbox-theme neotree which-key autopair evil-surround evil-escape rainbow-delimiters company helm-slime slime evil-collection evil))
  '(pdf-view-midnight-colors '("#fdf4c1" . "#282828"))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
@@ -79,7 +79,6 @@
 ;; General helpers
 (global-set-key [f8] 'neotree-toggle)
 (setq neo-window-fixed-size nil)
-(add-hook 'window-setup-hook #'neotree-show)
 
 ;; Key helpers
 (which-key-mode)
@@ -100,6 +99,7 @@
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 ;; Org-mode configuration
+(global-set-key (kbd "C-c a") 'org-agenda)
 (add-hook 'org-mode-hook (lambda () (org-autolist-mode)))
 (add-hook 'org-mode-hook 'evil-org-mode)
 (add-hook 'org-mode-hook (lambda ()
@@ -115,6 +115,7 @@
 
 ;; Git configuration
 (global-set-key (kbd "C-x g") 'magit-status)
+(require 'evil-magit)
 
 ;; Lisp configuration
 (setq inferior-lisp-program "sbcl.exe")
@@ -125,3 +126,7 @@
 	    (add-to-list 'company-backends 'company-jedi)))
 (setq python-shell-interpreter "ipython"
       python-shell-interpreter-args "--simple-prompt -i")
+
+;; R configuration
+(add-hook 'ess-mode-hook (lambda ()
+			   (define-key ess-mode-map (kbd "C-c v") 'ess-view-data-print)))
