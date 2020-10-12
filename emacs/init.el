@@ -15,20 +15,22 @@
  '(ansi-color-names-vector
    (vector "#ffffff" "#c82829" "#718c00" "#eab700" "#4271ae" "#8959a8" "#3e999f" "#4d4d4c"))
  '(beacon-color "#c82829")
- '(custom-enabled-themes '(sanityinc-tomorrow-day))
+ '(custom-enabled-themes '(gruvbox-light-hard))
  '(custom-safe-themes
-   '("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "a06658a45f043cd95549d6845454ad1c1d6e24a99271676ae56157619952394a" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "4cf9ed30ea575fb0ca3cff6ef34b1b87192965245776afa9e9e20c17d115f3fb" "e1d09f1b2afc2fed6feb1d672be5ec6ae61f84e058cb757689edb669be926896" "123a8dabd1a0eff6e0c48a03dc6fb2c5e03ebc7062ba531543dfbce587e86f2a" "939ea070fb0141cd035608b2baabc4bd50d8ecc86af8528df9d41f4d83664c6a" "aded61687237d1dff6325edb492bde536f40b048eab7246c61d5c6643c696b7f" default))
+   '("a06658a45f043cd95549d6845454ad1c1d6e24a99271676ae56157619952394a" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "4cf9ed30ea575fb0ca3cff6ef34b1b87192965245776afa9e9e20c17d115f3fb" "e1d09f1b2afc2fed6feb1d672be5ec6ae61f84e058cb757689edb669be926896" "123a8dabd1a0eff6e0c48a03dc6fb2c5e03ebc7062ba531543dfbce587e86f2a" "939ea070fb0141cd035608b2baabc4bd50d8ecc86af8528df9d41f4d83664c6a" "aded61687237d1dff6325edb492bde536f40b048eab7246c61d5c6643c696b7f" default))
  '(fci-rule-color "#d6d6d6")
  '(flycheck-color-mode-line-face-to-color 'mode-line-buffer-id)
  '(frame-background-mode 'light)
  '(global-display-line-numbers-mode t)
  '(helm-completion-style 'emacs)
  '(inhibit-startup-screen t)
+ '(irony-supported-major-modes '(c++-mode c-mode objc-mode arduino-mode))
  '(org-agenda-files
    '("~/Notes/prx-Fuel-Cells.org" "~/Notes/Misc/105FSources.org" "~/Notes/Misc/business-accumen.org" "~/Notes/Admin.org" "~/Notes/Misc.org" "~/Notes/ntx-lisp.org" "~/Notes/prx-ACRC.org" "~/Notes/prx-BTHKiller.org" "~/Notes/prx-CBECC.org" "~/Notes/prx-CEC.org" "~/Notes/prx-DOE.org" "~/Notes/prx-Field-Data.org" "~/Notes/prx-GT-SUITE.org" "~/Notes/prx-Gas.org" "~/Notes/prx-HPWHSizer.org" "~/Notes/prx-HybridHPWHandGas.org" "~/Notes/prx-ModelManager.org" "~/Notes/prx-Softener-Sensor.org" "~/Notes/prx-TankModeling.org" "~/Notes/prx-Tube-in-Tube.org" "~/Notes/prx-UEF.org" "~/Notes/prx-UK-Spark.org"))
  '(org-latex-compiler "xelatex")
  '(package-selected-packages
    '(realgud pyvenv pyenv-mode markdown-mode org-ref ox-odt gnu-elpa-keyring-update ess-view-data ess evil-org evil-easymotion org-autolist csv-mode evil-magit color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized helm-projectile magit company-jedi gruvbox-theme neotree which-key autopair evil-surround evil-escape rainbow-delimiters company helm-slime slime evil-collection evil))
+   '(company-arduino gnu-elpa-keyring-update arduino-mode ess-view-data ess evil-org evil-easymotion org-autolist csv-mode evil-magit color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized helm-projectile magit company-jedi gruvbox-theme neotree which-key autopair evil-surround evil-escape rainbow-delimiters company helm-slime slime evil-collection evil))
  '(pdf-view-midnight-colors '("#fdf4c1" . "#282828"))
  '(pyvenv-mode t)
  '(show-paren-mode t)
@@ -59,7 +61,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono" :foundry "outline" :slant normal :weight normal :height 98 :width normal)))))
+ '(default ((t (:family "DejaVu Sans Mono for Powerline" :foundry "outline" :slant normal :weight normal :height 98 :width normal)))))
 
 ;; Hook configuration
 (add-hook 'after-init-hook 'global-company-mode)
@@ -100,6 +102,7 @@
 
 ;; General configuration
 (global-display-line-numbers-mode)
+(setq ring-bell-function 'ignore)
 
 ;; Projectile configuration
 (projectile-mode +1)
@@ -121,6 +124,8 @@
 				(require 'evil-org-agenda)
 				(evil-org-agenda-set-keys)))
 (setq org-html-validation-link nil)
+(setq org-agenda-files (directory-files-recursively "d:/Tim/Dropbox/Notes/" "\\.org$"))
+;; (setq ispell-program-name "aspell")
 (setq reftex-default-bibliography '("~/references/library.bib"))
 (setq org-ref-default-bibliography '("~/references/library.bib"))
 (setq org-agenda-tag-filter-preset '("-ACTIONITEMS"))
@@ -143,3 +148,7 @@
 ;; R configuration
 (add-hook 'ess-mode-hook (lambda ()
 			   (define-key ess-mode-map (kbd "C-c v") 'ess-view-data-print)))
+
+;; Arduino configuration
+(add-hook 'irony-mode-hook 'company-arduino-turn-on)
+(add-hook 'arduino-mode-hook 'irony-mode)
