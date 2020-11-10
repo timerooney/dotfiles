@@ -25,12 +25,9 @@
  '(helm-completion-style 'emacs)
  '(inhibit-startup-screen t)
  '(irony-supported-major-modes '(c++-mode c-mode objc-mode arduino-mode))
- '(org-agenda-files
-   '("~/Notes/prx-Fuel-Cells.org" "~/Notes/Misc/105FSources.org" "~/Notes/Misc/business-accumen.org" "~/Notes/Admin.org" "~/Notes/Misc.org" "~/Notes/ntx-lisp.org" "~/Notes/prx-ACRC.org" "~/Notes/prx-BTHKiller.org" "~/Notes/prx-CBECC.org" "~/Notes/prx-CEC.org" "~/Notes/prx-DOE.org" "~/Notes/prx-Field-Data.org" "~/Notes/prx-GT-SUITE.org" "~/Notes/prx-Gas.org" "~/Notes/prx-HPWHSizer.org" "~/Notes/prx-HybridHPWHandGas.org" "~/Notes/prx-ModelManager.org" "~/Notes/prx-Softener-Sensor.org" "~/Notes/prx-TankModeling.org" "~/Notes/prx-Tube-in-Tube.org" "~/Notes/prx-UEF.org" "~/Notes/prx-UK-Spark.org"))
  '(org-latex-compiler "xelatex")
  '(package-selected-packages
-   '(realgud pyvenv pyenv-mode markdown-mode org-ref ox-odt gnu-elpa-keyring-update ess-view-data ess evil-org evil-easymotion org-autolist csv-mode evil-magit color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized helm-projectile magit company-jedi gruvbox-theme neotree which-key autopair evil-surround evil-escape rainbow-delimiters company helm-slime slime evil-collection evil))
-   '(company-arduino gnu-elpa-keyring-update arduino-mode ess-view-data ess evil-org evil-easymotion org-autolist csv-mode evil-magit color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized helm-projectile magit company-jedi gruvbox-theme neotree which-key autopair evil-surround evil-escape rainbow-delimiters company helm-slime slime evil-collection evil))
+   '(realgud pyvenv pyenv-mode markdown-mode org-ref ox-odt gnu-elpa-keyring-update ess evil-org evil-easymotion org-autolist csv-mode evil-magit color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized helm-projectile magit company-jedi gruvbox-theme neotree which-key autopair evil-surround evil-escape rainbow-delimiters company helm-slime slime evil-collection evil))
  '(pdf-view-midnight-colors '("#fdf4c1" . "#282828"))
  '(pyvenv-mode t)
  '(show-paren-mode t)
@@ -61,7 +58,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "DejaVu Sans Mono for Powerline" :foundry "outline" :slant normal :weight normal :height 98 :width normal)))))
+ '(default ((t (:family "Consolas" :foundry "outline" :slant normal :weight normal :height 113 :width normal)))))
 
 ;; Hook configuration
 (add-hook 'after-init-hook 'global-company-mode)
@@ -118,16 +115,16 @@
 			   (setq word-wrap t)
 			   (flyspell-mode 1)))
 (setq org-image-actual-width '(300))
-; (define-key org-mode-map (kbd "C-c ]") 'org-ref-helm-insert-cite-link)
+;; (define-key org-mode-map (kbd "C-c ]") 'org-ref-helm-insert-cite-link)
 (add-hook 'evil-org-mode-hook (lambda ()
 				(evil-org-set-key-theme)
 				(require 'evil-org-agenda)
 				(evil-org-agenda-set-keys)))
 (setq org-html-validation-link nil)
-(setq org-agenda-files (directory-files-recursively "d:/Tim/Dropbox/Notes/" "\\.org$"))
+(setq org-agenda-files (directory-files-recursively "c:/Users/trooney/Notes/" "\\.org$"))
 ;; (setq ispell-program-name "aspell")
-(setq reftex-default-bibliography '("~/references/library.bib"))
-(setq org-ref-default-bibliography '("~/references/library.bib"))
+(setq reftex-default-bibliography '("C:/Users/trooney/OneDrive - A.O. Smith Corporation/Reference/library.bib"))
+(setq org-ref-default-bibliography '("C:/Users/trooney/OneDrive - A.O. Smith Corporation/Reference/library.bib"))
 (setq org-agenda-tag-filter-preset '("-ACTIONITEMS"))
 
 ;; Git configuration
